@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 48px);
+  align-items: center;
+  justify-content: center;
+  background-color: #fbfbfb;
+  border-radius: 24px;
+  height: 60vh;
+  margin: 24px;
+}
+
+.title {
+  font-size: 3rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+.dateRow {
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+}

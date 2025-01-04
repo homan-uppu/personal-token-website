@@ -1,0 +1,45 @@
+:root {
+  /* Colors */
+  --text-color-primary: #111;
+  --text-color-secondary: #8d8d8d;
+  --text-color-light: rgba(0, 0, 0, 0.3);
+
+  --layer1-bg-color: #f6f6f6;
+  --layer2-bg-color: #fafafa;
+  --bg-hover: #ebebeb;
+
+  /* Typography */
+  --font-weight-base: 400;
+  --font-size-base: 0.1rem;
+
+  --font-size-essay: 1rem;
+  --font-size-header: 1.5rem;
+  --font-size-subheader: 1rem;
+  --font-size-caption: 0.8125rem;
+
+  /* Spacing */
+  --spacing-medium: 1rem;
+
+  --border: 1px solid rgba(0, 0, 0, 0.05);
+  --border-radius-large: 24px;
+  --border-radius-medium: 12px;
+  --border-radius-small: 4px;
+
+  --color-background-secondary: #f6f6f6;
+
+  --essay-max-width: 600px;
+}
+
+body {
+  letter-spacing: -0.02em;
+  line-height: 1.55;
+  font-weight: var(--font-weight-base);
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  margin: 0;
+  ::selection {
+    background-color: #fff88f;
+  }
+}
