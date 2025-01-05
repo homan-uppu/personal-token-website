@@ -66,7 +66,7 @@ export default function SideMenu({ sections }: SideMenuProps) {
 
       // Update active header
       updateActiveHeader();
-    }, 50); // 50ms debounce
+    }, 10); // 50ms debounce
 
     window.addEventListener("scroll", handleScroll);
     return () => {
