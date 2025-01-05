@@ -6,6 +6,9 @@ import { Inter, Source_Serif_4 } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 const sourceSerif = Source_Serif_4({ subsets: ["latin"] });
 
+import { Geist_Mono } from "next/font/google";
+const geistMono = Geist_Mono({ subsets: ["latin"] });
+
 export const mdxComponents: MDXComponents = {
   // Allows customizing built-in components, e.g. to add styling.
   img: (props: any) => (
@@ -56,7 +59,26 @@ export const mdxComponents: MDXComponents = {
   h2: (props) => {
     const label = props.children as string;
     return (
-      <h2 id={getIdFromHeader(label)} className={inter.className} {...props} />
+      <span
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+          margin: "8rem 0",
+        }}
+      >
+        <span style={{ height: "1px", background: "#E5E5E5", flex: 1 }} />
+        <h2
+          id={getIdFromHeader(label)}
+          className={geistMono.className}
+          style={{
+            margin: 0,
+            whiteSpace: "nowrap",
+          }}
+          {...props}
+        />
+        <div style={{ height: "1px", background: "#E5E5E5", flex: 1 }} />
+      </span>
     );
   },
   h3: (props) => {

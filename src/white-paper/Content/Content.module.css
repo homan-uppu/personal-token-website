@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  border-top: var(--border);
 }
 
 .sideMenuContainer {
@@ -9,6 +10,7 @@
   flex-direction: column;
   height: 100%;
   position: absolute;
+  width: 100px;
 }
 
 .content {
@@ -19,20 +21,21 @@
   font-weight: 440;
 
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 0
+    calc(var(--sideMenuWidth) + (100vw - var(--sideMenuWidth) - 600px) / 2);
   width: 100%;
-  padding-top: 3rem;
+  padding-top: 24px;
   padding-bottom: 3rem;
 }
 
 .content h2 {
-  font-size: 2rem;
+  font-size: 1.25rem;
   line-height: 1.25;
   color: var(--text-color-primary);
-  font-weight: 500;
+  font-weight: 460;
   margin: 0;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
 }
 
 .content h3 {

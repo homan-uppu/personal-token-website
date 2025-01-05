@@ -1,9 +1,17 @@
 .sideMenu {
   padding: 24px;
+  background: #fbfbfb;
+  width: var(--sideMenuWidth);
+  height: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  border-right: var(--border);
 }
 
-.collapsed {
-  width: 100px;
+.sideMenu::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+  border-right: var(--border);
 }
 
 .isSticky {
@@ -11,11 +19,38 @@
   top: 0;
 }
 
+.header {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color-primary);
+}
+
+.subheader {
+  font-size: 14px;
+  color: var(--text-color-secondary);
+}
+
+.header {
+  cursor: pointer;
+}
+
+.header:hover {
+  color: black;
+}
+
+.subheader {
+  cursor: pointer;
+}
+
+.subheader:hover {
+  color: var(--hover);
+}
+
 .toggleButton {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid var(--border-color);
+  border-right: var(--border);
   border-radius: 4px;
   background: transparent;
   color: var(--text-color-secondary);
@@ -29,7 +64,7 @@
 .sectionsContainer {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 24px;
 }
 
 .section {
@@ -46,8 +81,8 @@
 }
 
 .activeH2 {
-  color: var(--text-color-primary);
   font-weight: 600;
+  color: blue;
 }
 
 .h3Container {
@@ -74,6 +109,7 @@
 .activeH3 {
   color: var(--text-color-primary);
   font-weight: 500;
+  color: blue;
 }
 
 .h2:hover,

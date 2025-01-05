@@ -12,21 +12,33 @@ export default function Content({ children }: ContentProps) {
       <div className={styles.sideMenuContainer}>
         <SideMenu
           sections={[
-            ["I. INTRO", "What", "Why", "How", "Goals"],
+            ["I. Intro"],
             [
               "II. How it works",
+              "The Network",
+              "A personal token",
               "Shares",
-              "Raise money",
               "Valuation",
+              "Raise capital",
               "Manage relationships",
+              "Invest",
+              "Sell",
+              "Discover",
+              "Other details",
             ],
+            ["III. Demo"],
             [
-              "III. Implementation",
-              "Architecture",
-              "Security",
-              "Scalability",
-              "Future work",
+              "IV. Design",
+              "Admission",
+              "Sufficient decentralization",
+              "Network token",
+              "Tackling fraud",
+              "Syncing off chain assets",
+              "Promoting competition",
+              "Governance",
             ],
+            ["V. Implementation", "Overview", "Legal", "Technical"],
+            ["VI. Notes", "Vision", "Q&A", "Discuss", "Authors", "Contribute"],
           ]}
         />
       </div>
