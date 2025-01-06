@@ -4,6 +4,7 @@ import { ReactNode, useState } from "react";
 import styles from "./Content.module.css";
 import SideMenu from "../SideMenu";
 import { motion } from "framer-motion";
+import Toggle from "../SideMenu/Toggle";
 
 interface ContentProps {
   children: ReactNode;

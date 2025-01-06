@@ -94,26 +94,32 @@ export default function SideMenu({
 
   const shouldShowContent = isVisible || isHovered;
 
+  const springAnimTransition = {
+    type: "spring",
+    stiffness: 200, // Higher stiffness = more rigid
+    damping: 20, // Controls bounce/oscillation
+    mass: 0.5, // Lower mass = faster movement
+  };
+
   return (
     <AnimatePresence>
       <motion.nav
         className={`${styles.sideMenu} ${isSticky ? styles.isSticky : ""} ${
           !shouldShowContent ? styles.collapsed : ""
         } ${!isVisible ? styles.hoverable : ""}`}
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          width: shouldShowContent ? "var(--sideMenuWidth)" : "90px",
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 200, // Higher stiffness = more rigid
-          damping: 20, // Controls bounce/oscillation
-          mass: 0.5, // Lower mass = faster movement
-        }}
-        onMouseEnter={() => !isVisible && setIsHovered(true)}
-        onMouseLeave={() => !isVisible && setIsHovered(false)}
+        animate={{}}
+        transition={springAnimTransition}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
+        {!shouldShowContent && (
+          <div
+            className={styles.toggleContainer}
+            style={{ position: "absolute", left: "48px", top: "48px" }}
+          >
+            <Toggle onClick={() => setIsVisible(!isVisible)} />
+          </div>
+        )}
         <motion.div
           className={styles.sectionsContainer}
           style={{
@@ -124,15 +130,13 @@ export default function SideMenu({
           }}
           animate={{
             background: shouldShowContent ? "#fbfbfb" : "transparent",
+            x: shouldShowContent ? 0 : -300,
           }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 20,
-            mass: 0.5,
-          }}
+          transition={springAnimTransition}
         >
-          <Toggle onClick={() => setIsVisible(!isVisible)} />
+          <div className={styles.toggleContainer}>
+            <Toggle onClick={() => setIsVisible(!isVisible)} />
+          </div>
           {shouldShowContent &&
             sections.map((section, sectionIndex) => (
               <div key={sectionIndex} className={styles.section}>
