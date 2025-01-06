@@ -5,8 +5,7 @@ import { debounce } from "lodash";
 
 import styles from "./SideMenu.module.css";
 import { getIdFromHeader } from "@/util";
-import { Geist_Mono } from "next/font/google";
-const geistMono = Geist_Mono({ subsets: ["latin"] });
+import { Header, SubHeader } from "./Header";
 
 type SideMenuProps = {
   sections: string[][];
@@ -55,108 +54,50 @@ export default function SideMenu({ sections }: SideMenuProps) {
     }
   }, [findActiveHeader, activeId]);
 
+  // Update sticky state
+  const updateSticky = useCallback(() => {
+    const heroElement = document.getElementById("hero");
+    if (heroElement) {
+      setIsSticky(window.scrollY >= heroElement.offsetHeight + 48);
+    }
+  }, []);
+
   // Handle scroll with debouncing
   useEffect(() => {
-    const handleScroll = debounce(() => {
-      // Update sticky state
-      const heroElement = document.getElementById("hero");
-      if (heroElement) {
-        setIsSticky(window.scrollY >= heroElement.offsetHeight + 48);
-      }
-
-      // Update active header
+    const update = () => {
+      updateSticky();
       updateActiveHeader();
-    }, 10); // 50ms debounce
+    };
+
+    const handleScroll = debounce(() => {
+      update();
+    }, 10); // 10ms debounce
+
+    // Execute once on mount
+    update();
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       handleScroll.cancel();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [updateActiveHeader]);
-
-  const Header = ({ text }: { text: string }) => {
-    const id = getIdFromHeader(text);
-    const isActive = activeId === id;
-    return (
-      <div
-        className={`${styles.header} ${isActive ? styles.activeH2 : ""} ${
-          geistMono.className
-        }`}
-        onClick={() => {
-          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-        }}
-      >
-        {text}
-      </div>
-    );
-  };
-
-  const SubHeader = ({ text }: { text: string }) => {
-    const id = getIdFromHeader(text);
-    const isActive = activeId === id;
-
-    return (
-      <div
-        className={`${styles.subheader} ${isActive ? styles.activeH3 : ""}`}
-        onClick={() => {
-          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-        }}
-      >
-        {text}
-      </div>
-    );
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroElement = document.getElementById("hero");
-      const contentElement = document.getElementById("content");
-      if (heroElement && contentElement) {
-        const scrollPosition = window.scrollY;
-        setIsSticky(scrollPosition >= heroElement.offsetHeight + 48); // accounting for the margins around heroElement
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  //   useEffect(() => {
-  //     // Create an Intersection Observer to track header visibility
-  //     const callback = (entries: any) => {
-  //       // Find the first element that is more than 50% visible
-  //       const visible = entries.filter(
-  //         (entry: any) => entry.isIntersecting && entry.intersectionRatio >= 0.5
-  //       );
-
-  //       if (visible.length > 0) {
-  //         setActiveId(visible[0].target.id);
-  //       }
-  //     };
-
-  //     const observer = new IntersectionObserver(callback, {
-  //       root: null, // viewport
-  //       rootMargin: "-20% 0px -35% 0px", // Adjust these values to change when headers become "active"
-  //       threshold: [0.5], // Fire when element is 50% visible
-  //     });
-
-  //     // Observe all headers
-  //     document
-  //       .querySelectorAll("h2, h3")
-  //       .forEach((section) => observer.observe(section));
-
-  //     return () => observer.disconnect();
-  //   }, []);
 
   return (
     <nav className={`${styles.sideMenu} ${isSticky ? styles.isSticky : ""}`}>
       <div className={styles.sectionsContainer}>
         {sections.map((section, sectionIndex) => (
           <div key={sectionIndex} className={styles.section}>
-            <Header text={section[0]} />
+            <Header
+              text={section[0]}
+              isActive={activeId === getIdFromHeader(section[0])}
+            />
             {section.slice(1).map((item, itemIndex) => (
-              <SubHeader key={itemIndex} text={item} />
+              <SubHeader
+                key={itemIndex}
+                text={item}
+                isActive={activeId === getIdFromHeader(item)}
+              />
             ))}
           </div>
         ))}

@@ -19,33 +19,6 @@
   top: 0;
 }
 
-.header {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-color-primary);
-}
-
-.subheader {
-  font-size: 14px;
-  color: var(--text-color-secondary);
-}
-
-.header {
-  cursor: pointer;
-}
-
-.header:hover {
-  color: black;
-}
-
-.subheader {
-  cursor: pointer;
-}
-
-.subheader:hover {
-  color: var(--hover);
-}
-
 .toggleButton {
   width: 100%;
   padding: 0.5rem;
@@ -80,11 +53,6 @@
   cursor: pointer;
 }
 
-.activeH2 {
-  font-weight: 600;
-  color: blue;
-}
-
 .h3Container {
   display: flex;
   flex-direction: column;
@@ -104,12 +72,6 @@
   margin: 0;
   padding-left: 1rem;
   cursor: pointer;
-}
-
-.activeH3 {
-  color: var(--text-color-primary);
-  font-weight: 500;
-  color: blue;
 }
 
 .h2:hover,
