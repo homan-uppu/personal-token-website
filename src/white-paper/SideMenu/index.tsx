@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./SideMenu.module.css";
 import { getIdFromHeader } from "@/util";
 import { Header, SubHeader } from "./Header";
+import Toggle from "./Toggle";
 
 type SideMenuProps = {
   sections: string[][];
@@ -93,6 +94,7 @@ export default function SideMenu({ sections }: SideMenuProps) {
         transition={{ type: "spring", stiffness: 100 }}
       >
         <div className={styles.sectionsContainer}>
+          <Toggle onClick={() => ""} />
           {sections.map((section, sectionIndex) => (
             <div key={sectionIndex} className={styles.section}>
               <Header
