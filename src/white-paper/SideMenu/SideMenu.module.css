@@ -1,12 +1,10 @@
 .sideMenu {
   padding: 24px;
-  background: #fbfbfb;
   width: var(--sideMenuWidth);
   height: 100%;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  border-right: var(--border);
 }
 
 .sideMenu::-webkit-scrollbar {
@@ -21,8 +19,11 @@
 
 .sectionsContainer {
   display: flex;
+  background: #fbfbfb;
   flex-direction: column;
+  padding: 24px;
   gap: 48px;
+  border-radius: 24px;
 }
 
 .section {
