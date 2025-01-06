@@ -1,16 +1,22 @@
-.header {
+.BaseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
   font-size: 14px;
-  font-weight: 500;
-  color: var(--text-color-primary);
-}
-
-.subheader {
-  font-size: 14px;
-  color: var(--text-color-secondary);
-}
-
-.header {
   cursor: pointer;
+  font-weight: 460;
+}
+
+.BaseHeader:hover {
+  background-color: var(--hover-color);
+}
+
+.header {
+  color: var(--text-color-primary);
 }
 
 .header:hover {
@@ -18,7 +24,7 @@
 }
 
 .subheader {
-  cursor: pointer;
+  color: var(--text-color-secondary);
 }
 
 .subheader:hover {
@@ -26,12 +32,16 @@
 }
 
 .activeH2 {
-  font-weight: 600;
-  color: blue;
+  color: var(--text-color-primary);
 }
 
 .activeH3 {
   color: var(--text-color-primary);
-  font-weight: 500;
-  color: blue;
+}
+
+.activeIndicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #22c55e;
 }

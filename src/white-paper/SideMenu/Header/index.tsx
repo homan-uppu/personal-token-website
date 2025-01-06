@@ -22,14 +22,15 @@ const BaseHeader = ({
 
   return (
     <div
-      className={`${className} ${isActive ? activeClassName : ""} ${
-        additionalClassName || ""
-      }`}
+      className={` ${styles.BaseHeader} ${className} ${
+        isActive ? activeClassName : ""
+      } ${additionalClassName || ""}`}
       onClick={() => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       }}
     >
-      {text}
+      <span>{text}</span>
+      {isActive && <div className={styles.activeIndicator} />}
     </div>
   );
 };
