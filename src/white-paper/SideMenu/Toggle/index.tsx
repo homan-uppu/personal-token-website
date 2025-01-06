@@ -6,10 +6,9 @@ import styles from "./Toggle.module.css";
 type ToggleProps = {
   onClick: () => void;
 };
-
 export default function Toggle({ onClick }: ToggleProps) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClick}>
       <svg
         width="16"
         height="15"

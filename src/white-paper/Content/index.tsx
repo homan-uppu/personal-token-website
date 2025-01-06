@@ -1,16 +1,22 @@
-import { ReactNode, useEffect, useState } from "react";
+"use client";
+
+import { ReactNode, useState } from "react";
 import styles from "./Content.module.css";
 import SideMenu from "../SideMenu";
+import { motion } from "framer-motion";
 
 interface ContentProps {
   children: ReactNode;
 }
-
 export default function Content({ children }: ContentProps) {
+  const [isSideMenuVisible, setIsSideMenuVisible] = useState(true);
+
   return (
     <div className={styles.container}>
       <div className={styles.sideMenuContainer}>
         <SideMenu
+          isVisible={isSideMenuVisible}
+          setIsVisible={setIsSideMenuVisible}
           sections={[
             ["I. Intro"],
             [
@@ -42,9 +48,23 @@ export default function Content({ children }: ContentProps) {
           ]}
         />
       </div>
-      <div id="content" className={styles.content}>
+      <motion.div
+        id="content"
+        className={styles.content}
+        animate={{
+          margin: `0 auto 0 calc(${
+            isSideMenuVisible ? "300px" : "0px"
+          } + (100vw - ${isSideMenuVisible ? "300px" : "0px"} - 600px) / 2)`,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 20,
+          mass: 0.5,
+        }}
+      >
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 }

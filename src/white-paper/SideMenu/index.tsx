@@ -11,10 +11,17 @@ import Toggle from "./Toggle";
 
 type SideMenuProps = {
   sections: string[][];
+  isVisible: boolean;
+  setIsVisible: (isVisible: boolean) => void;
 };
-export default function SideMenu({ sections }: SideMenuProps) {
+export default function SideMenu({
+  sections,
+  isVisible,
+  setIsVisible,
+}: SideMenuProps) {
   const [isSticky, setIsSticky] = useState<boolean | null>(null);
   const [activeId, setActiveId] = useState("");
+  const [isHovered, setIsHovered] = useState(false);
 
   // Get all header IDs from sections
   const getAllHeaderIds = useCallback(() => {
@@ -85,32 +92,64 @@ export default function SideMenu({ sections }: SideMenuProps) {
 
   if (isSticky === null) return null;
 
+  const shouldShowContent = isVisible || isHovered;
+
   return (
     <AnimatePresence>
       <motion.nav
-        className={`${styles.sideMenu} ${isSticky ? styles.isSticky : ""}`}
+        className={`${styles.sideMenu} ${isSticky ? styles.isSticky : ""} ${
+          !shouldShowContent ? styles.collapsed : ""
+        } ${!isVisible ? styles.hoverable : ""}`}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ type: "spring", stiffness: 100 }}
+        animate={{
+          opacity: 1,
+          width: shouldShowContent ? "var(--sideMenuWidth)" : "90px",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200, // Higher stiffness = more rigid
+          damping: 20, // Controls bounce/oscillation
+          mass: 0.5, // Lower mass = faster movement
+        }}
+        onMouseEnter={() => !isVisible && setIsHovered(true)}
+        onMouseLeave={() => !isVisible && setIsHovered(false)}
       >
-        <div className={styles.sectionsContainer}>
-          <Toggle onClick={() => ""} />
-          {sections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className={styles.section}>
-              <Header
-                text={section[0]}
-                isActive={activeId === getIdFromHeader(section[0])}
-              />
-              {section.slice(1).map((item, itemIndex) => (
-                <SubHeader
-                  key={itemIndex}
-                  text={item}
-                  isActive={activeId === getIdFromHeader(item)}
+        <motion.div
+          className={styles.sectionsContainer}
+          style={{
+            boxShadow:
+              !isVisible && isHovered
+                ? "0px 4px 24px rgba(0, 0, 0, 0.1)"
+                : "none",
+          }}
+          animate={{
+            background: shouldShowContent ? "#fbfbfb" : "transparent",
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            damping: 20,
+            mass: 0.5,
+          }}
+        >
+          <Toggle onClick={() => setIsVisible(!isVisible)} />
+          {shouldShowContent &&
+            sections.map((section, sectionIndex) => (
+              <div key={sectionIndex} className={styles.section}>
+                <Header
+                  text={section[0]}
+                  isActive={activeId === getIdFromHeader(section[0])}
                 />
-              ))}
-            </div>
-          ))}
-        </div>
+                {section.slice(1).map((item, itemIndex) => (
+                  <SubHeader
+                    key={itemIndex}
+                    text={item}
+                    isActive={activeId === getIdFromHeader(item)}
+                  />
+                ))}
+              </div>
+            ))}
+        </motion.div>
       </motion.nav>
     </AnimatePresence>
   );
