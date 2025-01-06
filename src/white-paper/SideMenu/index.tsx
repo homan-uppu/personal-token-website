@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { debounce } from "lodash";
+import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./SideMenu.module.css";
 import { getIdFromHeader } from "@/util";
@@ -10,9 +11,8 @@ import { Header, SubHeader } from "./Header";
 type SideMenuProps = {
   sections: string[][];
 };
-
 export default function SideMenu({ sections }: SideMenuProps) {
-  const [isSticky, setIsSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState<boolean | null>(null);
   const [activeId, setActiveId] = useState("");
 
   // Get all header IDs from sections
@@ -73,7 +73,6 @@ export default function SideMenu({ sections }: SideMenuProps) {
       update();
     }, 10); // 10ms debounce
 
-    // Execute once on mount
     update();
 
     window.addEventListener("scroll", handleScroll);
@@ -81,27 +80,36 @@ export default function SideMenu({ sections }: SideMenuProps) {
       handleScroll.cancel();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [updateSticky, updateActiveHeader]);
+
+  if (isSticky === null) return null;
 
   return (
-    <nav className={`${styles.sideMenu} ${isSticky ? styles.isSticky : ""}`}>
-      <div className={styles.sectionsContainer}>
-        {sections.map((section, sectionIndex) => (
-          <div key={sectionIndex} className={styles.section}>
-            <Header
-              text={section[0]}
-              isActive={activeId === getIdFromHeader(section[0])}
-            />
-            {section.slice(1).map((item, itemIndex) => (
-              <SubHeader
-                key={itemIndex}
-                text={item}
-                isActive={activeId === getIdFromHeader(item)}
+    <AnimatePresence>
+      <motion.nav
+        className={`${styles.sideMenu} ${isSticky ? styles.isSticky : ""}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ type: "spring", stiffness: 100 }}
+      >
+        <div className={styles.sectionsContainer}>
+          {sections.map((section, sectionIndex) => (
+            <div key={sectionIndex} className={styles.section}>
+              <Header
+                text={section[0]}
+                isActive={activeId === getIdFromHeader(section[0])}
               />
-            ))}
-          </div>
-        ))}
-      </div>
-    </nav>
+              {section.slice(1).map((item, itemIndex) => (
+                <SubHeader
+                  key={itemIndex}
+                  text={item}
+                  isActive={activeId === getIdFromHeader(item)}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </motion.nav>
+    </AnimatePresence>
   );
 }
