@@ -3,28 +3,40 @@ import styles from "./Header.module.css";
 import { Geist_Mono } from "next/font/google";
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
-type BaseHeaderProps = {
+type HeaderProps = {
   text: string;
   isActive: boolean;
-  className: string;
-  activeClassName: string;
-  additionalClassName?: string;
 };
 
-const BaseHeader = ({
-  text,
-  isActive,
-  className,
-  activeClassName,
-  additionalClassName,
-}: BaseHeaderProps) => {
+export const Header = ({ text, isActive }: HeaderProps) => {
+  const id = getIdFromHeader(text);
+
+  return (
+    <div className={styles.headerContainer}>
+      <div className={styles.line} />
+      <div
+        className={`${styles.BaseHeader} ${styles.header} ${
+          isActive ? styles.activeH2 : ""
+        } ${geistMono.className}`}
+        onClick={() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        <span>{text}</span>
+      </div>
+      <div className={styles.line} />
+    </div>
+  );
+};
+
+export const SubHeader = ({ text, isActive }: HeaderProps) => {
   const id = getIdFromHeader(text);
 
   return (
     <div
-      className={` ${styles.BaseHeader} ${className} ${
-        isActive ? activeClassName : ""
-      } ${additionalClassName || ""}`}
+      className={`${styles.BaseHeader} ${styles.subheader} ${
+        isActive ? styles.activeH3 : ""
+      }`}
       onClick={() => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       }}
@@ -32,40 +44,5 @@ const BaseHeader = ({
       <span>{text}</span>
       {isActive && <div className={styles.activeIndicator} />}
     </div>
-  );
-};
-
-export const Header = ({
-  text,
-  isActive,
-}: {
-  text: string;
-  isActive: boolean;
-}) => {
-  return (
-    <BaseHeader
-      text={text}
-      isActive={isActive}
-      className={styles.header}
-      activeClassName={styles.activeH2}
-      additionalClassName={geistMono.className}
-    />
-  );
-};
-
-export const SubHeader = ({
-  text,
-  isActive,
-}: {
-  text: string;
-  isActive: boolean;
-}) => {
-  return (
-    <BaseHeader
-      text={text}
-      isActive={isActive}
-      className={styles.subheader}
-      activeClassName={styles.activeH3}
-    />
   );
 };
