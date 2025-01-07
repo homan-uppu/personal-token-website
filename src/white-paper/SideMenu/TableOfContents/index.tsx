@@ -23,14 +23,16 @@ export function TableOfContents({
             isActive={activeId === getIdFromHeader(section[0])}
             onClick={() => onSelect?.(getIdFromHeader(section[0]))}
           />
-          {section.slice(1).map((item, itemIndex) => (
-            <SubHeader
-              key={itemIndex}
-              text={item}
-              isActive={activeId === getIdFromHeader(item)}
-              onClick={() => onSelect?.(getIdFromHeader(item))}
-            />
-          ))}
+          <div className={styles.h3Container}>
+            {section.slice(1).map((item, itemIndex) => (
+              <SubHeader
+                key={itemIndex}
+                text={item}
+                isActive={activeId === getIdFromHeader(item)}
+                onClick={() => onSelect?.(getIdFromHeader(item))}
+              />
+            ))}
+          </div>
         </div>
       ))}
     </div>

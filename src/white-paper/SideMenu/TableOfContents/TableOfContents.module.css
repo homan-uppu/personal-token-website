@@ -6,6 +6,12 @@
   border-radius: 24px;
 }
 
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
