@@ -22,17 +22,30 @@
   opacity: 0.05;
   z-index: 0;
 }
-.background {
-  width: 140%;
-  height: 140%;
-  margin: -20%;
-  margin-top: -15%;
-  margin-left: -25%;
-}
 
 @media (max-width: 768px) {
   .background {
     margin-left: -28%;
+  }
+}
+
+.background {
+  width: calc(130vw);
+  height: calc(130vh);
+  margin: calc(-20vh);
+  margin-top: calc(-25vh);
+  margin-left: calc(-20vw);
+}
+
+@media (max-width: 768px) {
+  .background {
+    margin-left: -27vw;
+  }
+}
+
+@media (min-width: 1400px) {
+  .background {
+    margin-left: -18vw;
   }
 }
 

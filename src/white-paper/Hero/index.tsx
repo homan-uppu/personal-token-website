@@ -15,18 +15,22 @@ interface SplineBackgroundProps {
   className?: string;
 }
 
-function SplineBackground({ className }: SplineBackgroundProps) {
-  return (
-    <div className={className}>
-      <Spline scene="https://prod.spline.design/HgaCD40PmTA8axWT/scene.splinecode" />
-    </div>
-  );
-}
 export default function Hero({ title, date, version }: HeroProps) {
   return (
     <div id="hero" className={styles.container + " " + geistMono.className}>
       <div className={styles.bgContainer}>
-        <SplineBackground className={styles.background} />
+        <div
+          //   style={{
+          //     width: "calc(130vw)",
+          //     height: "calc(130vh)",
+          //     margin: "calc(-20vh)",
+          //     marginTop: "calc(-25vh)",
+          //     marginLeft: "calc(-20vw)",
+          //   }}
+          className={styles.background}
+        >
+          <Spline scene="https://prod.spline.design/HgaCD40PmTA8axWT/scene.splinecode" />
+        </div>
       </div>
       <div className={styles.content}>
         <h1 className={styles.title}>{title}</h1>
