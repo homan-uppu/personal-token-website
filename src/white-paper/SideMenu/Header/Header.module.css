@@ -7,8 +7,9 @@
   border-radius: 4px;
   transition: background-color 0.2s ease;
   font-size: 14px;
+  text-transform: uppercase;
   cursor: pointer;
-  font-weight: 460;
+  font-weight: 400;
   color: var(--text-color-primary);
 }
 
