@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  background: var(--layer1-bg-color);
+  flex-direction: column;
+  padding: 24px;
+  gap: 48px;
+  border-radius: 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+}

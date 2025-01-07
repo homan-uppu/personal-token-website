@@ -6,9 +6,10 @@ const geistMono = Geist_Mono({ subsets: ["latin"] });
 type HeaderProps = {
   text: string;
   isActive: boolean;
+  onClick?: () => void;
 };
 
-export const Header = ({ text, isActive }: HeaderProps) => {
+export const Header = ({ text, isActive, onClick }: HeaderProps) => {
   const id = getIdFromHeader(text);
 
   return (
@@ -20,6 +21,7 @@ export const Header = ({ text, isActive }: HeaderProps) => {
         } ${geistMono.className}`}
         onClick={() => {
           document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+          if (onClick) onClick();
         }}
       >
         <span>{text}</span>
@@ -29,7 +31,7 @@ export const Header = ({ text, isActive }: HeaderProps) => {
   );
 };
 
-export const SubHeader = ({ text, isActive }: HeaderProps) => {
+export const SubHeader = ({ text, isActive, onClick }: HeaderProps) => {
   const id = getIdFromHeader(text);
 
   return (
@@ -39,6 +41,7 @@ export const SubHeader = ({ text, isActive }: HeaderProps) => {
       }`}
       onClick={() => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        if (onClick) onClick();
       }}
     >
       <span>{text}</span>

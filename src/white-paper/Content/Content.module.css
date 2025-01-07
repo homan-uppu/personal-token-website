@@ -19,10 +19,9 @@
   line-height: 1.55;
   font-size: var(--font-size-essay);
   font-weight: 440;
+  padding: 1rem;
 
   max-width: 600px;
-  margin: 0 auto 0
-    calc(var(--sideMenuWidth) + (100vw - var(--sideMenuWidth) - 600px) / 2);
   width: 100%;
   padding-top: 24px;
   padding-bottom: 3rem;

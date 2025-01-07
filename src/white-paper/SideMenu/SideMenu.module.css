@@ -19,11 +19,12 @@
 
 .sectionsContainer {
   display: flex;
-  background: #fbfbfb;
   flex-direction: column;
-  padding: 24px;
-  gap: 48px;
   border-radius: 24px;
+}
+
+.toggleContainer {
+  padding: 24px;
 }
 
 .section {

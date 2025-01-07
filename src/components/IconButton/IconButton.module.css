@@ -1,0 +1,22 @@
+.iconButton {
+  display: inline-flex;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: fit-content;
+  background: var(--layer1-bg-color);
+  border: none;
+}
+
+.iconButton svg path {
+  fill: var(--text-color-secondary);
+}
+
+.iconButton:hover {
+  background: var(--bg-hover);
+}
+
+.iconButton:hover svg path {
+  fill: var(--text-color-primary);
+  fill-opacity: 1;
+}

@@ -8,18 +8,54 @@ import styles from "./SideMenu.module.css";
 import { getIdFromHeader } from "@/util";
 import { Header, SubHeader } from "./Header";
 import Toggle from "./Toggle";
+import { TableOfContents } from "./TableOfContents";
 
 type SideMenuProps = {
   sections: string[][];
   isVisible: boolean;
   setIsVisible: (isVisible: boolean) => void;
 };
+
+export function useSticky() {
+  const [isSticky, setIsSticky] = useState<boolean | null>(null);
+
+  const updateSticky = useCallback(() => {
+    const heroElement = document.getElementById("hero");
+    if (heroElement) {
+      setIsSticky(window.scrollY >= heroElement.offsetHeight + 48);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      updateSticky();
+    }, 10);
+
+    updateSticky();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      handleScroll.cancel();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return isSticky;
+}
+
+export const springAnimTransition = {
+  type: "spring",
+  stiffness: 200, // Higher stiffness = more rigid
+  damping: 20, // Controls bounce/oscillation
+  mass: 0.5, // Lower mass = faster movement
+};
+
 export default function SideMenu({
   sections,
   isVisible,
   setIsVisible,
 }: SideMenuProps) {
-  const [isSticky, setIsSticky] = useState<boolean | null>(null);
+  const isSticky = useSticky();
   const [activeId, setActiveId] = useState("");
   const [isHovered, setIsHovered] = useState(false);
 
@@ -62,44 +98,24 @@ export default function SideMenu({
     }
   }, [findActiveHeader, activeId]);
 
-  // Update sticky state
-  const updateSticky = useCallback(() => {
-    const heroElement = document.getElementById("hero");
-    if (heroElement) {
-      setIsSticky(window.scrollY >= heroElement.offsetHeight + 48);
-    }
-  }, []);
-
   // Handle scroll with debouncing
   useEffect(() => {
-    const update = () => {
-      updateSticky();
-      updateActiveHeader();
-    };
-
     const handleScroll = debounce(() => {
-      update();
+      updateActiveHeader();
     }, 10); // 10ms debounce
 
-    update();
+    updateActiveHeader();
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       handleScroll.cancel();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [updateSticky, updateActiveHeader]);
+  }, [updateActiveHeader]);
 
   if (isSticky === null) return null;
 
   const shouldShowContent = isVisible || isHovered;
-
-  const springAnimTransition = {
-    type: "spring",
-    stiffness: 200, // Higher stiffness = more rigid
-    damping: 20, // Controls bounce/oscillation
-    mass: 0.5, // Lower mass = faster movement
-  };
 
   return (
     <AnimatePresence>
@@ -115,7 +131,7 @@ export default function SideMenu({
         {!shouldShowContent && (
           <div
             className={styles.toggleContainer}
-            style={{ position: "absolute", left: "48px", top: "48px" }}
+            style={{ position: "absolute", left: "24px", top: "24px" }}
           >
             <Toggle onClick={() => setIsVisible(!isVisible)} />
           </div>
@@ -137,22 +153,9 @@ export default function SideMenu({
           <div className={styles.toggleContainer}>
             <Toggle onClick={() => setIsVisible(!isVisible)} />
           </div>
-          {shouldShowContent &&
-            sections.map((section, sectionIndex) => (
-              <div key={sectionIndex} className={styles.section}>
-                <Header
-                  text={section[0]}
-                  isActive={activeId === getIdFromHeader(section[0])}
-                />
-                {section.slice(1).map((item, itemIndex) => (
-                  <SubHeader
-                    key={itemIndex}
-                    text={item}
-                    isActive={activeId === getIdFromHeader(item)}
-                  />
-                ))}
-              </div>
-            ))}
+          {shouldShowContent && (
+            <TableOfContents sections={sections} activeId={activeId} />
+          )}
         </motion.div>
       </motion.nav>
     </AnimatePresence>
