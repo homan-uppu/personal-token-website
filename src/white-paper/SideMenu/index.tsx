@@ -43,30 +43,15 @@ export function useSticky() {
   return isSticky;
 }
 
-export const springAnimTransition = {
-  type: "spring",
-  stiffness: 200, // Higher stiffness = more rigid
-  damping: 20, // Controls bounce/oscillation
-  mass: 0.5, // Lower mass = faster movement
-};
-
-export default function SideMenu({
-  sections,
-  isVisible,
-  setIsVisible,
-}: SideMenuProps) {
-  const isSticky = useSticky();
+export function useActiveHeader(sections: string[][]) {
   const [activeId, setActiveId] = useState("");
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Get all header IDs from sections
   const getAllHeaderIds = useCallback(() => {
     return sections.flatMap((section) =>
       section.map((headerText) => getIdFromHeader(headerText))
     );
   }, [sections]);
 
-  // Find the header closest to top of viewport
   const findActiveHeader = useCallback(() => {
     const headerIds = getAllHeaderIds();
     const scrollPosition = window.scrollY + 100; // Offset for better detection
@@ -90,7 +75,6 @@ export default function SideMenu({
     return closestHeader;
   }, [getAllHeaderIds]);
 
-  // Update active header
   const updateActiveHeader = useCallback(() => {
     const newActiveId = findActiveHeader();
     if (newActiveId && newActiveId !== activeId) {
@@ -98,11 +82,10 @@ export default function SideMenu({
     }
   }, [findActiveHeader, activeId]);
 
-  // Handle scroll with debouncing
   useEffect(() => {
     const handleScroll = debounce(() => {
       updateActiveHeader();
-    }, 10); // 10ms debounce
+    }, 10);
 
     updateActiveHeader();
 
@@ -112,6 +95,25 @@ export default function SideMenu({
       window.removeEventListener("scroll", handleScroll);
     };
   }, [updateActiveHeader]);
+
+  return activeId;
+}
+
+export const springAnimTransition = {
+  type: "spring",
+  stiffness: 200, // Higher stiffness = more rigid
+  damping: 20, // Controls bounce/oscillation
+  mass: 0.5, // Lower mass = faster movement
+};
+
+export default function SideMenu({
+  sections,
+  isVisible,
+  setIsVisible,
+}: SideMenuProps) {
+  const isSticky = useSticky();
+  const activeId = useActiveHeader(sections);
+  const [isHovered, setIsHovered] = useState(false);
 
   if (isSticky === null) return null;
 

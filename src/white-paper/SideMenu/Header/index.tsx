@@ -13,7 +13,7 @@ export const Header = ({ text, isActive, onClick }: HeaderProps) => {
   const id = getIdFromHeader(text);
 
   return (
-    <div className={styles.headerContainer}>
+    <div id={`toc-${id}`} className={styles.headerContainer}>
       <div className={styles.line} />
       <div
         className={`${styles.BaseHeader} ${styles.header} ${
@@ -36,6 +36,7 @@ export const SubHeader = ({ text, isActive, onClick }: HeaderProps) => {
 
   return (
     <div
+      id={`toc-${id}`}
       className={`${styles.BaseHeader} ${styles.subheader} ${
         isActive ? styles.activeH3 : ""
       }`}

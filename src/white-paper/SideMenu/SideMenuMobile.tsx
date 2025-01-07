@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import IconButton from "@/components/IconButton";
-import { springAnimTransition, useSticky } from "./";
+import { springAnimTransition, useSticky, useActiveHeader } from "./";
 import { TableOfContents } from "./TableOfContents";
 
 type SideMenuMobileProps = {
@@ -13,6 +13,7 @@ type SideMenuMobileProps = {
 export default function SideMenuMobile({ sections }: SideMenuMobileProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const isSticky = useSticky();
+  const activeId = useActiveHeader(sections);
 
   console.log({ isSticky, isExpanded });
 
@@ -46,6 +47,17 @@ export default function SideMenuMobile({ sections }: SideMenuMobileProps) {
           <motion.div
             animate={{ right: isExpanded ? "0px" : "-80vw" }}
             transition={springAnimTransition}
+            onAnimationStart={() => {
+              if (isExpanded && activeId) {
+                const activeElement = document.getElementById(
+                  `toc-${activeId}`
+                );
+                activeElement?.scrollIntoView({
+                  block: "center",
+                  behavior: "smooth",
+                });
+              }
+            }}
             style={{
               position: "absolute",
               bottom: "100%",
@@ -61,7 +73,7 @@ export default function SideMenuMobile({ sections }: SideMenuMobileProps) {
           >
             <TableOfContents
               sections={sections}
-              activeId={""}
+              activeId={activeId}
               onSelect={() => setIsExpanded(false)}
             />
           </motion.div>
