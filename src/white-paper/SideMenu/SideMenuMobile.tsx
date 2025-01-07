@@ -15,8 +15,6 @@ export default function SideMenuMobile({ sections }: SideMenuMobileProps) {
   const isSticky = useSticky();
   const activeId = useActiveHeader(sections);
 
-  console.log({ isSticky, isExpanded });
-
   if (!isSticky) return null;
 
   return (

@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  background: var(--layer1-bg-color);
   flex-direction: column;
   padding: 24px;
   gap: 48px;

@@ -122,9 +122,11 @@ export default function SideMenu({
   return (
     <AnimatePresence>
       <motion.nav
-        className={`${styles.sideMenu} ${isSticky ? styles.isSticky : ""} ${
-          !shouldShowContent ? styles.collapsed : ""
-        } ${!isVisible ? styles.hoverable : ""}`}
+        className={`${styles.sideMenu}`}
+        style={{
+          position: isSticky ? "fixed" : "static",
+          top: isSticky ? 0 : undefined,
+        }}
         animate={{}}
         transition={springAnimTransition}
         onMouseEnter={() => setIsHovered(true)}
@@ -145,6 +147,7 @@ export default function SideMenu({
               !isVisible && isHovered
                 ? "0px 4px 24px rgba(0, 0, 0, 0.1)"
                 : "none",
+            background: shouldShowContent ? "#fbfbfb" : "transparent",
           }}
           animate={{
             background: shouldShowContent ? "#fbfbfb" : "transparent",

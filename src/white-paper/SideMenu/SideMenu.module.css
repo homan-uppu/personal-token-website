@@ -12,11 +12,6 @@
   border-right: var(--border);
 }
 
-.isSticky {
-  position: fixed;
-  top: 0;
-}
-
 .sectionsContainer {
   display: flex;
   flex-direction: column;

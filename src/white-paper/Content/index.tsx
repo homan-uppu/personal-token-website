@@ -12,7 +12,7 @@ interface ContentProps {
 }
 
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -35,7 +35,6 @@ export const useIsMobile = () => {
 export default function Content({ children }: ContentProps) {
   const [isSideMenuVisible, setIsSideMenuVisible] = useState(true);
   const isMobile = useIsMobile();
-  console.log("ismobile: ", isMobile);
 
   const sections = [
     ["I. Intro"],
@@ -67,6 +66,12 @@ export default function Content({ children }: ContentProps) {
     ["VI. Notes", "Vision", "Q&A", "Discuss", "Authors", "Contribute"],
   ];
 
+  const contentMargin = isMobile
+    ? "0"
+    : `0 auto 0 calc(${isSideMenuVisible ? "300px" : "0px"} + (100vw - ${
+        isSideMenuVisible ? "300px" : "0px"
+      } - 600px) / 2)`;
+
   return (
     <div className={styles.container}>
       <div className={styles.sideMenuContainer}>
@@ -83,14 +88,9 @@ export default function Content({ children }: ContentProps) {
       <motion.div
         id="content"
         className={styles.content}
+        style={{ margin: contentMargin }}
         animate={{
-          margin: isMobile
-            ? "0"
-            : `0 auto 0 calc(${
-                isSideMenuVisible ? "300px" : "0px"
-              } + (100vw - ${
-                isSideMenuVisible ? "300px" : "0px"
-              } - 600px) / 2)`,
+          margin: contentMargin,
         }}
         transition={{
           type: "spring",
