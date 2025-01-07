@@ -12,11 +12,11 @@ interface ContentProps {
 }
 
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
 
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 900);
     };
 
     // Check on mount
@@ -67,7 +67,7 @@ export default function Content({ children }: ContentProps) {
   ];
 
   const contentMargin = isMobile
-    ? "0"
+    ? "0 auto"
     : `0 auto 0 calc(${isSideMenuVisible ? "300px" : "0px"} + (100vw - ${
         isSideMenuVisible ? "300px" : "0px"
       } - 600px) / 2)`;

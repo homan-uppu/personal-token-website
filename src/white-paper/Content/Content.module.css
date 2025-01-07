@@ -103,6 +103,7 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
+  margin-left: 2rem;
 }
 
 .content a {
