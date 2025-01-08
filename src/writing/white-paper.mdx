@@ -22,6 +22,73 @@ This system would be implemented as a network of personal tokens, along with the
 
 ### A personal token
 
+<Card caption="A personal token with shareholders and a portfolio of assets of companies and other personal tokens.">
+  <PersonalToken
+    profilePicSrc="/images/amy.png"
+    name="Amy K"
+    valuation="$2M"
+    bio="Researching novel, quick acting, acne treatments."
+    linkInBio="amyk.xyz"
+    shareholders={[
+      {
+        type: "PersonalToken",
+        profilePic: "/images/sam.png",
+        name: "Sam C",
+        equity: "15%",
+        value: "$300K",
+      },
+      {
+        type: "PersonalToken",
+        profilePic: "/images/maya.png",
+        name: "Maya P",
+        equity: "10%",
+        value: "$200K",
+      },
+      {
+        type: "PersonalToken",
+        profilePic: "/images/jane.png",
+        name: "Jane S",
+        equity: "5%",
+        value: "$100K",
+      },
+    ]}
+    portfolio={[
+      {
+        type: "PersonalToken",
+        profilePic: "/images/sam.png",
+        name: "Sam C",
+        equity: "2%",
+        value: "$40K",
+      },
+      {
+        type: "PersonalToken",
+        profilePic: "/images/maya.png",
+        name: "Maya P",
+        equity: "3%",
+        value: "$60K",
+      },
+      {
+        type: "Company",
+        profilePic: "/images/openai.png",
+        name: "OpenAI",
+        value: "$500K",
+      },
+      {
+        type: "Company",
+        profilePic: "/images/reddit.png",
+        name: "Reddit",
+        value: "$200K",
+      },
+      {
+        type: "Company",
+        profilePic: "/images/apple.png",
+        name: "Apple",
+        value: "$300K",
+      },
+    ]}
+  />
+</Card>
+
 A personal token is a fictional entity that represents the following information:
 
 - the owner of this personal token.

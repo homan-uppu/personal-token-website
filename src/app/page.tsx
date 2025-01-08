@@ -33,29 +33,7 @@ export default function Home() {
         <HeroCaption />
         <Link
           href="/white-paper"
-          className={geistMono.className}
-          style={{
-            display: "block",
-            background: "rgba(255, 255, 255, 0.1)",
-            border: "none",
-            width: "100%",
-            padding: "0.75rem 1.5rem",
-            borderRadius: "8px",
-            color: "white",
-            cursor: "pointer",
-            fontSize: "1rem",
-            transition: "all 0.2s ease",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            textAlign: "center",
-            marginTop: "1.25rem",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
-          }}
+          className={styles.cta + " " + geistMono.className}
         >
           read white paper
         </Link>
