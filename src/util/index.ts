@@ -8,9 +8,15 @@ export const getIdFromHeader = (label: string): string => {
 
 export const formatNumber = (num: number): string => {
   if (num >= 1000000) {
-    return `${Math.floor(num / 1000000)}M`;
+    const millions = num / 1000000;
+    return `${
+      millions % 1 === 0 ? Math.floor(millions) : millions.toFixed(1)
+    }M`;
   } else if (num >= 1000) {
-    return `${Math.floor(num / 1000)}K`;
+    const thousands = num / 1000;
+    return `${
+      thousands % 1 === 0 ? Math.floor(thousands) : thousands.toFixed(1)
+    }K`;
   }
   return num.toString();
 };

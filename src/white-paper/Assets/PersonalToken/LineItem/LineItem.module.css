@@ -79,6 +79,6 @@
   /* padding: 4px 8px;
   border-radius: 8px;
   background: var(--layer1-bg-color); */
-  color: #00bf4c;
+  color: var(--active-green);
   font-weight: 500;
 }
