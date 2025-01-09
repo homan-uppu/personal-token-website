@@ -23,63 +23,7 @@ This system would be implemented as a network of personal tokens, along with the
 ### A personal token
 
 <Card caption="A personal token with shareholders and a portfolio of other personal tokens and companies.">
-  <PersonalToken
-    profilePicSrc="/images/amy.png"
-    name="Amy K"
-    valuation="$9M"
-    bio="Researching novel, quick acting, acne treatments."
-    linkInBio="amyk.xyz"
-    shareholders={[
-      {
-        type: "PersonalToken",
-        profilePic: "/images/amy.png",
-        name: "Amy K",
-        equity: "95%",
-        value: "$300K",
-      },
-      {
-        type: "PersonalToken",
-        profilePic: "/images/jane.png",
-        name: "Jane S",
-        equity: "5%",
-        value: "$100K",
-      },
-    ]}
-    portfolio={[
-      {
-        type: "PersonalToken",
-        profilePic: "/images/sam.png",
-        name: "Sam C",
-        equity: "2%",
-        value: "$40K",
-      },
-      {
-        type: "PersonalToken",
-        profilePic: "/images/maya.png",
-        name: "Maya P",
-        equity: "3%",
-        value: "$60K",
-      },
-      {
-        type: "Company",
-        profilePic: "/images/openai.png",
-        name: "OpenAI",
-        value: "$487.5K",
-      },
-      {
-        type: "Company",
-        profilePic: "/images/reddit.png",
-        name: "Reddit",
-        value: "$182.3K",
-      },
-      {
-        type: "Company",
-        profilePic: "/images/apple.png",
-        name: "Apple",
-        value: "$293.7K",
-      },
-    ]}
-  />
+  <PersonalTokenComp />
 </Card>
 
 A personal token is a fictional entity that represents the following information:
@@ -144,6 +88,8 @@ When a user sells their equity in another personal token, or equity in a company
 
 Capital gains from selling equity (whether in companies or in personal tokens) flow directly to the holders of the seller's personal token, but do not cascade further up the network. For example, if Alice holds Bob's personal token, and Bob holds Dan's personal token, then when Dan sells equity and generates capital gains, these gains are distributed proportionally to Dan's token holders (including Bob) but stop there - they do not automatically flow up to Bob's token holders (like Alice). Alice can only benefit from Dan's success indirectly if Bob's token value increases due to his gains from Dan, and Alice then sells her equity in Bob's token at this higher value. This mirrors how corporate structures handle distributions: shareholders of a company that owns shares in another company don't automatically receive distributions when the subsidiary company sells assets.
 
+<CapitalGainsAnimation />
+
 ### Additional details
 
 - [Pro rata rights](https://www.angellist.com/learn/pro-rata-rights).
@@ -151,9 +97,7 @@ Capital gains from selling equity (whether in companies or in personal tokens) f
 - Minimum percentage of equity a user needs in their own personal token.
 - Capped returns? For example, if an investor makes 1000x returns from a personal token, should their equity in that personal token be returned to its owner?
 
-## III. Demo
-
-## IV. Design
+## III. System
 
 ### Admission
 
@@ -234,7 +178,7 @@ I predict in the first few decades of this system, multiple Networks will co-exi
 
 ### Governance
 
-## V. Implementation
+## IV. Implementation
 
 ### Overview
 
@@ -246,7 +190,7 @@ Transactions will use [USDC](https://www.circle.com/usdc) to eliminate unnecessa
 
 ### Technical
 
-## VI. Notes
+## V. Notes
 
 ### Q&A
 

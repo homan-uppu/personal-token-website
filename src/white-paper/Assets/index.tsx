@@ -1,3 +1,4 @@
 // file to export all of the visual assets used in the white paper.
-export { PersonalToken } from "./PersonalToken";
+export { PersonalTokenComp } from "./PersonalToken";
 export { Card } from "./Card";
+export { CapitalGainsAnimation } from "./CapitalGainsAnimation";

@@ -4,7 +4,6 @@ import { ReactNode, useEffect, useState } from "react";
 import styles from "./Content.module.css";
 import SideMenu from "../SideMenu";
 import { motion } from "framer-motion";
-import Toggle from "../SideMenu/Toggle";
 import SideMenuMobile from "../SideMenu/SideMenuMobile";
 
 interface ContentProps {
@@ -51,9 +50,8 @@ export default function Content({ children }: ContentProps) {
       "Discover",
       "Other details",
     ],
-    ["III. Demo"],
     [
-      "IV. Design",
+      "III. System",
       "Admission",
       "Sufficient decentralization",
       "Network token",
@@ -62,8 +60,8 @@ export default function Content({ children }: ContentProps) {
       "Promoting competition",
       "Governance",
     ],
-    ["V. Implementation", "Overview", "Legal", "Technical"],
-    ["VI. Notes", "Vision", "Q&A", "Discuss", "Authors", "Contribute"],
+    ["IV. Implementation", "Overview", "Legal", "Technical"],
+    ["V. Notes", "Vision", "Q&A", "Discuss", "Authors", "Contribute"],
   ];
 
   const contentMargin = isMobile

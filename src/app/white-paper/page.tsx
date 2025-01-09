@@ -4,7 +4,11 @@ import styles from "./page.module.css";
 import { mdxComponents } from "../../../mdx-components";
 import Content from "@/white-paper/Content";
 import Hero from "@/white-paper/Hero";
-import { PersonalToken, Card } from "@/white-paper/Assets";
+import {
+  PersonalTokenComp,
+  Card,
+  CapitalGainsAnimation,
+} from "@/white-paper/Assets";
 
 export default function Page() {
   return (
@@ -15,7 +19,14 @@ export default function Page() {
         version={"v0.1"}
       />
       <Content>
-        <WhitePaper components={{ ...mdxComponents, PersonalToken, Card }} />
+        <WhitePaper
+          components={{
+            ...mdxComponents,
+            PersonalTokenComp,
+            Card,
+            CapitalGainsAnimation,
+          }}
+        />
       </Content>
     </div>
   );

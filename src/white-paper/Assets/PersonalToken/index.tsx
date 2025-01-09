@@ -1,19 +1,11 @@
 import { FC } from "react";
-import { LineItem, LineItemProps, LineItemType } from "./LineItem";
+import { LineItem, LineItemProps } from "./LineItem";
+import { PersonalToken, TokenType, Asset, dummyPersonalToken } from "./models";
 import styles from "./PersonalToken.module.css";
 
 import { Geist_Mono } from "next/font/google";
+import { Shareholder } from "./Shareholder";
 const geistMono = Geist_Mono({ subsets: ["latin"] });
-
-interface PersonalTokenProps {
-  profilePicSrc: string;
-  name: string;
-  valuation: string;
-  bio: string;
-  linkInBio: string;
-  shareholders: LineItemProps[];
-  portfolio: LineItemProps[];
-}
 
 export const SectionHeader: FC<{ children: React.ReactNode }> = ({
   children,
@@ -25,97 +17,106 @@ export const SectionHeader: FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export const PersonalToken: FC<PersonalTokenProps> = ({
-  profilePicSrc,
-  name,
-  valuation,
-  bio,
-  linkInBio,
-  shareholders,
-  portfolio,
-}) => {
-  const personalTokens = portfolio.filter(
-    (item) => item.type === LineItemType.PersonalToken
-  );
-  const companies = portfolio.filter(
-    (item) => item.type === LineItemType.Company
-  );
+export const PersonalTokenComp = (props: { personalToken?: PersonalToken }) => {
+  const token =
+    props.personalToken && Object.keys(props.personalToken).length > 0
+      ? props.personalToken
+      : dummyPersonalToken;
+
+  const personalTokens =
+    token.portfolio?.filter(
+      (item) => item.type === TokenType.PersonalToken && item.personalToken
+    ) || [];
+  const companies =
+    token.portfolio?.filter((item) => item.type === TokenType.Company) || [];
 
   return (
     <div className={styles.container}>
       <div className={styles.bioSection}>
         <LineItem
-          type={LineItemType.PersonalToken}
-          profilePic={profilePicSrc}
-          name={name}
-          value={valuation}
+          type={TokenType.PersonalToken}
+          profilePic={token.profilePicSrc}
+          name={token.name}
+          value={token.valuation.toString()}
           isValueSpecial
         />
-        <div className={styles.bio}>{bio}</div>
-        <a
-          href={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.link}
-        >
-          {linkInBio}
-        </a>
+        {token.bio && <div className={styles.bio}>{token.bio}</div>}
+        {token.linkInBio && (
+          <a
+            href={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            {token.linkInBio}
+          </a>
+        )}
       </div>
 
-      <div className={styles.shareholdersSection}>
-        <SectionHeader>Shareholders</SectionHeader>
-        <div className={styles.itemSection}>
-          {shareholders.map((shareholder, index) => (
-            <LineItem
-              key={index}
-              type={LineItemType.PersonalToken}
-              profilePic={shareholder.profilePic}
-              name={shareholder.name}
-              equity={shareholder.equity}
-              isSelectable
-            />
-          ))}
+      {token.shareholders && token.shareholders.length > 0 && (
+        <div className={styles.shareholdersSection}>
+          <SectionHeader>Shareholders</SectionHeader>
+          <div className={styles.itemSection}>
+            {token.shareholders.map((shareholder, index: number) => (
+              <Shareholder
+                key={index}
+                personalToken={shareholder.holder}
+                equity={shareholder.equity}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className={styles.portfolioSection}>
-        <SectionHeader>Portfolio</SectionHeader>
-        {personalTokens.length > 0 && (
-          <div className={styles.itemSection}>
-            {personalTokens.map((token, index) => (
-              <LineItem
-                key={index}
-                type={LineItemType.PersonalToken}
-                profilePic={token.profilePic}
-                name={token.name}
-                value={token.value}
-                equity={token.equity}
-                isSelectable
-              />
-            ))}
-          </div>
-        )}
+      {(personalTokens.length > 0 || companies.length > 0) && (
+        <div className={styles.portfolioSection}>
+          <SectionHeader>Portfolio</SectionHeader>
+          {personalTokens.length > 0 && (
+            <div className={styles.itemSection}>
+              {personalTokens.map((asset, index) => (
+                <LineItem
+                  key={index}
+                  type={TokenType.PersonalToken}
+                  profilePic={asset.personalToken!.profilePicSrc}
+                  name={asset.personalToken!.name}
+                  value={
+                    asset.personalToken!.valuation
+                      ? (
+                          asset.personalToken!.valuation * asset.equity
+                        ).toString()
+                      : undefined
+                  }
+                  equity={`${asset.equity * 100}%`}
+                  isSelectable
+                />
+              ))}
+            </div>
+          )}
 
-        {/* {personalTokens.length > 0 && companies.length > 0 && (
-          <div className={styles.divider} />
-        )} */}
+          {/* {personalTokens.length > 0 && companies.length > 0 && (
+            <div className={styles.divider} />
+          )} */}
 
-        {companies.length > 0 && (
-          <div className={styles.itemSection}>
-            {companies.map((company, index) => (
-              <LineItem
-                key={index}
-                type={LineItemType.Company}
-                profilePic={company.profilePic}
-                name={company.name}
-                value={company.value}
-                equity={company.equity}
-                isSelectable
-              />
-            ))}
-          </div>
-        )}
-      </div>
+          {companies.length > 0 && (
+            <div className={styles.itemSection}>
+              {companies.map((asset, index) => (
+                <LineItem
+                  key={index}
+                  type={TokenType.Company}
+                  profilePic={asset.company?.profilePicSrc!}
+                  name={asset.company?.name!}
+                  value={
+                    asset.company?.valuation
+                      ? (asset.company.valuation * asset.equity).toString()
+                      : undefined
+                  }
+                  isSelectable
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
