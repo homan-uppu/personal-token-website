@@ -13,28 +13,16 @@ const geistMono = Geist_Mono({ subsets: ["latin"] });
 interface ShareholderProps {
   personalToken: PersonalToken;
   equity: number;
+  showWallet?: boolean;
 }
+
+const DIFF_ANIMATION_DURATION = 1500;
 
 export const Shareholder: FC<ShareholderProps> = ({
   personalToken,
   equity,
+  showWallet,
 }) => {
-  const [showWalletValue, setShowWalletValue] = useState(false);
-  const [prevWalletValue, setPrevWalletValue] = useState(
-    personalToken.walletValue
-  );
-
-  useEffect(() => {
-    if (personalToken.walletValue !== prevWalletValue) {
-      setShowWalletValue(true);
-      const timer = setTimeout(() => {
-        setShowWalletValue(false);
-        setPrevWalletValue(personalToken.walletValue);
-      }, 2000); // Hide after 2 seconds
-      return () => clearTimeout(timer);
-    }
-  }, [personalToken.walletValue, prevWalletValue]);
-
   return (
     <motion.div
       className={styles.container}
@@ -45,63 +33,101 @@ export const Shareholder: FC<ShareholderProps> = ({
           type={TokenType.PersonalToken}
           profilePic={personalToken.profilePicSrc}
           name={personalToken.name}
-          equity={`${equity}%`}
+          equity={`${equity * 100}%`}
         />
       </motion.div>
       <AnimatePresence mode="popLayout">
-        {showWalletValue && (
+        {showWallet && (
           <motion.div
             layout // Animate layout changes
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
           >
-            <Wallet value={personalToken.walletValue} />
+            <Wallet value={personalToken.walletValue} equity={equity} />
           </motion.div>
         )}
       </AnimatePresence>
     </motion.div>
   );
 };
-
 interface WalletProps {
+  equity: number;
   value?: number;
 }
-const Wallet: FC<WalletProps> = ({ value }) => {
+const Wallet: FC<WalletProps> = ({ value, equity }) => {
   if (!value) return null;
 
   const [displayValue, setDisplayValue] = useState(value);
+  const [showDiffLabel, setShowDiffLabel] = useState<{
+    diff: string;
+    calculation: string;
+  } | null>(null);
   const prevValueRef = useRef(value);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const diffLabelTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (value !== prevValueRef.current) {
       const diff = value - prevValueRef.current;
-      const duration = 2000; // 2 seconds to match parent timeout
-      const steps = 60; // 60 steps for smooth animation
+
+      const duration = DIFF_ANIMATION_DURATION;
+      const steps = 60;
       const increment = diff / steps;
       const stepDuration = duration / steps;
 
+      // Clear any existing timeouts
+      if (animationTimeoutRef.current) {
+        clearInterval(animationTimeoutRef.current);
+      }
+      if (diffLabelTimeoutRef.current) {
+        clearTimeout(diffLabelTimeoutRef.current);
+      }
+
+      // Set the diff label
+      setShowDiffLabel({
+        diff: `+$${formatNumber(diff)}`,
+        calculation: `(${Math.round(equity * 100)}% of $${formatNumber(
+          diff / equity,
+          true
+        )})`,
+      });
+      // Clear diff label after 1 second
+      diffLabelTimeoutRef.current = setTimeout(() => {
+        setShowDiffLabel(null);
+      }, DIFF_ANIMATION_DURATION);
+
       let currentStep = 0;
-      const interval = setInterval(() => {
+      animationTimeoutRef.current = setInterval(() => {
         if (currentStep < steps) {
           setDisplayValue((prev) => prev + increment);
           currentStep++;
         } else {
-          clearInterval(interval);
-          setDisplayValue(value); // Ensure we end up at exact value
+          if (animationTimeoutRef.current) {
+            clearInterval(animationTimeoutRef.current);
+          }
+          setDisplayValue(value);
         }
       }, stepDuration);
 
       prevValueRef.current = value;
-      return () => clearInterval(interval);
     }
+
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearInterval(animationTimeoutRef.current);
+      }
+      if (diffLabelTimeoutRef.current) {
+        clearTimeout(diffLabelTimeoutRef.current);
+      }
+    };
   }, [value]);
 
-  const diff = value - prevValueRef.current;
-  const showDiff = diff !== 0;
-
   return (
-    <div className={styles.wallet + " " + geistMono.className}>
+    <div
+      className={styles.wallet + " " + geistMono.className}
+      style={{ position: "relative" }}
+    >
       <svg
         width="13"
         height="13"
@@ -117,18 +143,35 @@ const Wallet: FC<WalletProps> = ({ value }) => {
           fillOpacity="0.3"
         />
       </svg>
-      ${formatNumber(Math.round(displayValue))}
-      {showDiff && (
-        <motion.div
-          className={styles.walletValue}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 20 }}
-        >
-          {diff > 0 ? "+" : ""}
-          {formatNumber(diff)}
-        </motion.div>
-      )}
+      ${formatNumber(displayValue, true)}
+      <AnimatePresence>
+        {showDiffLabel && (
+          <motion.div
+            key={showDiffLabel.diff}
+            style={{
+              position: "absolute",
+              left: "100%",
+              top: "4px",
+              transform: "translateY(-50%)",
+              marginLeft: "16px",
+              fontSize: 13,
+              display: "flex",
+              gap: "8px",
+              whiteSpace: "nowrap",
+            }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 0 }}
+          >
+            <span style={{ color: "var(--active-green)" }}>
+              {showDiffLabel.diff}
+            </span>
+            <span style={{ color: "var(--text-color-light)" }}>
+              {showDiffLabel.calculation}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

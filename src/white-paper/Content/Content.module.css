@@ -123,7 +123,8 @@
   border-radius: 4px;
   color: var(--text-color-primary);
   font-size: calc(var(--font-size-essay) - 0.05rem);
-  color: #36c;
+  color: var(--link-color);
+  /* color: var(--active-green); */
   line-height: 1.2;
   font-style: normal;
 }

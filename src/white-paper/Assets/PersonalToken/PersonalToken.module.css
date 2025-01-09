@@ -27,7 +27,7 @@
 }
 
 .link {
-  color: #5ca2ff !important;
+  color: var(--link-color) !important;
   background: none !important;
   text-decoration: none !important;
   padding: 0 !important;

@@ -41,7 +41,7 @@ export const dummyPersonalToken: PersonalToken = {
         valuation: 300000,
         walletValue: 300000,
       },
-      equity: 95,
+      equity: 0.95,
     },
     {
       holder: {
@@ -50,7 +50,7 @@ export const dummyPersonalToken: PersonalToken = {
         valuation: 100000,
         walletValue: 100000,
       },
-      equity: 5,
+      equity: 0.05,
     },
   ],
   portfolio: [

@@ -5,17 +5,23 @@ export const getIdFromHeader = (label: string): string => {
     .replace(/[\s']/g, "-") // Replace spaces and apostrophes with hyphens
     .replace(/[^\w-]+/g, ""); // Remove all non-word chars except hyphens
 };
-
-export const formatNumber = (num: number): string => {
+export const formatNumber = (
+  num: number,
+  alwaysShowDecimal?: boolean
+): string => {
   if (num >= 1000000) {
     const millions = num / 1000000;
     return `${
-      millions % 1 === 0 ? Math.floor(millions) : millions.toFixed(1)
+      millions % 1 === 0 && !alwaysShowDecimal
+        ? Math.floor(millions)
+        : millions.toFixed(1)
     }M`;
   } else if (num >= 1000) {
     const thousands = num / 1000;
     return `${
-      thousands % 1 === 0 ? Math.floor(thousands) : thousands.toFixed(1)
+      thousands % 1 === 0 && !alwaysShowDecimal
+        ? Math.floor(thousands)
+        : thousands.toFixed(1)
     }K`;
   }
   return num.toString();

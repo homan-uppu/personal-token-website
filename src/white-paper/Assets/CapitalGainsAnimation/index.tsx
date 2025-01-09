@@ -12,25 +12,52 @@ export const CapitalGainsAnimation: FC = ({}) => {
     threshold: 0.5,
   });
 
-  useEffect(() => {
-    if (inView && token.shareholders) {
+  const animate = () => {
+    // Remove the first portfolio item if it exists
+    if (token.portfolio && token.portfolio.length > 0) {
       const updatedToken = {
         ...token,
-        shareholders: token.shareholders.map((shareholder) => ({
-          ...shareholder,
-          holder: {
-            ...shareholder.holder,
-            walletValue: (shareholder.holder.walletValue || 0) + 100,
-          },
-        })),
+        portfolio: token.portfolio.slice(1),
       };
       setToken(updatedToken);
+      return;
     }
+
+    // const updatedToken = {
+    //   ...token,
+    //   shareholders: token.shareholders!.map((shareholder) => ({
+    //     ...shareholder,
+    //     holder: {
+    //       ...shareholder.holder,
+    //       walletValue: (shareholder.holder.walletValue || 0) + 100,
+    //     },
+    //   })),
+    // };
+    // setToken(updatedToken);
+  };
+
+  useEffect(() => {
+    // if (inView && token.shareholders) {
+    //   animate();
+    // }
   }, [inView]);
 
   return (
     <div ref={ref}>
-      <PersonalTokenComp personalToken={token} />
+      <PersonalTokenComp personalToken={token} showShareholderWallets />
+      <button
+        onClick={animate}
+        style={{
+          padding: "8px 16px",
+          marginTop: "16px",
+          borderRadius: "var(--border-radius-small)",
+          border: "var(--border)",
+          background: "white",
+          cursor: "pointer",
+        }}
+      >
+        Animate
+      </button>
     </div>
   );
 };
