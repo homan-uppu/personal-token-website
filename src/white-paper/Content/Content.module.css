@@ -13,6 +13,12 @@
   width: 100px;
 }
 
+@media (max-width: 900px) {
+  .sideMenuContainer {
+    width: 0px;
+  }
+}
+
 .content {
   font-size: var(--font-size-essay);
   color: var(--font-color-primary);

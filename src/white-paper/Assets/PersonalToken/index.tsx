@@ -150,10 +150,9 @@ export const PersonalTokenComp = (props: {
 
     return () => clearTimeout(timeout);
   }, [token.portfolio]);
-
   return (
     <div className={styles.container}>
-      <div className={styles.bioSection}>
+      <motion.div layout className={styles.bioSection}>
         <LineItem
           type={TokenType.PersonalToken}
           profilePic={token.profilePicSrc}
@@ -172,21 +171,22 @@ export const PersonalTokenComp = (props: {
             {token.linkInBio}
           </a>
         )}
-      </div>
+      </motion.div>
 
       {token.shareholders && token.shareholders.length > 0 && (
         <motion.div layout className={styles.shareholdersSection}>
           <SectionHeader>Shareholders</SectionHeader>
-          <div className={styles.itemSection}>
+          <motion.div layout className={styles.itemSection}>
             {token.shareholders.map((shareholder, index: number) => (
-              <Shareholder
-                key={index}
-                personalToken={shareholder.holder}
-                equity={shareholder.equity}
-                showWallet={props.showShareholderWallets}
-              />
+              <motion.div layout key={index}>
+                <Shareholder
+                  personalToken={shareholder.holder}
+                  equity={shareholder.equity}
+                  showWallet={props.showShareholderWallets}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       )}
 
