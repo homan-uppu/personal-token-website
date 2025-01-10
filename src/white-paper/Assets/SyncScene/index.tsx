@@ -5,45 +5,13 @@ import { SectionHeader } from "../PersonalToken";
 import { dummyPersonalToken, TokenType } from "../PersonalToken/models";
 import { LineItem } from "../PersonalToken/LineItem";
 import styles from "./SyncScene.module.css";
+import { useIsMobile } from "@/white-paper/Content";
 
 const SyncScene = () => {
   const [token] = useState(dummyPersonalToken);
   const onChainRef = useRef<HTMLDivElement>(null);
   const offChainRef = useRef<HTMLDivElement>(null);
-  const [lineStyles, setLineStyles] = useState<React.CSSProperties>({});
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-
-    return () => window.removeEventListener("resize", checkIfMobile);
-  }, []);
-
-  //   useEffect(() => {
-  //     if (offChainRef.current) {
-  //       const offChainRect = offChainRef.current.getBoundingClientRect();
-  //       const onChainRect = onChainRef.current?.getBoundingClientRect();
-  //       const containerRect =
-  //         offChainRef.current.parentElement!.getBoundingClientRect();
-
-  //       if (onChainRect) {
-  //         const left = offChainRect.left;
-  //         const top = offChainRect.top / 2;
-
-  //         setLineStyles({
-  //           width: "32px",
-  //           top: `${top}px`,
-  //           left: `${left - 32}px`,
-  //           position: "absolute",
-  //         });
-  //       }
-  //     }
-  //   }, []);
+  const isMobile = useIsMobile();
 
   const companyAssets = token.portfolio
     ?.filter((asset: { type: TokenType }) => asset.type === TokenType.Company)
@@ -121,7 +89,6 @@ const SyncScene = () => {
           {companyAssets}
         </div>
       </div>
-      <div className={styles.connectingLine} style={lineStyles} />
     </div>
   );
 };

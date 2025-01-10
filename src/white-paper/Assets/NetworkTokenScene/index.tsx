@@ -8,7 +8,7 @@ import {
 } from "@/white-paper/Assets/PersonalToken/models";
 import styles from "./NetworkTokenScene.module.css";
 import { formatNumber } from "@/util";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const generateDummyTokens = () => {
   // Generate additional dummy tokens
@@ -70,14 +70,16 @@ interface PersonalTokenPillProps {
   name: string;
   valuation: number;
 }
+
 const AnimatedValuation = ({ value }: { value: number }) => {
-  const [displayValue, setDisplayValue] = useState(value);
+  const [displayValue, setDisplayValue] = useState(0); // Initialize to 0 instead of value
 
   useEffect(() => {
+    setDisplayValue(value); // Set initial value in useEffect
     let startValue = displayValue;
     const endValue = value;
-    const duration = 1000; // 1 second animation
-    const steps = 60; // 60 steps (for smooth 60fps animation)
+    const duration = 1000;
+    const steps = 60;
     const stepDuration = duration / steps;
     const increment = (endValue - startValue) / steps;
 
@@ -121,25 +123,28 @@ const PersonalTokenPill = ({
 };
 
 const NetworkTokenScene = () => {
-  const [tokens, setTokens] = useState<TokenData[]>(generateDummyTokens());
-  const [networkTokenValuation, setNetworkTokenValuation] =
-    useState<number>(120000000);
+  const [mounted, setMounted] = useState(false);
+  const [tokens, setTokens] = useState<TokenData[]>([]);
+  const [networkTokenValuation, setNetworkTokenValuation] = useState(0);
   const [isInView, setIsInView] = useState(false);
 
   const rows = 6;
   const tokensPerRow = 6;
 
   useEffect(() => {
-    // Only run interval when scene is fully in view
-    if (!isInView) return;
+    setMounted(true);
+    setTokens(generateDummyTokens());
+    setNetworkTokenValuation(120000000);
+  }, []);
+
+  useEffect(() => {
+    if (!isInView || !mounted) return;
 
     const interval = setInterval(() => {
-      // Generate 7 random increments between 50k and 700k
       const increments = Array(7)
         .fill(0)
         .map(() => Math.floor(Math.random() * (700000 - 50000) + 50000));
 
-      // Update 7 random tokens with the increments
       setTokens((prevTokens) => {
         const newTokens = [...prevTokens];
         const tokenIndices = Array(7)
@@ -156,33 +161,31 @@ const NetworkTokenScene = () => {
         return newTokens;
       });
 
-      // Update network token with sum of increments
       setNetworkTokenValuation(
         (prev) => prev + increments.reduce((a, b) => a + b, 0)
       );
     }, 500);
 
     return () => clearInterval(interval);
-  }, [isInView]);
+  }, [isInView, mounted]);
 
-  // Create array of tokens split into rows
   const tokenRows = [...Array(rows)].map((_, i) =>
     tokens.slice(i * tokensPerRow, (i + 1) * tokensPerRow)
   );
+
+  if (!mounted) return null;
 
   return (
     <motion.div
       className={styles.sceneContainer}
       onViewportEnter={(entry: any) => {
-        // Only set isInView to true if fully in viewport
         if (entry.intersectionRatio === 1) {
           setIsInView(true);
         }
       }}
       onViewportLeave={() => setIsInView(false)}
-      viewport={{ amount: 1 }} // Requires 100% visibility
+      viewport={{ amount: 1 }}
     >
-      {/* Fixed Network Token in center */}
       <div className={styles.networkTokenContainer}>
         <PersonalTokenPill
           profilePic="#000000"
@@ -191,13 +194,12 @@ const NetworkTokenScene = () => {
         />
       </div>
 
-      {/* Moving grid of personal tokens */}
       {tokenRows.map((rowTokens, rowIndex) => (
         <motion.div
           key={rowIndex}
           className={styles.tokenRow}
           animate={{
-            x: [-900, -300], // Animate continuously to the left
+            x: [-900, -300],
           }}
           transition={{
             duration: 20,
@@ -205,10 +207,9 @@ const NetworkTokenScene = () => {
             ease: "linear",
           }}
           style={{
-            x: -300, // Initial position
+            x: -300,
           }}
         >
-          {/* Triple the row tokens for seamless loop */}
           {[...rowTokens, ...rowTokens, ...rowTokens].map(
             (token, tokenIndex) => (
               <PersonalTokenPill

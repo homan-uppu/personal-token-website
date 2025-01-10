@@ -1,5 +1,4 @@
 import WhitePaper from "@/writing/white-paper.mdx";
-import SideMenu from "@/white-paper/SideMenu";
 import styles from "./page.module.css";
 import { mdxComponents } from "../../../mdx-components";
 import Content from "@/white-paper/Content";

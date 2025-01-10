@@ -1,6 +1,12 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import styles from "./Content.module.css";
 import SideMenu from "../SideMenu";
 import { motion } from "framer-motion";
@@ -11,14 +17,17 @@ interface ContentProps {
 }
 
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
+  const [isMobile, setIsMobile] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
+  // useLayoutEffect runs after DOM mutations but before browser paint
+  useLayoutEffect(() => {
+    setMounted(true);
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 900);
     };
 
-    // Check on mount
+    // Check immediately
     checkIsMobile();
 
     // Add resize listener
@@ -28,7 +37,8 @@ export const useIsMobile = () => {
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
-  return isMobile;
+  // Return false during SSR, actual value after mounting
+  return mounted ? isMobile : false;
 };
 
 export default function Content({ children }: ContentProps) {
