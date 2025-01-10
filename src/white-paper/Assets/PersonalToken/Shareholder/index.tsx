@@ -56,8 +56,6 @@ interface WalletProps {
   value?: number;
 }
 const Wallet: FC<WalletProps> = ({ value, equity }) => {
-  if (!value) return null;
-
   const [displayValue, setDisplayValue] = useState(value);
   const [showDiffLabel, setShowDiffLabel] = useState<{
     diff: string;
@@ -68,7 +66,7 @@ const Wallet: FC<WalletProps> = ({ value, equity }) => {
   const diffLabelTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (value !== prevValueRef.current) {
+    if (value && value !== prevValueRef.current) {
       const diff = value - prevValueRef.current;
 
       const duration = DIFF_ANIMATION_DURATION;
@@ -122,6 +120,8 @@ const Wallet: FC<WalletProps> = ({ value, equity }) => {
       }
     };
   }, [value]);
+
+  if (!value) return null;
 
   return (
     <div
