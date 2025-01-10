@@ -4,7 +4,7 @@
   width: 100%;
   gap: 1rem;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .selectable:hover {

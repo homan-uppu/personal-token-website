@@ -39,7 +39,6 @@ export function ProfileSection({
     </div>
   );
 }
-
 export interface LineItemProps {
   profilePic: string;
   name: string;
@@ -48,6 +47,7 @@ export interface LineItemProps {
   value?: string;
   isValueSpecial?: boolean;
   isSelectable?: boolean;
+  isMinimal?: boolean;
 }
 
 export function LineItem({
@@ -58,6 +58,7 @@ export function LineItem({
   value,
   isValueSpecial,
   isSelectable,
+  isMinimal,
 }: LineItemProps) {
   return (
     <div
@@ -65,17 +66,21 @@ export function LineItem({
     >
       <ProfileSection profilePic={profilePic} name={name} type={type} />
 
-      <div className={styles.divider} />
+      {!isMinimal && (
+        <>
+          <div className={styles.divider} />
 
-      <div
-        className={`${styles.valueSection} ${
-          isValueSpecial ? styles.special : ""
-        } ${geistMono.className}`}
-      >
-        {equity && <span>{equity}</span>}
-        {equity && value && <span className={styles.separator} />}
-        {value && <span>{"$" + formatNumber(Number(value))}</span>}
-      </div>
+          <div
+            className={`${styles.valueSection} ${
+              isValueSpecial ? styles.special : ""
+            } ${geistMono.className}`}
+          >
+            {equity && <span>{equity}</span>}
+            {equity && value && <span className={styles.separator} />}
+            {value && <span>{"$" + formatNumber(Number(value))}</span>}
+          </div>
+        </>
+      )}
     </div>
   );
 }
