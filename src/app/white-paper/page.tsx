@@ -8,6 +8,7 @@ import {
   PersonalTokenComp,
   Card,
   CapitalGainsAnimation,
+  NetworkTokenScene,
 } from "@/white-paper/Assets";
 
 export default function Page() {
@@ -25,6 +26,7 @@ export default function Page() {
             PersonalTokenComp,
             Card,
             CapitalGainsAnimation,
+            NetworkTokenScene,
           }}
         />
       </Content>

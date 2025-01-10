@@ -6,7 +6,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"] });
 import { formatNumber } from "@/util";
 
 interface ProfileSectionProps {
-  profilePic: string;
+  profilePic: string; // Can be image URL or hex color
   name: string;
   type: TokenType;
 }
@@ -16,9 +16,20 @@ export function ProfileSection({
   name,
   type,
 }: ProfileSectionProps) {
+  const isHexColor = profilePic.startsWith("#");
+
   return (
     <div className={styles.profileSection}>
-      <img src={profilePic} alt={name} className={styles.profilePic} />
+      {isHexColor ? (
+        <div
+          className={styles.profilePic}
+          style={{
+            background: `linear-gradient(45deg, ${profilePic}, ${profilePic}dd, ${profilePic}aa)`,
+          }}
+        />
+      ) : (
+        <img src={profilePic} alt={name} className={styles.profilePic} />
+      )}
       <div className={styles.nameRow}>
         <div className={styles.name}>{name}</div>
         <div className={styles.type + " " + geistMono.className}>

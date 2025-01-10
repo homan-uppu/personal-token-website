@@ -40,6 +40,7 @@
 
 .name {
   font-weight: 460;
+  white-space: nowrap;
 }
 
 .nameRow {
