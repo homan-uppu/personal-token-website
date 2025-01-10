@@ -164,7 +164,7 @@ const NetworkTokenScene = () => {
       setNetworkTokenValuation(
         (prev) => prev + increments.reduce((a, b) => a + b, 0)
       );
-    }, 500);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, [isInView, mounted]);
