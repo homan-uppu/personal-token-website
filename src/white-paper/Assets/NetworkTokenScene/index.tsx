@@ -140,14 +140,17 @@ const NetworkTokenScene = () => {
   useEffect(() => {
     if (!isInView || !mounted) return;
 
+    const NUM_TO_UPDATE = 20;
+    const DURATION_BETWEEN_UPDATES = 1500;
+
     const interval = setInterval(() => {
-      const increments = Array(7)
+      const increments = Array(NUM_TO_UPDATE)
         .fill(0)
         .map(() => Math.floor(Math.random() * (700000 - 50000) + 50000));
 
       setTokens((prevTokens) => {
         const newTokens = [...prevTokens];
-        const tokenIndices = Array(7)
+        const tokenIndices = Array(NUM_TO_UPDATE)
           .fill(0)
           .map(() => Math.floor(Math.random() * prevTokens.length));
 
@@ -164,7 +167,7 @@ const NetworkTokenScene = () => {
       setNetworkTokenValuation(
         (prev) => prev + increments.reduce((a, b) => a + b, 0)
       );
-    }, 1500);
+    }, DURATION_BETWEEN_UPDATES);
 
     return () => clearInterval(interval);
   }, [isInView, mounted]);
