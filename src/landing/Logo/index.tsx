@@ -1,16 +1,24 @@
-const Logo = () => {
+const Logo = ({
+  size = 16,
+  fontWeight = 460,
+  noCircle = false,
+}: {
+  size?: number;
+  fontWeight?: number;
+  noCircle?: boolean;
+}) => {
   const styles = {
     logo: {
       display: "flex",
       alignItems: "center",
-      gap: "4px",
-      fontWeight: 460,
+      gap: `${size / 4}px`,
+      fontWeight,
     },
     circle: {
-      width: "16px",
-      height: "16px",
+      width: `${size}px`,
+      height: `${size}px`,
       borderRadius: "50%",
-      border: "2px solid var(--logo-green)",
+      border: `${size / 9}px solid var(--logo-green)`,
     },
     text: {
       color: "var(--logo-green)",
@@ -19,7 +27,7 @@ const Logo = () => {
 
   return (
     <div style={styles.logo}>
-      <span style={styles.circle}></span>
+      {!noCircle && <span style={styles.circle}></span>}
       <span style={styles.text}>PersonalToken</span>
     </div>
   );

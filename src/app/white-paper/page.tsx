@@ -14,11 +14,7 @@ import {
 export default function Page() {
   return (
     <div className={styles.container}>
-      <Hero
-        title={"Personal token white paper"}
-        date={"Jan 2025"}
-        version={"v0.1"}
-      />
+      <Hero title={"white paper"} date={"Jan 2025"} version={"v0.1"} />
       <Content>
         <WhitePaper
           components={{
