@@ -50,7 +50,7 @@
 }
 
 .activeH2 {
-  color: #22c55e;
+  color: var(--logo-green);
 }
 
 .activeH3 {
