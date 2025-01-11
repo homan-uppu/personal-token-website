@@ -37,7 +37,7 @@
 
 .link:hover {
   text-decoration: underline;
-  color: #4682ff !important;
+  color: var(--link-color-hover) !important;
 }
 
 .sectionHeader {
