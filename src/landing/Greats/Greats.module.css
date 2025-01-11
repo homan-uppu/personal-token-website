@@ -21,7 +21,7 @@
 }
 
 .portrait {
-  opacity: 0.12;
+  opacity: 0.1;
 }
 
 .label {
@@ -31,5 +31,5 @@
   color: var(--active-green);
   font-size: 13px;
   font-weight: 500;
-  opacity: 0.6;
+  opacity: 0.45;
 }
