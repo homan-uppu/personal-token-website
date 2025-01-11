@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Geist_Mono } from "next/font/google";
 import Image from "next/image";
 import styles from "./Greats.module.css";
@@ -116,6 +116,7 @@ const GreatsGrid = () => {
     },
   ]);
 
+  const greatsRef = useRef(greats);
   const [itemWidth, setItemWidth] = useState(0);
   const [itemHeight, setItemHeight] = useState(0);
   const [numRows, setNumRows] = useState(0);
@@ -150,16 +151,51 @@ const GreatsGrid = () => {
   }, [horizontalPadding, verticalPadding, visibleNumPerRow, visibleNumPerCol]);
 
   useEffect(() => {
-    const shuffledGreats = [...greats].sort(() => Math.random() - 0.5);
+    const shuffleArray = (array: Great[]): Great[] => {
+      const result = [...array];
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    };
+
+    // Create two separate shuffled copies and concatenate
+    const firstShuffle = shuffleArray([...greats]);
+    const secondShuffle = shuffleArray([...greats]);
+
+    // Ensure no adjacent duplicates at the join point
+    if (firstShuffle[firstShuffle.length - 1].name === secondShuffle[0].name) {
+      [secondShuffle[0], secondShuffle[1]] = [
+        secondShuffle[1],
+        secondShuffle[0],
+      ];
+    }
+
+    const shuffledGreats = [...firstShuffle, ...secondShuffle];
     setGreats(shuffledGreats);
+    greatsRef.current = shuffledGreats;
   }, []);
 
+  const getExtraNumPerRow = () => {
+    return (
+      (greatsRef.current.length - visibleNumPerRow * visibleNumPerCol) /
+      visibleNumPerRow
+    );
+  };
+
   const getRowItems = (startIdx: number) => {
-    const visibleItems = greats.slice(startIdx, startIdx + visibleNumPerRow);
+    const visibleItems = greatsRef.current.slice(
+      startIdx,
+      startIdx + visibleNumPerRow
+    );
+
+    const extraNumPerRow = getExtraNumPerRow();
+
     const extraItems = [
-      ...greats.slice(
+      ...greatsRef.current.slice(
         startIdx + visibleNumPerRow,
-        startIdx + visibleNumPerRow + visibleNumPerRow
+        startIdx + visibleNumPerRow + extraNumPerRow
       ),
       ...visibleItems.slice(0, visibleNumPerRow),
     ];
@@ -167,8 +203,10 @@ const GreatsGrid = () => {
   };
 
   const rows = Array.from({ length: numRows }, (_, i) =>
-    getRowItems((i * visibleNumPerRow) % greats.length)
+    getRowItems((i * visibleNumPerRow) % greatsRef.current.length)
   );
+
+  const extraNumPerRow = getExtraNumPerRow();
 
   return (
     <div className={styles.grid}>
@@ -178,7 +216,11 @@ const GreatsGrid = () => {
           className={styles.row}
           initial={{ x: 0 }}
           animate={{
-            x: -(itemWidth * visibleNumPerRow + horizontalPadding - 12) * 2,
+            x:
+              -(
+                (visibleNumPerRow + extraNumPerRow) * itemWidth +
+                16 * (visibleNumPerRow + extraNumPerRow + 1)
+              ) - 12,
           }}
           transition={{
             duration: 60,
