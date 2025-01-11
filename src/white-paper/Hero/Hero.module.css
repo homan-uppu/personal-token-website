@@ -35,6 +35,8 @@
   margin: calc(-20vh);
   margin-top: calc(-25vh);
   margin-left: calc(-20vw);
+  pointer-events: none;
+  user-select: none;
 }
 
 @media (max-width: 768px) {
