@@ -28,8 +28,8 @@
   position: absolute;
   bottom: 24px;
   right: 24px;
-  color: var(--active-green);
+  color: var(--text-color-light);
   font-size: 13px;
   font-weight: 500;
-  opacity: 0.45;
+  opacity: 0.65;
 }
