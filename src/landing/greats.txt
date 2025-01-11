@@ -1,0 +1,24 @@
+Albert Einstein - German-born physicist who revolutionized our understanding of space, time, and the universe with his theory of relativity.
+Marie Curie - Polish-French physicist and chemist who pioneered research on radioactivity and discovered polonium and radium.
+Rumi - 13th-century Persian poet and Sufi mystic whose poetry about love and spirituality transcends cultures.
+Ada Lovelace - British mathematician who wrote the first computer program, recognizing the potential of computational machines.
+Srinivasa Ramanujan - Indian mathematician who made extraordinary contributions to mathematical analysis and number theory.
+Tu Youyou - Chinese pharmaceutical chemist who discovered artemisinin to treat malaria, saving millions of lives.
+Emmy Noether - German mathematician who revolutionized abstract algebra and theoretical physics with her theorem connecting symmetry and conservation laws.
+Leonardo Da Vinci - Italian Renaissance polymath whose work spanned art, science, engineering, and anatomy.
+Galileo - Italian astronomer and physicist who improved the telescope and supported heliocentrism.
+Aryabhatta - 5th-century Indian mathematician and astronomer who introduced the concept of zero and calculated pi.
+Nikola Tesla - Serbian-American inventor who developed the alternating current electrical system.
+Grace Hopper - American computer scientist who invented the first compiler and pioneered computer programming.
+Al-Khwarizmi - Persian mathematician who founded algebra and introduced Indian numerals to the Western world.
+Wolfgang Amadeus Mozart - Austrian composer whose musical genius produced over 600 works.
+Rabindranath Tagore - Bengali polymath who reshaped literature and music in South Asia.
+William Shakespeare - English playwright and poet whose works profoundly influenced literature.
+Mary Astell
+Murasaki Shikibu
+Akira Kurosawa
+Aristotle
+
+---
+
+Isaac Newton - English physicist and mathematician who established the laws of motion and universal gravitation.

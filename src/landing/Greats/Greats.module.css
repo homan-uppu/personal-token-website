@@ -1,0 +1,35 @@
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+
+.gridItem {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.portrait {
+  opacity: 0.2;
+}
+
+.label {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  color: var(--active-green);
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.5;
+}
