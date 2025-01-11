@@ -3,6 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px;
+  background: rgba(0, 0, 0, 0.025);
+  border-radius: 1rem;
 }
 
 .links {
@@ -16,9 +18,15 @@
   text-decoration: none;
   transition: color 0.2s;
   cursor: pointer;
-  font-weight: 460;
+  font-weight: 480;
 }
 
 .link:hover {
   color: black;
+}
+
+@media (max-width: 700px) {
+  .nav {
+    padding: 1rem;
+  }
 }
