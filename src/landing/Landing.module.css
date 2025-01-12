@@ -40,8 +40,8 @@
   margin-top: 6rem;
   background: radial-gradient(
     ellipse at center,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.85) 25%,
+    rgba(255, 255, 255, 0.95) 25%,
+    rgba(255, 255, 255, 0.85) 30%,
     rgba(255, 255, 255, 0) 60%
   );
   height: fit-content;
