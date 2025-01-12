@@ -43,7 +43,7 @@ export default function SideMenuMobile({ sections }: SideMenuMobileProps) {
         )}
         <AnimatePresence>
           <motion.div
-            animate={{ right: isExpanded ? "0px" : "-80vw" }}
+            animate={{ right: isExpanded ? "0px" : "calc(-100vw)" }}
             transition={springAnimTransition}
             onAnimationStart={() => {
               if (isExpanded && activeId) {
@@ -59,14 +59,14 @@ export default function SideMenuMobile({ sections }: SideMenuMobileProps) {
             style={{
               position: "absolute",
               bottom: "100%",
-              right: "-80vw",
-              width: "70vw",
+              width: "calc(100vw - 48px)",
               marginBottom: "16px",
               background: "var(--layer1-bg-color)",
               borderRadius: "16px",
-              maxHeight: "80vh",
+              maxHeight: "85vh",
               overflowY: "auto",
               boxShadow: "0px 4px 24px rgba(0, 0, 0, 0.1)",
+              right: "calc(-100vw)",
             }}
           >
             <TableOfContents

@@ -44,6 +44,12 @@
   color: var(--text-color-secondary);
 }
 
+@media (max-width: 768px) {
+  .subheader {
+    font-size: 1rem;
+  }
+}
+
 .subheader:hover {
   background-color: var(--hover-color);
   color: var(--hover);

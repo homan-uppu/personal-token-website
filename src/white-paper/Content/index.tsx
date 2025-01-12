@@ -15,9 +15,8 @@ import SideMenuMobile from "../SideMenu/SideMenuMobile";
 interface ContentProps {
   children: ReactNode;
 }
-
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [mounted, setMounted] = useState(false);
 
   // useLayoutEffect runs after DOM mutations but before browser paint
@@ -38,11 +37,11 @@ export const useIsMobile = () => {
   }, []);
 
   // Return false during SSR, actual value after mounting
-  return mounted ? isMobile : false;
+  return isMobile;
 };
 
 export default function Content({ children }: ContentProps) {
-  const [isSideMenuVisible, setIsSideMenuVisible] = useState(true);
+  const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
   const isMobile = useIsMobile();
 
   const sections = [
@@ -74,25 +73,28 @@ export default function Content({ children }: ContentProps) {
     ["V. Notes", "Vision", "Q&A", "Discuss", "Authors", "Contribute"],
   ];
 
-  const contentMargin = isMobile
-    ? "0 auto"
-    : `0 auto 0 calc(${isSideMenuVisible ? "300px" : "0px"} + (100vw - ${
-        isSideMenuVisible ? "300px" : "0px"
-      } - 600px) / 2)`;
+  const contentMargin =
+    isMobile === null || isMobile
+      ? "0 auto"
+      : `0 auto 0 calc(${isSideMenuVisible ? "300px" : "0px"} + (100vw - ${
+          isSideMenuVisible ? "300px" : "0px"
+        } - 600px) / 2)`;
 
   return (
     <div className={styles.container}>
-      <div className={styles.sideMenuContainer}>
-        {isMobile ? (
-          <SideMenuMobile sections={sections} />
-        ) : (
-          <SideMenu
-            isVisible={isSideMenuVisible}
-            setIsVisible={setIsSideMenuVisible}
-            sections={sections}
-          />
-        )}
-      </div>
+      {isMobile !== null && (
+        <div className={styles.sideMenuContainer}>
+          {isMobile ? (
+            <SideMenuMobile sections={sections} />
+          ) : (
+            <SideMenu
+              isVisible={isSideMenuVisible}
+              setIsVisible={setIsSideMenuVisible}
+              sections={sections}
+            />
+          )}
+        </div>
+      )}
       <motion.div
         id="content"
         className={styles.content}
