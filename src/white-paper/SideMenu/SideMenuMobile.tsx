@@ -63,7 +63,7 @@ export default function SideMenuMobile({ sections }: SideMenuMobileProps) {
               marginBottom: "16px",
               background: "var(--layer1-bg-color)",
               borderRadius: "16px",
-              maxHeight: "85vh",
+              maxHeight: "85dvh",
               overflowY: "auto",
               boxShadow: "0px 4px 24px rgba(0, 0, 0, 0.1)",
               right: "calc(-100vw)",
