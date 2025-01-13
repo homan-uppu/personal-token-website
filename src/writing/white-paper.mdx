@@ -1,49 +1,56 @@
 ## I. Intro
 
-A personal token is a financial instrument that represents an individual's portfolio of equity holdings - both in companies and in other personal tokens.
+A personal token is a financial instrument that represents an individual's economic potential.
 
-A personal token can be divided into shares which can be sold to investors, who then become entitled to a portion of the capital gained by the token owner when they sell their equity in their assets (companies and other personal tokens) - proportional to how much equity the investor holds in the personal token. Investors can also sell their equity in personal tokens to others.
+Similar to how companies issue shares to raise capital, individuals can divide their personal token into shares and raise capital by selling shares to investors. These shareholders become entitled to a proportional share of capital gains when the personal token owner sells their equity in companies or other personal tokens. Therefore, a personal token's value is grounded in its owner's ownership of companies and other personal tokens.
 
-Personal tokens enable individuals to raise capital earlier: even before they know exactly how they’ll create value in the world. Selling equity in personal tokens, instead of paying up front, will become the most popular way for bright young individuals to finance their learning. Personal tokens amplify the incentives that will democratize opportunity.
+Personal tokens incentivize discovering and enabling talent - especially the kind of talent that is underrated and overlooked. Personal tokens enable high-potential individuals to raise capital to fund their ambitious projects and learning, much earlier in their careers.
 
-Through personal tokens, those with the greatest potential - regardless of socioeconomic background - will be able to raise capital and resources that will enable them to do great work.
+I believe personal tokens (or whatever they will be called) will become a core feature of society: most people will finance their learning by selling equity in their personal tokens instead of paying up front for education (which is often done by taking on debt).
 
-As artificial intelligence becomes more powerful, our work will become more complex, creative, and will increasingly follow a power law distribution of outcomes: fewer will capture the majority of the outcomes, and the median outcome will fall. As a result, it will no longer make sense for people to shell out money for education because most won't be able to earn back their investments on a reasonable timeline, if at all. Therefore, raising venture capital by selling equity in personal tokens will be the best (and eventually, only) way to finance learning. ([my previous essay](https://homan.sh/vc-learning) in which I explain why I believe this).
+As AI becomes more powerful, our work will become far more creative, eliminating most safe, stable career paths. Paying up front to learn will not be viable because most will not be able to earn back their investments on a predictable, reasonable timeline, if at all. In such a world, raising capital through personal tokens by giving up some equity in future outcomes, instead of taking on debt, will become the best way to finance learning. [further_reading]
 
-Without being able to raise money through personal tokens, opportunity becomes concentrated in the hands of the wealthy: those who can afford to pay for high quality training, or resources, because they don’t have the pressure to earn back their investments.
+Needing to take on debt to finance learning concentrates opportunity in the hands of the few who can pay to learn without worrying about earning it back.
 
-Democratizing opportunity isn’t just the “right thing to do”, it accelerates innovation, growth, and prosperity. Democratizing opportunity pushes humanity forward. Our ability to tackle our greatest problems depends on our ability to discover and enable those with the natural talent to tackle those problems. A system of personal tokens creates an economic incentive to discover those with the greatest potential - in any domain - and to arm them with the resources to succeed at what they want to do.
+On the other hand, personal tokens create economic incentives to democratize opportunity at scale. Investors are incentivized to discover and invest in individuals with potential - regardless of their socio-economic backgrounds. The craving to make a profit is a far more reliable, robust forcing function to distribute capital to those who deserve it, than benevolence. And importantly, the individuals raising capital aren't burdened by debt.
+
+In the [age of intelligence](https://ia.samaltman.com), the communities, countries, and societies that will prosper the most will be ones run on personal tokens. We're on the cusp of an explosion in artificial intelligence, and therefore NOW is the time to bring this system of personal tokens to the world.
+
+In this paper I've attempted to show how I see personal tokens working, and how to implement them. This is a very early draft. I'd appreciate your feedback.
 
 ## II. How it works
 
 ### The Network
 
-This system would be implemented as a network of personal tokens, along with the metadata required to keep track of who owns how much of what. From here on out I’ll refer to this system as the “Network”
+This system would be implemented as a network of personal tokens, along with the metadata required to keep track of who owns how much of what. From here on out I’ll refer to this system as the “Network”.
+
+Both the individual raising capital, and the investor investing in others will need their own personal token in the Network to be able to transact in the Network.
 
 ### A personal token
+
+A personal token is a fictional entity that represents:
+
+- the owner of this personal token.
+- wallet that stores $. (used to invest in other tokens, and where capital is deposited when a user raises money)
+- which personal tokens own how much equity in this personal token (as number of shares out of total shares available).
+- assets: the other personal tokens and companies (outside of the Network - i.e. in the "real world") that this personal token holds equity in.
+- a history of all the transactions this personal token has been involved in.
 
 <Card caption="A personal token with shareholders and a portfolio of other personal tokens and companies.">
   <PersonalTokenComp />
 </Card>
 
-A personal token is a fictional entity that represents the following information:
+There is no notion of a “user” in the Network. A user is simply represented by their personal token. It naturally follows that a user cannot own more than one personal token. A user holds equity in other personal tokens (by investing in them) **_through_** their personal token. For example, if Alice has 5% equity in Bob’s personal token, Bob’s personal token equity will be represented in the assets of Alice’s personal token.
 
-- the owner of this personal token.
-- wallet that stores $. (used to invest in other tokens, and where capital is deposited when a user raises money)
-- how many shares are available (pieces it can be broken into).
-- which personal tokens own how much equity in this personal token.
-- assets: the other personal tokens and companies (outside of the Network) that this personal token holds equity in.
-- a history of all the transactions this personal token has been involved in.
+When I refer to the word "user" I'm referring to the person behind the personal token who's acting in the Network through their personal token.
 
-There is no notion of a “user” in the Network. A user is simply represented by their personal token. It naturally follows that a user cannot own more than one personal token. A user holds equity in other personal tokens (by investing in them) **_through_** their personal token. I.e. if Alice has 5% equity in Bob’s personal token, Bob’s personal token equity will be represented in the assets of Alice’s personal token.
+Unlike in companies, voting rights don't make sense in the context of personal tokens. Personal token shareholders should not be able to force the action of the owner of the personanl token. Why? Because a company is an entity that exist independently of people: its owners can change, it can be created, destroyed, and people can directly own companies by buying equity in them. But, shareholders of a personal token do not directly “own” the person behind the token in any way, shape, or form, they only own a part of the economic outcomes generated by the owner.
 
-### Shares
+The value of a personal token depends on what the market thinks is the owner’s potential to create long-term economic value. Let’s say Amy raises capital from investors by selling equity in her personal token. As Amy works to create value and influence the world, her perceived economic potential will increase, and the value of her personal token will rise. Similarly, if Amy consistently fails to show potential to create value, the value of her personal token falls.
 
 ### Raise money
 
-A user can raise capital by selling equity in their personal token through discrete fundraising “rounds”.
-
-Raising money through discrete fundraising rounds rather than allowing anyone to buy / sell anytime (like public markets) gives individuals greater control over who they allow to have equity in their personal tokens.
+A user can raise capital by selling equity in their personal token through discrete fundraising rounds. Raising money through discrete fundraising rounds rather than allowing anyone to buy / sell anytime is important because it gives individuals greater control over who they allow to have equity in their personal tokens.
 
 When a user initiates a fundraising round, they specify information about the raise, such as:
 
@@ -54,15 +61,11 @@ When a user initiates a fundraising round, they specify information about the ra
 
 A user can share a link to this active fundraising round to people they want as investors. A fundraising round is private by default (people who don’t have the link to it will not know it exists).
 
-They can also make their round "public" such that it can be discovered by other users in the Network. Someone who discovers a public round on the Network and wants to invest in it will require the owner (of the personal token they want to invest in) to approve them.
+They can also make their round "public" such that it can be discovered by other users in the Network. Someone who discovers a public round on the Network and wants to invest in it will require the owner of the personal token they want to invest in to approve them.
 
 The user who is fundraising has the final say about who can be an investor in their personal token. A user can cancel an active fundraising round in case they change their minds.
 
 When a round is completed, the Network completes the transaction: respective wallet values for all personal tokens involved in the transaction are updated, and so is the information about who owns how much of which personal tokens.
-
-### Valuation
-
-The value of a personal token depends on what the market thinks is the owner’s potential to create long-term economic value. Let’s say Amy raises capital from investors by selling equity in her personal token. As Amy works to create value and influence the world, her perceived economic potential will increase, and the value of her personal token will rise. Similarly, if Amy consistently fails to show potential to create value, the value of her personal token falls.
 
 ### Manage relationships
 
@@ -70,13 +73,7 @@ In the Network, users can give their personal token shareholders investor update
 
 ### Invest
 
-Investors are just users in the Network who also have their own personal tokens that represent their ownership in other personal tokens and in companies (that exist outside of the Network).
-
 In order for an investor to accept an invitation to invest (when a user sends them an invite link for their round), or apply to invest (when the investor discovers an active round in the Network), they need sufficient capital in their personal token wallet to cover the investment amount.
-
-Unlike in companies, voting rights don't make sense in the context of personal tokens. An investor should not be able to force the action of the users associated with the personal tokens the investor has equity in. Why? Because a company is an entity that exist independently of people: its owners can change, it can be created, destroyed, and people can directly own companies by buying equity in them. But, shareholders of a personal token do not directly “own” the person behind the token in any way, shape, or form.
-
-TODO: talk about how this is the first time you can just “invest in an individual” - directly, and not through the things that they create. this is somewhat novel.
 
 ### Sell
 
@@ -86,9 +83,9 @@ The ROFR period lasts 14 days for the token holder and an additional 7 days for 
 
 When a user sells their equity in another personal token, or equity in a company (outside of the Network), the capital gained from such a transaction is distributed amongst those who hold equity in this user's personal token - proportional to how much equity they hold.
 
-Capital gains from selling equity (whether in companies or in personal tokens) flow directly to the holders of the seller's personal token, but do not cascade further up the network. For example, if Alice holds Bob's personal token, and Bob holds Dan's personal token, then when Dan sells equity and generates capital gains, these gains are distributed proportionally to Dan's token holders (including Bob) but stop there - they do not automatically flow up to Bob's token holders (like Alice). Alice can only benefit from Dan's success indirectly if Bob's token value increases due to his gains from Dan, and Alice then sells her equity in Bob's token at this higher value. This mirrors how corporate structures handle distributions: shareholders of a company that owns shares in another company don't automatically receive distributions when the subsidiary company sells assets.
-
 <CapitalGainsAnimation />
+
+Capital gains from selling equity (whether in companies or in personal tokens) flow directly to the holders of the seller's personal token, but do not cascade further up the network. For example, if Alice holds Bob's personal token, and Bob holds Dan's personal token, then when Dan sells equity and generates capital gains, these gains are distributed proportionally to Dan's token holders (including Bob) but stop there - they do not automatically flow up to Bob's token holders (like Alice). Alice can only benefit from Dan's success indirectly if Bob's token value increases due to his gains from Dan, and Alice then sells her equity in Bob's token at this higher value. This mirrors how corporate structures handle distributions: shareholders of a company that owns shares in another company don't automatically receive distributions when the subsidiary company sells assets.
 
 ### Additional details
 
@@ -97,9 +94,29 @@ Capital gains from selling equity (whether in companies or in personal tokens) f
 - Minimum percentage of equity a user needs in their own personal token.
 - Capped returns? For example, if an investor makes 1000x returns from a personal token, should their equity in that personal token be returned to its owner?
 
+### Examples
+
+Bob is a high schooler with a podcast in which he interviews people he finds interesting. He demonstrates a knack for asking the right questions & choosing interesting people to interview. Ryan, A famous podcaster recognizes that Bob may have a special talent and decides to invest $50k in Bob in exchange for a 3% equity in Bob's personal token.
+
+Ryan is now incentivized to mentor Bob and help him succeed. Ryan creates wealth when Bob does. Bob can now afford to dedicate all of his time towards his podcast and will likely improve much faster than if he had to also get a part time to job to help him survive and invest in his podcast.
+
+Amy is an undergrad researching nuclear power. She just published a paper that was met with a lukewarm reception at a popular conference, but caught the eye of Maya, a startup CEO building a nuclear power plant. Maya finds Amy's research promising and invests in Amy's personal token to enable Amy to follow her natural curiosity in her research without worrying about grants which she's struggling to get because the community doesn't value her research.
+
+Maya doesn't consider her investment in Amy to be that risky because Maya is convinced that nuclear power will create incredible economic value within a couple of decades, and that the skills Amy will build through her research - regardless of how successful her current research direction is - will make Amy very wealthy, and therefore will make Maya wealthy.
+
 ## III. System
 
+### Priorities
+
+We will optimize for economic growth: to maximize the market capitalization of the Network.
+
+Why? Optimizing for economic growth requires the Network to prioritize the most ambitious individuals. And these are the best kind of individuals to build for because they care about their reputations and are less likely to engage in fraudulent behavior (which will be one of our major challenges).
+
+This is also less of a choice than it seems. In the early days of personal tokens (perhaps the first few decades), I predict we will see competition between different Networks with different design decisions leading to different trade-offs. Yet, network effects are incredibly strong: everyone will want to participate in the Network with the greatest market capitalization because that is where they will have access to the most capital. We will see a winner-takes-all dynamic. In a world in which people can freely choose which Networks to join, people will flock to the Network that is best capitalized that they believe will continue to be in the long-run. The other Networks will fade away.
+
 ### Admission
+
+How selective should admission into the Network be?
 
 ### Sufficient decentralization
 
@@ -187,17 +204,18 @@ I predict in the first few decades of this system, multiple Networks will co-exi
 
 ### Governance
 
+- Core team
+- Legal counsel - talk about how we will need to help create the legal framework to enable personal tokens => meet the legal system where it is + help define the future.
+
 ## IV. Implementation
-
-### Overview
-
-Network will be implemented on: [Ethereum +](https://en.wikipedia.org/wiki/Ethereum) [Base](https://www.base.org/) (best developer experience, fastest growing ecosystem & the org behind it - Coinbase - is solid).
-
-Transactions will use [USDC](https://www.circle.com/usdc) to eliminate unnecessary variables in personal token valuations, minimize volatility.
 
 ### Legal
 
 ### Technical
+
+Network will be implemented on: [Ethereum](https://en.wikipedia.org/wiki/Ethereum) + [Base](https://www.base.org/) (best developer experience, fastest growing ecosystem & the org behind it - Coinbase - is solid).
+
+Transactions will use [USDC](https://www.circle.com/usdc) to eliminate unnecessary variables in personal token valuations, minimize volatility.
 
 ## V. Notes
 
@@ -206,3 +224,6 @@ Transactions will use [USDC](https://www.circle.com/usdc) to eliminate unnecessa
 ### Contribute
 
 ### Todo
+
+1. Validate legal.
+2.

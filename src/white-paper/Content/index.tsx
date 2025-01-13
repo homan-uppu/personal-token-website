@@ -13,8 +13,10 @@ import { motion } from "framer-motion";
 import SideMenuMobile from "../SideMenu/SideMenuMobile";
 
 interface ContentProps {
+  sections: string[][];
   children: ReactNode;
 }
+
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -40,38 +42,9 @@ export const useIsMobile = () => {
   return isMobile;
 };
 
-export default function Content({ children }: ContentProps) {
+export default function Content({ children, sections }: ContentProps) {
   const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
   const isMobile = useIsMobile();
-
-  const sections = [
-    ["I. Intro"],
-    [
-      "II. How it works",
-      "The Network",
-      "A personal token",
-      "Shares",
-      "Valuation",
-      "Raise capital",
-      "Manage relationships",
-      "Invest",
-      "Sell",
-      "Discover",
-      "Other details",
-    ],
-    [
-      "III. System",
-      "Admission",
-      "Sufficient decentralization",
-      "Network token",
-      "Tackling fraud",
-      "Syncing off chain assets",
-      "Promoting competition",
-      "Governance",
-    ],
-    ["IV. Implementation", "Overview", "Legal", "Technical"],
-    ["V. Notes", "Vision", "Q&A", "Discuss", "Authors", "Contribute"],
-  ];
 
   const contentMargin =
     isMobile === null || isMobile

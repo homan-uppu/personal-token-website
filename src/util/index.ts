@@ -26,3 +26,32 @@ export const formatNumber = (
   }
   return num.toString();
 };
+
+export const parseMdxSections = (mdxContent: string): string[][] => {
+  const lines = mdxContent.split("\n");
+  const sections: string[][] = [];
+  let currentSection: string[] = [];
+
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+
+    if (trimmedLine.startsWith("## ")) {
+      // If we have a previous section, save it
+      if (currentSection.length > 0) {
+        sections.push([...currentSection]);
+      }
+      // Start new section with H2 header
+      currentSection = [trimmedLine.substring(3)];
+    } else if (trimmedLine.startsWith("### ")) {
+      // Add H3 header to current section
+      currentSection.push(trimmedLine.substring(4));
+    }
+  }
+
+  // Add the last section if it exists
+  if (currentSection.length > 0) {
+    sections.push(currentSection);
+  }
+
+  return sections;
+};

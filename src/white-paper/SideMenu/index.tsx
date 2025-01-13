@@ -150,7 +150,6 @@ export default function SideMenu({
             background: shouldShowContent ? "#fbfbfb" : "transparent",
           }}
           animate={{
-            background: shouldShowContent ? "#fbfbfb" : "transparent",
             x: shouldShowContent ? 0 : -300,
           }}
           transition={springAnimTransition}
