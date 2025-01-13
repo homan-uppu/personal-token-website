@@ -67,9 +67,9 @@ The user who is fundraising has the final say about who can be an investor in th
 
 When a round is completed, the Network completes the transaction: respective wallet values for all personal tokens involved in the transaction are updated, and so is the information about who owns how much of which personal tokens.
 
-### Manage relationships
+### Communicate
 
-In the Network, users can give their personal token shareholders investor updates, as well as direct message other users.
+Within the Network, users can share updates with their shareholders, as well as direct message other users.
 
 ### Invest
 
@@ -104,19 +104,69 @@ Amy is an undergrad researching nuclear power. She just published a paper that w
 
 Maya doesn't consider her investment in Amy to be that risky because Maya is convinced that nuclear power will create incredible economic value within a couple of decades, and that the skills Amy will build through her research - regardless of how successful her current research direction is - will make Amy very wealthy, and therefore will make Maya wealthy.
 
-## III. System
+## III. Aim
 
-### Priorities
+The Network's aim is to maximize long-term economic growth: to maximize the long-term valuations of all the personal tokens in the Network.
 
-We will optimize for economic growth: to maximize the market capitalization of the Network.
+Prioritizing long-term economic growth is required to build a system that lasts. In the early days of personal tokens (perhaps the first few decades), I predict that we will see multiple competing networks of personal tokens each with different design decisions and trade-offs. 
 
-Why? Optimizing for economic growth requires the Network to prioritize the most ambitious individuals. And these are the best kind of individuals to build for because they care about their reputations and are less likely to engage in fraudulent behavior (which will be one of our major challenges).
+But, in a free market in which users can choose which network(s) to join, there are very strong network effects: everyone will sooner or later want to join the most capitalized network because that is where they can best raise capital, and find the best people to work with to realize their ambitions. There will be an extreme power law distribution of where people will want to go. The network that best optimizes long-term economic growth will engulf the rest.
 
-This is also less of a choice than it seems. In the early days of personal tokens (perhaps the first few decades), I predict we will see competition between different Networks with different design decisions leading to different trade-offs. Yet, network effects are incredibly strong: everyone will want to participate in the Network with the greatest market capitalization because that is where they will have access to the most capital. We will see a winner-takes-all dynamic. In a world in which people can freely choose which Networks to join, people will flock to the Network that is best capitalized that they believe will continue to be in the long-run. The other Networks will fade away.
+Optimizing for long-term economic growth requires building trust. Users in the Network must trust that:
+1. the equity they hold in personal tokens will be honored
+2. the information they obtain on the Network that they use to make decisions is accurate and aligned with reality
+3. the Network will last, without the fear that they may wake up one day to see the Network destroyed due to the actions of an individual or authority.
+4. the majority of users in the Network are ambitious, long-term oriented individuals with high integrity, not fraudsters looking to run away with the capital they raise without any intention to do what they said they would.
+
+In order to cultivate this trust, in addition to providing the core functionality of buying / selling shares in personal tokens the Network will need to strongly **disincentivize fraud**, **admit** the right people into the Network, and **synchronize** the information on the Network with sources of truth outside of the Network: are people who they say they are, is a user's equity in companies (in the real world) accurately reflected in their personal tokens in the Network.
+
+And importantly, these functions must be performed in a sufficiently decentralized way so that there's no glaring centralized point of failure, with a governance structure that enables the Network to last for a long, long time - well beyond the lives of the initial team.
+
+## IV. System
 
 ### Admission
 
 How selective should admission into the Network be?
+
+### Tackling fraud
+
+By fraud, I mean any kind of manipulation / deception with the intention to profit.
+
+**Investor confidence is critical for the Network to survive**. If investors feel that there's too much fraud on the network, or feel like they don't have a good recourse if they’re scammed, they won’t invest.
+
+Fraud could be:
+
+- **Identity fraud**: A user who has already created a personal token and raised money in the past creates another personal token on the Network in order to raise more money while hiding their history. This is something that a user who has already raised capital and has consistently failed to create any value would want to do to cover up their poor track record.
+- [Rug pulls](https://www.coinbase.com/learn/tips-and-tutorials/what-is-a-rug-pull-and-how-to-avoid-it): a user raising capital by fabricating a pitch without actually having the intention to create long-term value. They raise money and aren’t seen again.
+- **Avoiding capital gains distribution**: A user, after raising capital (and therefore has investors who own some equity in their personal token), intentionally fails to report selling company equity (outside of the Network) in order to avoid having to pay their investors their proportional share of the capital gained from the equity sale.
+
+In order to make sure that a user can only have one personal token and can't hide their track record from investors, the Network will need to verify the human behind the user: via government ID verification, or perhaps by taking advantage of something like [WorldID](https://world.org/world-id).
+
+In order to prevent rug pulls, it would help to have the backing of courts. This requires treating personal tokens as securities and complying with the regulations around securities. In cases of fraud, investors (or the Network’s legal counsel) can then file lawsuits under federal securities laws ([particularly Rule 10b-5](https://www.investopedia.com/terms/r/rule10b5.asp)) for material misrepresentations or omissions made during fundraising. In the early stages, to minimize legal complexity, restricting the Network to only users in the US makes the most sense because of its ambitious talent pool and quality of investors.
+
+To prevent avoiding capital gains distribution, the Network could require users who have shareholders in their personal tokens to submit their tax returns annually (which would reflect any capital gains).
+
+Yet, prevention is far more valuable than cure. Having a strong community of high quality, ambitious users who genuinely want to do great work is critically important. Ambitious individuals operate on long time horizons and wouldn’t want to damage their reputation for some measly short-term gains. Therefore, the Network will need to be able to penalize bad actors \*\*\*\*such that they can’t participate in the Network.
+
+Investors who believe they’ve been scammed can flag it and the fundraise will be investigated by the fraud authority: a team that works for the Network that is responsible for identifying fraud and taking measures to penalize bad actors.
+
+Assessing whether fraud actually took place can be difficult. In order to have sufficient information to assess claims, it would help to encourage personal token owners and their shareholders to communicate within the Network itself, so that in the case that someone claims fraud, the Network’s fraud authority can inspect the communication between the parties, do research in the real world to validate claims, and come to a decision on whether it believes fraud took place and to what degree.
+
+When this authority decides someone is a bad actor, they can freeze the bad actor’s personal token on Network, and the bad actor would be barred from participating in the future.
+
+Blocked users should have a way to challenge decisions. When this happens, the evidence and argument produced by the fraud authority would be shared to a sufficient number of Network users who could vote on whether fraud actually took place (and thereby whether the user can be let back in or not).
+
+Centralization (with a decentralized means to correct mistakes) is required in the early days in order to swiftly block bad actors so that they don’t do more damage to the Network. As artificial intelligence becomes more powerful, this function can be more decentralized: i.e. instead of giving a small group of people power, Network users instead vote on the prompts & examples taught to the AI to determine what is fraud on the network and what isn’t. Therefore, **I predict degree of decentralization to be proportional to the degree of intelligence of AI.**
+
+We could also introduce a voting system to determine who is a part of this fraud authority. This will be important because there can (and will likely be) bad actors in the fraud team as well.
+
+### Syncing off chain assets
+
+The source of truth for equity in companies lies outside of the network:
+
+<SyncScene />
+
+## V. Governance
 
 ### Sufficient decentralization
 
@@ -159,44 +209,6 @@ As with with personal tokens, whenever a user sells their equity in any personal
 <NetworkTokenScene />
 
 The wallet associated with the Network token is considered the treasury. To balance operational needs with shareholder returns, when new revenue enters the treasury, 30% is immediately distributed to Network Token shareholders, while 70% is retained in the treasury to be used for legal compliance, development of new features, security, and anything that's is required to preserve the integrity of the Network.
-
-### Tackling fraud
-
-By fraud, I mean any kind of manipulation / deception with the intention to profit.
-
-**Investor confidence is critical for the Network to survive**. If investors feel that there's too much fraud on the network, or feel like they don't have a good recourse if they’re scammed, they won’t invest.
-
-Fraud could be:
-
-- **Identity fraud**: A user who has already created a personal token and raised money in the past creates another personal token on the Network in order to raise more money while hiding their history. This is something that a user who has already raised capital and has consistently failed to create any value would want to do to cover up their poor track record.
-- [Rug pulls](https://www.coinbase.com/learn/tips-and-tutorials/what-is-a-rug-pull-and-how-to-avoid-it): a user raising capital by fabricating a pitch without actually having the intention to create long-term value. They raise money and aren’t seen again.
-- **Avoiding capital gains distribution**: A user, after raising capital (and therefore has investors who own some equity in their personal token), intentionally fails to report selling company equity (outside of the Network) in order to avoid having to pay their investors their proportional share of the capital gained from the equity sale.
-
-In order to make sure that a user can only have one personal token and can't hide their track record from investors, the Network will need to verify the human behind the user: via government ID verification, or perhaps by taking advantage of something like [WorldID](https://world.org/world-id).
-
-In order to prevent rug pulls, it would help to have the backing of courts. This requires treating personal tokens as securities and complying with the regulations around securities. In cases of fraud, investors (or the Network’s legal counsel) can then file lawsuits under federal securities laws ([particularly Rule 10b-5](https://www.investopedia.com/terms/r/rule10b5.asp)) for material misrepresentations or omissions made during fundraising. In the early stages, to minimize legal complexity, restricting the Network to only users in the US makes the most sense because of its ambitious talent pool and quality of investors.
-
-To prevent avoiding capital gains distribution, the Network could require users who have shareholders in their personal tokens to submit their tax returns annually (which would reflect any capital gains).
-
-Yet, prevention is far more valuable than cure. Having a strong community of high quality, ambitious users who genuinely want to do great work is critically important. Ambitious individuals operate on long time horizons and wouldn’t want to damage their reputation for some measly short-term gains. Therefore, the Network will need to be able to penalize bad actors \*\*\*\*such that they can’t participate in the Network.
-
-Investors who believe they’ve been scammed can flag it and the fundraise will be investigated by the fraud authority: a team that works for the Network that is responsible for identifying fraud and taking measures to penalize bad actors.
-
-Assessing whether fraud actually took place can be difficult. In order to have sufficient information to assess claims, it would help to encourage personal token owners and their shareholders to communicate within the Network itself, so that in the case that someone claims fraud, the Network’s fraud authority can inspect the communication between the parties, do research in the real world to validate claims, and come to a decision on whether it believes fraud took place and to what degree.
-
-When this authority decides someone is a bad actor, they can freeze the bad actor’s personal token on Network, and the bad actor would be barred from participating in the future.
-
-Blocked users should have a way to challenge decisions. When this happens, the evidence and argument produced by the fraud authority would be shared to a sufficient number of Network users who could vote on whether fraud actually took place (and thereby whether the user can be let back in or not).
-
-Centralization (with a decentralized means to correct mistakes) is required in the early days in order to swiftly block bad actors so that they don’t do more damage to the Network. As artificial intelligence becomes more powerful, this function can be more decentralized: i.e. instead of giving a small group of people power, Network users instead vote on the prompts & examples taught to the AI to determine what is fraud on the network and what isn’t. Therefore, **I predict degree of decentralization to be proportional to the degree of intelligence of AI.**
-
-We could also introduce a voting system to determine who is a part of this fraud authority. This will be important because there can (and will likely be) bad actors in the fraud team as well.
-
-### Syncing off chain assets
-
-The source of truth for equity in companies lies outside of the network:
-
-<SyncScene />
 
 ### Promoting competition
 
