@@ -104,26 +104,77 @@ Amy is an undergrad researching nuclear power. She just published a paper that w
 
 Maya doesn't consider her investment in Amy to be that risky because Maya is convinced that nuclear power will create incredible economic value within a couple of decades, and that the skills Amy will build through her research - regardless of how successful her current research direction is - will make Amy very wealthy, and therefore will make Maya wealthy.
 
-## III. Aim
+## III. System
 
-The Network's aim is to maximize long-term economic growth: to maximize the long-term valuations of all the personal tokens in the Network.
+### Trust
 
-Prioritizing long-term economic growth is required to build a system that lasts. In the early days of personal tokens (perhaps the first few decades), I predict that we will see multiple competing networks of personal tokens each with different design decisions and trade-offs. 
-
-But, in a free market in which users can choose which network(s) to join, there are very strong network effects: everyone will sooner or later want to join the most capitalized network because that is where they can best raise capital, and find the best people to work with to realize their ambitions. There will be an extreme power law distribution of where people will want to go. The network that best optimizes long-term economic growth will engulf the rest.
-
-Optimizing for long-term economic growth requires building trust. Users in the Network must trust that:
-1. the equity they hold in personal tokens will be honored
-2. the information they obtain on the Network that they use to make decisions is accurate and aligned with reality
-3. the Network will last, without the fear that they may wake up one day to see the Network destroyed due to the actions of an individual or authority.
+Trust is the foundation for growth. Users in the Network must trust that:
+1. the equity they hold in personal tokens will be honored. (i.e the legal, technical implementation is solid).
+2. the information they obtain on the Network that they use to make decisions is accurate and aligned with reality.
+3. the Network will last. Without the fear that they may wake up one day to see the Network destroyed due to the actions of a stupid individual or authority.
 4. the majority of users in the Network are ambitious, long-term oriented individuals with high integrity, not fraudsters looking to run away with the capital they raise without any intention to do what they said they would.
 
-In order to cultivate this trust, in addition to providing the core functionality of buying / selling shares in personal tokens the Network will need to strongly **disincentivize fraud**, **admit** the right people into the Network, and **synchronize** the information on the Network with sources of truth outside of the Network: are people who they say they are, is a user's equity in companies (in the real world) accurately reflected in their personal tokens in the Network.
+The success of the Network depends on cultivating and protecting such trust, because without sufficient trust investors will not want to participate.
 
-And importantly, these functions must be performed in a sufficiently decentralized way so that there's no glaring centralized point of failure, with a governance structure that enables the Network to last for a long, long time - well beyond the lives of the initial team.
+### Tackling fraud
 
-## IV. System
+Effectively tackling fraud is required to cultivate trust . By "fraud" I mean misrepresenting reality with the intention to profit.
 
+In the Network, misrepresentation can be in the following ways:
+1. Saying you are who you're not.
+2. Saying you've accomplished things that you actually haven't.
+3. Saying you want to do something with the capital you will raise without actually having the intention to do it.
+4. Omitting some (or all) of your ownership of companies outside of the Network.
+
+Each form of misrepresentation has a likely cause. Those who don't identify themselves accurately are likely trying shed the burden of their poor track record, or history of actions that hurt their chances to raise capital. Those who bloat what they've accomplished, or tell ambitious stories of how they'll use capital raised without intending to spend it that way are trying to cheat investors out of money. Those who omit their ownership of companies outside of the Network are likely trying to skip paying the appropriate share of capital gains to their personal token shareholders when they sell equity in companies outside of the Network.
+
+Naturally there are varying degrees to fraud: some misrepresentations are far more harmful than others. It's also possible to make accidents. Intention matters.
+
+The best way to dis-incentivize fraud is to:
+1. Ensure users of the Network have high ambition.
+2. Effectively tarnish the reputation of bad actors.
+
+### Ambition
+
+Sufficient ambition is a necessary pre-requisite to minimizing fraud because the possibility of a tarnished reputation alone doesn't dis-incentivize an individual from acting fraudulently if they're not ambitious.
+
+Ambitious individuals operate on long-time horizons and understand that a strong reputation is critical for them to achieve their goals. *(note: by reputation I don't mean being liked by others, but rather being seen as an individual who doesn't lie, does what they say they will, honors commitments and generally is a person of strong integrity.)* Therefore, a Network in which all users are genuinely highly ambitious will naturally have far, far less fraud than one with moderate / low ambition users.
+
+How do we ensure that users in the platform are genuinely highly ambitious?
+
+In order to ensure that the Network consists of ambitious, long-term oriented individuals, it's tempting to be selective about who can get into the Network. But, this will backfire because it means the Network will operate at the wrong level of abstraction: instead of being an open platform that facilitates a marketplace of notions about what it means to be "investable" / "ambitious", it operates at the level of a selective sub-Network.
+
+The Network should NOT be selective about who can join the Network beyond the bare minimum such as barring individuals who have been convicted of fraud in the world, as well as meeting any legal / regulatory requirements such as minimum age, etc.
+
+By making the Network itself un-selective, the burden to ensure that users are genuinely ambitious falls on the investors. Investors are incentivized to only invest in the most ambitious individuals (since their greatest returns will come from the most ambitious), and therefore, there's a forcing function to make the entire Network more ambitious in order to be able to raise capital.
+
+Now we need a system to swiftly, accurately tarnish reputations of bad actors. We need a reputation system.
+
+### Reputation
+
+If a user acts fraudulently, their reputation should be negatively impacted.
+
+What would a good reputation system look like?
+
+A good reputation system would have a sufficiently granular measure of reputation, perhaps as a score out of 100, to be able to represent the subtle differences between different kinds of fraud.
+
+A good reputation system swiftly uncovers gaps between what a user claims is true and reality.
+
+A good reputation system would have a rubric that correctly penalizes a misrepresentation proportional to how damaging it is to the health of the Network. For example: raising capital and running with it instead of doing what you said you would when you pitch yourself is an action that could greatly erode trust in the Network. On the other hand, failing to report capital gains from selling equity in a company (out of the Network) is far less damaging. These actions should not be penalized equally.
+
+A good reputation system would interpret the rubric accurately for each case. Any good rubric will have room for interpretation so that it can generalize to many different scenarios. A good reputation system would apply the rubric consistently across cases.
+
+A good reputation system would make a user's reputation score available to all who may want to work with them, to enable users to make more informed decisions.
+
+A good reputation system would have a fair way to challenge decisions that impacted a user's reputation score.
+
+A good reputation system would be sufficiently decentralized to minimize the impact of the biases (which are bound to exist, as well as grow over time) of a single authority.
+
+Implementing such a reputation system is a massive undertaking in and of itself. Fortunately, we'll only need a small subset of features to be able to successfully launch the Network, while leaving the design and implementation of a full-fledged reputation system for later - when the Network is more mature.
+
+At launch, I propose the following system: any user in the Network can flag fraudulent activity, and a centralized reputation authority would assess the claim. If it sees merit in it, the authority would ban the bad actor from the Network.
+
+### Synchronization
 ### Admission
 
 How selective should admission into the Network be?
@@ -146,7 +197,7 @@ In order to prevent rug pulls, it would help to have the backing of courts. This
 
 To prevent avoiding capital gains distribution, the Network could require users who have shareholders in their personal tokens to submit their tax returns annually (which would reflect any capital gains).
 
-Yet, prevention is far more valuable than cure. Having a strong community of high quality, ambitious users who genuinely want to do great work is critically important. Ambitious individuals operate on long time horizons and wouldn’t want to damage their reputation for some measly short-term gains. Therefore, the Network will need to be able to penalize bad actors \*\*\*\*such that they can’t participate in the Network.
+Yet, prevention is far more valuable than cure. Having a strong community of high quality, ambitious users who genuinely want to do great work is critically important. Ambitious individuals operate on long time horizons and wouldn’t want to damage their reputation for some measly short-term gains. Therefore, the Network will need to be able to penalize bad actors such that they can’t participate in the Network.
 
 Investors who believe they’ve been scammed can flag it and the fundraise will be investigated by the fraud authority: a team that works for the Network that is responsible for identifying fraud and taking measures to penalize bad actors.
 
@@ -166,9 +217,11 @@ The source of truth for equity in companies lies outside of the network:
 
 <SyncScene />
 
-## V. Governance
+## IV. Governance
 
 ### Sufficient decentralization
+
+**A key point of this section is to highlight that anyone can build on top of the primitives. i.e. you can build "collectives": YC type groups that operate on the Network with collectives specific tooling and UX, etc. it is an open field and 3rd party developers' house can't just be removed by some central authority.**
 
 There are 3 types of functions in the Network:
 
@@ -216,10 +269,19 @@ I predict in the first few decades of this system, multiple Networks will co-exi
 
 ### Governance
 
-- Core team
+- Core team: will be kept very, very small. not a democracy, there is a clear leader and person held accountable for all actions.
 - Legal counsel - talk about how we will need to help create the legal framework to enable personal tokens => meet the legal system where it is + help define the future.
 
-## IV. Implementation
+### Artificial intelligence
+Replace human power with AI. As AI becomes more competent, we'll have a more decentralized distribution of power through voting on the rules, prompts, examples, and models for the AI system that will increasingly make decisions that power the network. -> this is a very powerful idea that i'd like to expand on later, but keep it concise and packed in this white paper now (or perhaps you can expand it right now?).
+
+## V. Implementation
+
+implementation consists of legal + technical.
+
+The accurate spec (every detail required to implement the Network: the legal contracts, data structures, smart contracts, etc.) will be covered elsewhere - after achieving sufficient clarity about the features of the Network that we want to create.
+
+This section is just an overview with some ideas about how we may approach implementing this Network. I expect many details to change.
 
 ### Legal
 
@@ -229,11 +291,16 @@ Network will be implemented on: [Ethereum](https://en.wikipedia.org/wiki/Ethereu
 
 Transactions will use [USDC](https://www.circle.com/usdc) to eliminate unnecessary variables in personal token valuations, minimize volatility.
 
-## V. Notes
+## VI. Notes
+
+### Authors
+- [homan](https://x.com/homan_u)
+
+### Contribute
 
 ### Q&A
 
-### Contribute
+DM me your questions. I'll add the good ones (and will give you credit).
 
 ### Todo
 
