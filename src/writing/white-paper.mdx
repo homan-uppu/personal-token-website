@@ -53,15 +53,13 @@ When a user initiates a fundraising round, they specify information about the ra
 
 A user can share a link to this active fundraising round to people they want as investors. A fundraising round is private by default (people who don’t have the link to it will not know it exists).
 
-They can also make their round "public" such that it can be discovered by other users in the Network. Someone who discovers a public round on the Network and wants to invest in it will require the owner of the personal token they want to invest in to approve them.
-
-The user who is fundraising has the final say about who can be an investor in their personal token. A user can cancel an active fundraising round in case they change their minds.
+The owner of a personal token has the final say about who can be a shareholder of their personal token. A user can cancel an active fundraising round in case they change their minds.
 
 When a round is completed, the Network completes the transaction: respective wallet values for all personal tokens involved in the transaction are updated, and so is the information about who owns how much of which personal tokens.
 
 ### Invest
 
-In order for an investor to accept an invitation to invest (when a user sends them an invite link for their round), or apply to invest (when the investor discovers an active round in the Network), they need sufficient capital in their personal token wallet to cover the investment amount.
+In order for an investor to accept an invitation to invest (when a user sends them an invite link for their round), they need sufficient capital in their personal token wallet to cover the investment amount.
 
 ### Sell
 
@@ -69,13 +67,15 @@ When a shareholder wants to sell their equity in a personal token, they initiate
 
 The ROFR period lasts 14 days for the token holder and an additional 7 days for existing shareholders. If no existing shareholders purchase the shares during this period, the seller can either list their shares on the Network's internal marketplace or directly transfer them to specific buyers they've identified. However, all transfers must be approved by the token holder, and shares can only be transferred to other verified users in the Network.
 
+### Capital gains are distributed
+
 When a user sells their equity in another personal token, or equity in a company (outside of the Network), the capital gained from such a transaction is distributed amongst those who hold equity in this user's personal token - proportional to how much equity they hold.
 
 <CapitalGainsAnimation />
 
 Capital gains from selling equity (whether in companies or in personal tokens) flow directly to the holders of the seller's personal token, but do not cascade further up the network. For example, if Alice holds Bob's personal token, and Bob holds Dan's personal token, then when Dan sells equity and generates capital gains, these gains are distributed proportionally to Dan's token holders (including Bob) but stop there - they do not automatically flow up to Bob's token holders (like Alice). Alice can only benefit from Dan's success indirectly if Bob's token value increases due to his gains from Dan, and Alice then sells her equity in Bob's token at this higher value. This mirrors how corporate structures handle distributions: shareholders of a company that owns shares in another company don't automatically receive distributions when the subsidiary company sells assets.
 
-### Additional details
+### Notes
 
 - [Pro rata rights](https://www.angellist.com/learn/pro-rata-rights).
 - Min / max investment amount - to give fundraising user control over how many investors will participate in round.
@@ -91,7 +91,6 @@ Ryan is now incentivized to mentor Bob and help him succeed. Ryan creates wealth
 Amy is an undergrad researching nuclear power. She just published a paper that was met with a lukewarm reception at a popular conference, but caught the eye of Maya, a startup CEO building a nuclear power plant. Maya finds Amy's research promising and invests in Amy's personal token to enable Amy to follow her natural curiosity in her research without worrying about grants which she's struggling to get because of her unpopular research direction.
 
 Maya doesn't consider her investment in Amy to be that risky because Maya is convinced that nuclear power will create incredible economic value within a couple of decades, and that the skills Amy will build through her research - regardless of how successful her current research direction is - will make Amy very wealthy, and therefore will make Maya wealthy.
-
 
 ## III. Aim
 
