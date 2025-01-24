@@ -75,7 +75,6 @@ export default function Annotation({ children }: AnnotationProps) {
           isInline ? styles.annotationContentInline : ""
         }`}
         style={style}
-        initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
           ...(animate || {}),
@@ -103,9 +102,7 @@ export default function Annotation({ children }: AnnotationProps) {
         )
       ) : (
         <AnnotationContent
-          animate={{
-            left: leftPosition > 0 ? `calc(${leftPosition}px + 24px)` : -1000,
-          }}
+          style={{ left: leftPosition > 0 ? leftPosition + 24 : -1000 }}
         >
           {children}
         </AnnotationContent>

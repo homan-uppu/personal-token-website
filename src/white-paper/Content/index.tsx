@@ -46,7 +46,6 @@ export default function Content({ children, sections }: ContentProps) {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    console.log("scrolling!");
     // Increment scroll position by 1px when isSideMenuVisible changes, after a delay
     setTimeout(() => {
       window.scrollBy(0, 1);
