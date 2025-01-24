@@ -20,7 +20,7 @@ export default function Annotation({ children }: AnnotationProps) {
       if (markerRef.current) {
         const rect =
           markerRef.current?.parentElement?.parentElement?.getBoundingClientRect();
-        const rightPosition = (rect?.right || 0) + 224; // 200px width + 24px margin
+        const rightPosition = (rect?.right || 0) + 248; // 200px width + 24px margin
         setIsOffscreen(rightPosition > window.innerWidth);
         setLeftPosition(rect?.right || 0);
       }
