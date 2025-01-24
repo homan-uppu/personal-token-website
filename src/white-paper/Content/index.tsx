@@ -12,11 +12,6 @@ import SideMenu from "../SideMenu";
 import { motion } from "framer-motion";
 import SideMenuMobile from "../SideMenu/SideMenuMobile";
 
-interface ContentProps {
-  sections: string[][];
-  children: ReactNode;
-}
-
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -41,10 +36,22 @@ export const useIsMobile = () => {
   // Return false during SSR, actual value after mounting
   return isMobile;
 };
+interface ContentProps {
+  sections: string[][];
+  children: ReactNode;
+}
 
 export default function Content({ children, sections }: ContentProps) {
   const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    console.log("scrolling!");
+    // Increment scroll position by 1px when isSideMenuVisible changes, after a delay
+    setTimeout(() => {
+      window.scrollBy(0, 1);
+    }, 400);
+  }, [isSideMenuVisible]);
 
   const contentMargin =
     isMobile === null || isMobile

@@ -14,6 +14,7 @@ import {
   SyncScene,
 } from "@/white-paper/Assets";
 import { parseMdxSections } from "@/util";
+import Annotation from "@/white-paper/Annotation";
 
 // In a server component or page
 const getMarkdownContent = () => {
@@ -37,6 +38,7 @@ export default function Page() {
             CapitalGainsAnimation,
             NetworkTokenScene,
             SyncScene,
+            Annotation,
           }}
         />
       </Content>
