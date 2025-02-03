@@ -63,7 +63,7 @@ In order for an investor to accept an invitation to invest (when a user sends th
 
 When a shareholder wants to sell their equity in a personal token, they initiate a “Sale Request” in the Network. This request specifies the number of shares they wish to sell, their asking price, and how long the offer remains valid. Similar to private companies' [Right of First Refusal](https://www.angellist.com/learn/right-of-first-refusal) (ROFR), the token holder gets the first opportunity to purchase these shares. This ensures token holders maintain influence over their cap table and prevents unwanted parties from acquiring shares. If the token holder declines to purchase the shares, other existing shareholders receive second priority to maintain alignment among current investors.
 
-The ROFR period lasts 14 days for the token holder and an additional 7 days for existing shareholders. If no existing shareholders purchase the shares during this period, the seller can either list their shares on the Network's internal marketplace or have someone they know apply to invest. All transfers must be approved by the token holder, and shares can only be transferred to other verified users in the Network. <Annotation>A token holder is incentivized to not be a menace by unfairly rejecting all sales because that would likely spook existing and future investors, and tarnish their reputation.</Annotation>
+The ROFR period lasts 14 days for the token holder and an additional 7 days for existing shareholders. If no existing shareholders purchase the shares during this period, the seller can either list their shares on the Network's internal marketplace or have someone they know apply to invest. All transfers must be approved by the token holder, and shares can only be transferred to other verified users in the Network.  <Annotation>a token holder is incentivized to not be a menace by unfairly rejecting all sales because that would likely spook existing and future investors, and tarnish their reputation</Annotation>
 
 ### Capital distribution
 
@@ -96,10 +96,9 @@ Maya feels confident about this investment because she believes that though Amy'
 
 ### Trust
 
-The Network ought to be implemented in a way that maximizes users' trust in the Network. Cultivating trust is the highest priority, because without trust, users won't invest, and without investments there is no Network. <Annotation>Trust is especially important in the early days because investing in personal tokens is a new behavior for the world: many will be skeptical.</Annotation>
+The Network ought to be implemented in a way that maximizes users' trust in the Network. Cultivating trust is the highest priority, because without trust, users won't invest, and without investments there is no Network. <Annotation>trust is especially important in the early days because investing in personal tokens is a new behavior for the world: many will be skeptical</Annotation>
 
 A trustable Network is:
-
 1. **Reliable**. The Network does as it says. It consistently, correctly updates its state on each transaction (buying / selling equity in personal tokens).
 2. **Predictable**. Users should have confidence that the Network will continue to operate the way it does for the foreseeable future, based on the incentives that govern all of its members who act out of their self-interest, rather than based on the whims of a single user / authority.
 3. **Honest**. Facts provided by the system are true (aligned with reality). Users can rely on information about who a user says they are, what they say they've accomplished, their previous fundraising rounds, etc.
@@ -108,7 +107,7 @@ In order to be trustable, the Network must be sufficiently decentralized.
 
 ### Sufficiently decentralized
 
-Decentralization - _distributing power to many, as opposed to concentrating it in the hands of few_ - creates trust. <Annotation>Unfortunately due of the hype surrounding crypto, many assume decentralization to just mean slapping everything onto a blockchain. Decentralization is a civilizational theme that is much broader than any specific piece of technology, and has been a growing trend for centuries.</Annotation>
+Decentralization - _distributing power to many, as opposed to concentrating it in the hands of few_ - creates trust. <Annotation>unfortunately, due of the hype surrounding crypto, many assume decentralization to just mean slapping everything onto a blockchain. decentralization is a civilizational theme that is much broader than any specific piece of technology, and has been a growing trend for centuries</Annotation>
 
 Examples of decentralization (lesser to greater):
 
@@ -120,7 +119,7 @@ In the context of the Network, decentralization can manifest in many ways.
 
 Let's start with its core: I propose implementing the personal token ledger (that keeps track of who owns how much of which personal tokens) on [Ethereum](https://en.wikipedia.org/wiki/Ethereum) + [Base](https://www.base.org/), using a stablecoin ([USDC](https://www.circle.com/usdc)) as the currency that fuels transactions in the Network.
 
-By decentralizing the ledger itself, and processing transactions through [smart contracts](https://ethereum.org/en/developers/docs/smart-contracts/), the Network is more reliable and predictable. An authority, including the builders of the Network, can't easily manipulate personal token ownership, and the exchange of capital for shares in a personal token happens programmatically, eliminating the opportunity for delays and other messy situations.<Annotation>such as an investor receiving shares, and then realizing they can't pay for them, etc.</Annotation>
+By decentralizing the ledger itself, and processing transactions through [smart contracts](https://ethereum.org/en/developers/docs/smart-contracts/), the Network is more reliable and predictable. An authority, including the builders of the Network, can't easily manipulate personal token ownership, and the exchange of capital for shares in a personal token happens programmatically, eliminating the opportunity for delays and other messy situations. <Annotation>such as an investor receiving shares, and then realizing they can't pay for them</Annotation>
 
 Another benefit of decentralizing the personal token ledger is that it enables the Network to evolve more rapidly to match the growing needs of its users in ways that the builders of the Network can't even imagine. Third party tools and applications can't be censored or blocked by an authority, encouraging users to build tools and experiences for themselves without the fear that what they build will be blocked in the future due to the [whims of a centralized authority](https://www.theverge.com/2023/3/30/23662832/twitter-api-tiers-free-bot-novelty-accounts-basic-enterprice-monthly-price).
 
@@ -181,7 +180,7 @@ A Network of highly ambitious individuals with a strong reputation system as des
 
 Therefore, it's tempting to restrict the Network only to ambitious individuals, but this would be a massive blunder because it is impossible to have a singular, accurate definition of what ambition looks like. Highly ambitious ideas (and thereby highly ambitious individuals) fall outside of definitions. In fact, it's that nature of being too weird to grasp that makes them so ambitious in the first place.
 
-A network that has an "admission criteria" will become stale very quickly. It might work in the early days, but over time **any admission criteria will deteriorate towards rejecting the most ambitious individuals.**<Annotation>for example: United States, Harvard, YCombinator, all suffer from this.</Annotation>
+A network that has an "admission criteria" will become stale very quickly. It might work in the early days, but over time **any admission criteria will deteriorate towards rejecting the most ambitious individuals.** <Annotation>for example: United States, Harvard, YCombinator, all suffer from this</Annotation>
 
 The best way to approximate the definition of "highly ambitious" is to leave it to a free market of investors who each vote with their capital on the people who they think are highly ambitious. The Network's job is to rely on the signal provided by investors by giving certain privileges (such as being able to vote on feature / policy decisions, etc.) to only those that have raised capital.
 
@@ -221,7 +220,7 @@ But, these approaches aren't "clean" so to speak: they still rely on individuals
 
 #### Future implementation:
 
-The Network must become be the de-facto source of truth for equity in companies. This eliminates the messy, not-instantaneous, self-reporting, since smart contracts will distribute capital gains instantaneously to personal token shareholders.<Annotation>we may need to work with the government and help shape policies that allow shifting the source of truth for equity in companies on chain. this may take a while.</Annotation>
+The Network must become be the de-facto source of truth for equity in companies. This eliminates the messy, not-instantaneous, self-reporting, since smart contracts will distribute capital gains instantaneously to personal token shareholders. <Annotation>we may need to work with the government and help shape policies that allow shifting the source of truth for equity in companies on chain. this may take a while</Annotation>
 
 ### Access
 
@@ -249,7 +248,7 @@ I'm working with lawyers to draft a clear legal implementation plan and will sha
 
 In addition to the legal implementation, we'll need to make compliance simple for users of the Network, through education, standardized templates and filing on behalf of users wherever possible.
 
-In order to be legally compliant, at launch, the Network will likely need to be restricted to users in the United States of America. Why restrict to the US at launch? Firstly, we won't have the bandwidth to handle regulations in multiple countries, and it doesn't make sense to delay launching the Network until we do. And second, the US has the greatest concentration of highly ambitious individuals in the world today, making it a natural starting point if we have to launch in a single country. <Annotation>usage is how we touch base with reality. we can't afford to delay grounding our ideas in reality in order to try and launch in multiple regions at the start.</Annotation>
+In order to be legally compliant, at launch, the Network will likely need to be restricted to users in the United States of America. Why restrict to the US at launch? Firstly, we won't have the bandwidth to handle regulations in multiple countries, and it doesn't make sense to delay launching the Network until we do. And second, the US has the greatest concentration of highly ambitious individuals in the world today, making it a natural starting point if we have to launch in a single country. <Annotation>usage is how we touch base with reality. we can't afford to delay grounding our ideas in reality in order to try and launch in multiple regions at the start</Annotation>
 
 ## IV. Governance
 
@@ -271,7 +270,7 @@ As with with personal tokens, whenever a user sells their equity in any personal
 
 <NetworkTokenScene />
 
-The wallet associated with the Network token will be treated as the Network's treasury. To balance operational needs with shareholder returns, when new revenue enters the treasury, 30% is immediately distributed to Network Token shareholders, while 70% is retained in the treasury to be used for the Network's functions: legal compliance, development of new features, security, and anything that's is required to preserve the integrity of the Network. <Annotation>Over time, the distribution percentage (how much of capital gains is distributed to Network token holders vs. how much is preserved in treasury) will become more skewed towards distributing to shareholders over retaining in treasury.</Annotation>
+The wallet associated with the Network token will be treated as the Network's treasury. To balance operational needs with shareholder returns, when new revenue enters the treasury, 30% is immediately distributed to Network Token shareholders, while 70% is retained in the treasury to be used for the Network's functions: legal compliance, development of new features, security, and anything that's is required to preserve the integrity of the Network. <Annotation>over time, the distribution percentage (how much of capital gains is distributed to Network token holders vs. how much is preserved in treasury) will become more skewed towards distributing to shareholders over retaining in treasury</Annotation>
 
 ### Core team
 
@@ -287,7 +286,7 @@ The greatest cause for the failure of a team is complacency. We are our worst en
 
 Complacency is a natural reaction to success. In order for the Network to last, it's not enough to have the right design & implementation. The most important factor is for it to have a culture that never becomes complacent.
 
-Unfortunately, I suspect this is a near impossible task because mental balance is elusive: the mind is either paranoid or complacent, and seldom at the optimal. <Annotation>Anyone who has done anything nontrivial understands this truth experientially.</Annotation>
+Unfortunately, I suspect this is a near impossible task because mental balance is elusive: the mind is either paranoid or complacent, and seldom at the optimal. <Annotation>anyone who has done anything nontrivial understands this truth experientially</Annotation>
 
 Therefore, in order to build a Network that lasts, we must consistently strive to reduce the barrier to compete with us. Constant competitive pressure is a healthy mental stabilizer that prevents complacency. It's far easier to manage the paranoia that we will be outcompeted, than it is to manage the complacency that comes with success.
 
@@ -310,8 +309,8 @@ Can anyone learn about valuations, fundraising histories for any user in the Net
 
 Users should have control over how much information about their personal tokens, fundraising history, valuations, transactions are public (or at least, how much of it can be associated with their real world identity). Insufficient privacy can even be a security issue. That being said, potential investors should have access to previous fundraising round information before they make their decision to invest or not.
 
-#### Why capture percentage from capital gains instead of in salaries?
-Most of the wealth generated is through equity in companies, therefore an individual's economic potential is best represented by their equity in companies, not by their salaries.<Annotation>and over time, i predict that most wealth generated will be through equity in personal tokens, not companies.</Annotation>
+#### Why capture percentage from capital gains instead of salaries?
+Most of the wealth generated is through equity in companies, therefore an individual's economic potential is best represented by their equity in companies, not by their salaries. <Annotation>and over time, i predict that most wealth generated will be through equity in personal tokens, not companies</Annotation>
 
 #### "Owning an individual" through their personal token is appalling. Are you bringing back slavery?
 Ownership of equity in a personal token DOES NOT imply any ownership of the person who owns the personal token in any way, shape, or form. Also, unlike company shareholders, personal token shareholders have no voting rights over what the personal token owner should do.
