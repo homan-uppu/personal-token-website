@@ -117,27 +117,16 @@
 }
 
 .content a {
-  display: inline-flex;
-  flex-direction: row;
-  padding: 2px 6px;
-  padding-right: 3px;
   cursor: pointer;
-  align-items: center;
   font-weight: 480;
-  gap: 2px;
-  background: var(--layer1-bg-color);
-  border-radius: 4px;
-  color: var(--text-color-primary);
-  font-size: calc(var(--font-size-essay) - 0.05rem);
   color: var(--link-color);
-  /* color: var(--active-green); */
-  line-height: 1.2;
-  font-style: normal;
 }
 
 .content a:hover {
-  background: var(--bg-hover);
   color: var(--link-color-hover);
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
 .content pre {

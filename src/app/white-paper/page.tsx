@@ -15,6 +15,7 @@ import {
 } from "@/white-paper/Assets";
 import { parseMdxSections } from "@/util";
 import Annotation from "@/white-paper/Annotation";
+import Accordion from "@/white-paper/Accordion";
 
 // In a server component or page
 const getMarkdownContent = () => {
@@ -39,6 +40,7 @@ export default function Page() {
             NetworkTokenScene,
             SyncScene,
             Annotation,
+            Accordion,
           }}
         />
       </Content>

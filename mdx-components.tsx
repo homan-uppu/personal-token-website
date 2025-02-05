@@ -22,14 +22,9 @@ export const mdxComponents: MDXComponents = {
   ),
   a: ({ href, children }) => {
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ textDecoration: "none" }}
-      >
+      <a href={href} target="_blank" rel="noopener noreferrer">
         {children}
-        <svg
+        {/* <svg
           width="15"
           height="15"
           viewBox="0 0 15 15"
@@ -43,7 +38,7 @@ export const mdxComponents: MDXComponents = {
             fill="black"
             fillOpacity="0.2"
           />
-        </svg>
+        </svg> */}
       </a>
     );
   },
