@@ -126,7 +126,7 @@
   color: var(--link-color-hover);
   text-decoration-line: underline;
   text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 
 .content pre {
