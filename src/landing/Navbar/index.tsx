@@ -5,6 +5,8 @@ import Logo from "../Logo";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import fileStyles from "./Navbar.module.css";
+
 const useScrollPosition = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -102,7 +104,9 @@ const Navbar = () => {
         opacity: { duration: 0.3 },
       }}
     >
-      <Logo />
+      <Link href="/" className={fileStyles.logoContainer}>
+        <Logo />
+      </Link>
       <div style={styles.links}>
         {links.map((link) => (
           <Link key={link.href} href={link.href} style={styles.link}>

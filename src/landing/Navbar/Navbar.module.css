@@ -1,0 +1,11 @@
+.logoContainer {
+  padding: 0.25rem 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logoContainer:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
