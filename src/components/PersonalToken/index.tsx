@@ -291,7 +291,7 @@ const valuationBadgeStyle = {
   flexDirection: "row" as const,
   alignItems: "center",
   gap: "0.5rem",
-  padding: "0.5rem 0.75rem",
+  padding: "0.25rem 0.75rem",
   background: "rgba(0, 191, 76, 0.1)",
   borderRadius: "8px",
   width: "fit-content",
