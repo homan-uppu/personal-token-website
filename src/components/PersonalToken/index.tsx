@@ -37,7 +37,6 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
           ...(isOpen && openStyles),
           ...(isHovered &&
             !isOpen && {
-              borderRadius: 16,
               boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.16)",
             }),
         }}
@@ -57,19 +56,17 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
             padding: isOpen ? "3rem" : "1.5rem",
           }}
         >
-          <motion.div layout="position" style={picNameContainerStyles}>
-            <motion.div layout="position">
-              <Image
-                src={token.profilePicSrc}
-                alt={`${token.name}'s profile picture`}
-                width={50}
-                height={50}
-                style={profilePicStyles}
-              />
-            </motion.div>
+          <motion.div layout style={picNameContainerStyles}>
+            <Image
+              src={token.profilePicSrc}
+              alt={`${token.name}'s profile picture`}
+              width={50}
+              height={50}
+              style={profilePicStyles}
+            />
 
-            <motion.div layout="position" style={nameContainerStyles}>
-              <motion.span layout="position" style={nameStyles}>
+            <motion.div layout style={nameContainerStyles}>
+              <motion.span layout style={nameStyles}>
                 {token.name}
               </motion.span>
               <motion.span
@@ -106,6 +103,8 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
 
 const containerStyles = {
   display: "flex",
+  width: 300,
+  margin: "auto",
   flexDirection: "column" as const,
   zIndex: 10,
   borderRadius: "24px",
@@ -130,6 +129,7 @@ const mainTokenContainerStyles = {
   padding: "24px",
   justifyContent: "space-between",
   flexWrap: "wrap" as const,
+  borderRadius: 24,
 };
 const openStyles = {
   position: "fixed" as const,
