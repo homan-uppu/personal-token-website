@@ -1,6 +1,6 @@
 const Logo = ({
   size = 16,
-  fontWeight = 460,
+  fontWeight = 540,
   noCircle = false,
 }: {
   size?: number;
@@ -18,7 +18,7 @@ const Logo = ({
       width: `${size}px`,
       height: `${size}px`,
       borderRadius: "50%",
-      border: `${size / 9}px solid var(--logo-green)`,
+      border: `${size / 8}px solid var(--logo-green)`,
     },
     text: {
       color: "var(--logo-green)",

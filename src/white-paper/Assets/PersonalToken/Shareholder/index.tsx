@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PersonalToken, TokenType } from "../models";
+import { PersonalToken, TokenType } from "@/util/models";
 import { LineItem } from "../LineItem";
 import styles from "./Shareholder.module.css";
 

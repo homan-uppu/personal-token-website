@@ -1,23 +1,21 @@
 import HeroCaption from "@/writing/hero.mdx";
-import GreatsGrid from "./Greats";
+import LandingText from "@/writing/landing.mdx";
 import Navbar from "./Navbar";
 import styles from "./Landing.module.css";
-import Link from "next/link";
+import { PersonalTokenComp } from "@/components/PersonalToken";
+import { dummyPersonalToken } from "@/util/models";
 
 const Landing = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.background}>
-        <GreatsGrid />
-      </div>
       <div className={styles.content}>
         <Navbar />
         <div className={styles.main}>
-          <HeroCaption
-            components={{
-              a: ({ href, children }) => <Link href={href}>{children}</Link>,
-            }}
-          />
+          <div className={styles.visual}>
+            <PersonalTokenComp token={dummyPersonalToken} />
+          </div>
+          <HeroCaption />
+          <LandingText />
         </div>
       </div>
     </div>

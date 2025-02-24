@@ -2,7 +2,12 @@
 
 import { FC, useEffect, useState } from "react";
 import { LineItem, LineItemProps } from "./LineItem";
-import { PersonalToken, TokenType, Asset, dummyPersonalToken } from "./models";
+import {
+  PersonalToken,
+  TokenType,
+  Asset,
+  dummyPersonalToken,
+} from "@/util/models";
 import styles from "./PersonalToken.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { Geist_Mono } from "next/font/google";

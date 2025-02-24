@@ -5,7 +5,9 @@ export enum TokenType {
 
 export interface PersonalToken {
   name: string;
+  username: string;
   profilePicSrc: string;
+  lastRoundDate?: Date;
   valuation: number;
   bio?: string;
   linkInBio?: string;
@@ -28,16 +30,19 @@ export interface Asset {
 }
 
 export const dummyPersonalToken: PersonalToken = {
-  profilePicSrc: "/images/amy.png",
-  name: "Amy K",
+  profilePicSrc: "/images/jane.png",
+  name: "Jane Doe",
+  username: "@janedoe",
   valuation: 9000000,
   bio: "Researching novel, quick acting, acne treatments.",
+  lastRoundDate: new Date("2024-01-01"),
   linkInBio: "amyk.xyz",
   shareholders: [
     {
       holder: {
         profilePicSrc: "/images/amy.png",
         name: "Amy K",
+        username: "@amyk",
         valuation: 300000,
         walletValue: 300000,
       },
@@ -47,6 +52,7 @@ export const dummyPersonalToken: PersonalToken = {
       holder: {
         profilePicSrc: "/images/jane.png",
         name: "Jane S",
+        username: "@janes",
         valuation: 100000,
         walletValue: 100000,
       },
@@ -59,6 +65,7 @@ export const dummyPersonalToken: PersonalToken = {
       personalToken: {
         profilePicSrc: "/images/sam.png",
         name: "Sam C",
+        username: "@samc",
         valuation: 3000000,
       },
       equity: 0.02,
@@ -67,6 +74,7 @@ export const dummyPersonalToken: PersonalToken = {
       type: TokenType.PersonalToken,
       personalToken: {
         profilePicSrc: "/images/maya.png",
+        username: "@mayap",
         name: "Maya P",
         valuation: 14000000,
       },

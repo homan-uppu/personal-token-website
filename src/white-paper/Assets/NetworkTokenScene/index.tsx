@@ -2,10 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ProfileSection } from "@/white-paper/Assets/PersonalToken/LineItem";
-import {
-  dummyPersonalToken,
-  TokenType,
-} from "@/white-paper/Assets/PersonalToken/models";
+import { dummyPersonalToken, TokenType } from "@/util/models";
 import styles from "./NetworkTokenScene.module.css";
 import { formatNumber } from "@/util";
 import { useEffect, useState } from "react";
