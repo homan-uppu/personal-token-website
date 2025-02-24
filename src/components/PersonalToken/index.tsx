@@ -24,6 +24,8 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [screenWidth, setScreenWidth] = useState<number>(-1);
 
+  const isMobile = screenWidth < 640;
+
   useEffect(() => {
     // Set initial width after mount
     setScreenWidth(window.innerWidth);
@@ -56,25 +58,27 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
       <motion.div
         style={{
           width: isOpen
-            ? screenWidth < 640
+            ? isMobile
               ? "calc(100vw - 2rem)"
               : 600
             : screenWidth < 500
             ? "100%"
             : 300,
+
           opacity: screenWidth < 0 ? 0 : 1,
           ...containerStyles,
           ...(isOpen && {
-            ...(screenWidth >= 640
+            ...(isMobile
               ? {
-                  top: "10vh",
-                  left: "calc(50vw - 300px)",
-                }
-              : {
                   top: "1rem",
                   left: "1rem",
+                }
+              : {
+                  top: "10vh",
+                  left: "calc(50vw - 300px)",
                 }),
             ...openStyles,
+            padding: isMobile ? "1.5rem" : "3rem",
           }),
           ...(isHovered &&
             !isOpen && {
@@ -174,7 +178,7 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
           </motion.div>
         )}
       </motion.div>
-      {isOpen && screenWidth < 640 && (
+      {isOpen && isMobile && (
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -233,7 +237,6 @@ const openStyles = {
   cursor: "default",
   border: "5px solid rgba(0, 0, 0, 0.025)",
   // boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.12)",
-  padding: "3rem",
 };
 
 const overlayStyles = {

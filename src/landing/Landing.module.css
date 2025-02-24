@@ -61,12 +61,12 @@
 
 @media (max-width: 700px) {
   .main {
-    padding: 1rem;
+    padding: 0rem;
     margin-top: 3rem;
   }
 
   .content {
-    padding: 1rem;
+    padding: 0rem;
   }
 }
 
