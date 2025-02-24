@@ -16,7 +16,6 @@ const Landing = () => {
           </div>
           <HeroCaption />
           <LandingText />
-          <LandingText />
         </div>
       </div>
     </div>
