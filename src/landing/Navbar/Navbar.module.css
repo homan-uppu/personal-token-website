@@ -1,10 +1,19 @@
 .nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  background: rgba(0, 0, 0, 0.025);
-  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(5px);
+  border-radius: 24px;
+  width: calc(100% - 3rem);
+  max-width: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .links {
@@ -13,12 +22,12 @@
 }
 
 .link {
-  color: var(--text-color-primary);
-  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
   text-decoration: none;
   transition: color 0.2s;
   cursor: pointer;
-  font-weight: 480;
+  font-weight: 420;
 }
 
 .link:hover {

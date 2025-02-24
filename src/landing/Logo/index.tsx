@@ -1,6 +1,6 @@
 const Logo = ({
   size = 16,
-  fontWeight = 540,
+  fontWeight = 460,
   noCircle = false,
 }: {
   size?: number;
@@ -14,12 +14,6 @@ const Logo = ({
       gap: `${size / 4}px`,
       fontWeight,
     },
-    circle: {
-      width: `${size}px`,
-      height: `${size}px`,
-      borderRadius: "50%",
-      border: `${size / 8}px solid var(--logo-green)`,
-    },
     text: {
       color: "var(--logo-green)",
     },
@@ -27,7 +21,16 @@ const Logo = ({
 
   return (
     <div style={styles.logo}>
-      {!noCircle && <span style={styles.circle}></span>}
+      <svg
+        width="20"
+        height="21"
+        viewBox="0 0 20 21"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="10" cy="10.5" r="8.9" stroke="#04AB46" strokeWidth="1.8" />
+      </svg>
+
       <span style={styles.text}>PersonalToken</span>
     </div>
   );
