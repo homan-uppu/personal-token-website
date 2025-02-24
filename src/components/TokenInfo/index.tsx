@@ -6,6 +6,7 @@ import { InfoSectionHeader } from "./InfoSectionHeader";
 
 interface TokenInfoProps {
   personalToken: PersonalToken;
+  isMobile?: boolean;
 }
 
 import { Geist_Mono } from "next/font/google";
@@ -13,10 +14,20 @@ import { formatNumber } from "@/util";
 
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
-export const TokenInfo: FC<TokenInfoProps> = ({ personalToken }) => {
+export const TokenInfo: FC<TokenInfoProps> = ({ personalToken, isMobile }) => {
   return (
-    <div style={styles.container}>
-      <div style={styles.column}>
+    <div
+      style={{
+        ...styles.container,
+        flexDirection: isMobile ? "column" : "row",
+      }}
+    >
+      <div
+        style={{
+          ...styles.column,
+          width: isMobile ? "100%" : "50%",
+        }}
+      >
         {personalToken.bio && (
           <div style={styles.section}>
             <InfoSectionHeader>Bio</InfoSectionHeader>
@@ -26,7 +37,14 @@ export const TokenInfo: FC<TokenInfoProps> = ({ personalToken }) => {
 
         {personalToken.shareholders &&
           personalToken.shareholders.length > 0 && (
-            <div style={{ ...styles.section, gap: "0.25rem" }}>
+            <div
+              style={{
+                ...styles.section,
+                gap: "0.25rem",
+                width: "100%",
+                marginBottom: "-0.5rem",
+              }}
+            >
               <InfoSectionHeader>Shareholders</InfoSectionHeader>
               <div style={styles.list}>
                 {personalToken.shareholders.map((shareholder, i) => (
@@ -51,15 +69,23 @@ export const TokenInfo: FC<TokenInfoProps> = ({ personalToken }) => {
         </div>
       </div>
 
+      {!isMobile && (
+        <div
+          style={{
+            width: "1px",
+            background: "rgba(0, 0, 0, 0.03)",
+            alignSelf: "stretch",
+          }}
+        />
+      )}
+
       <div
         style={{
-          width: "1px",
-          background: "rgba(0, 0, 0, 0.03)",
-          alignSelf: "stretch",
+          ...styles.column,
+          gap: `calc(${spacing} - 0.5rem)`,
+          width: isMobile ? "100%" : "50%",
         }}
-      />
-
-      <div style={{ ...styles.column, gap: `calc(${spacing} - 0.5rem)` }}>
+      >
         {personalToken.portfolio && personalToken.portfolio.length > 0 && (
           <div style={{ ...styles.section, gap: "0.25rem" }}>
             <InfoSectionHeader>Assets</InfoSectionHeader>
@@ -80,7 +106,6 @@ const spacing = "1.5rem";
 const styles = {
   container: {
     display: "flex",
-    flexDirection: "row" as const,
     gap: spacing,
     width: "100%",
   },
@@ -101,9 +126,9 @@ const styles = {
   },
   section: {
     display: "flex",
+    width: "100%",
     flexDirection: "column" as const,
     gap: "0.5rem",
-    width: "100%",
     height: "fit-content",
   },
 };
