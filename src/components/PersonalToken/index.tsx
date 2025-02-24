@@ -13,6 +13,12 @@ const geistMono = Geist_Mono({ subsets: ["latin"] });
 interface PersonalTokenCompProps {
   token: PersonalToken;
 }
+const springTransition = {
+  type: "spring",
+  stiffness: 900,
+  damping: 50,
+};
+
 export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -25,6 +31,7 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
           onClick={() => {
             setIsOpen(false);
             setIsHovered(false);
@@ -48,15 +55,22 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
           borderRadius: 24,
           boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.04)",
         }}
+        transition={springTransition}
       >
         <motion.div
           layout="position"
           style={{
             ...mainTokenContainerStyles,
-            padding: isOpen ? "3rem" : "1.5rem",
+            padding: isOpen ? "0rem" : "1.5rem",
+            marginBottom: isOpen ? "1.65rem" : 0,
           }}
+          transition={springTransition}
         >
-          <motion.div layout style={picNameContainerStyles}>
+          <motion.div
+            layout
+            style={picNameContainerStyles}
+            transition={springTransition}
+          >
             <Image
               src={token.profilePicSrc}
               alt={`${token.name}'s profile picture`}
@@ -65,14 +79,23 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
               style={profilePicStyles}
             />
 
-            <motion.div layout style={nameContainerStyles}>
-              <motion.span layout style={nameStyles}>
+            <motion.div
+              layout
+              style={nameContainerStyles}
+              transition={springTransition}
+            >
+              <motion.span
+                layout
+                style={nameStyles}
+                transition={springTransition}
+              >
                 {token.name}
               </motion.span>
               <motion.span
                 layout="position"
                 className={geistMono.className}
                 style={usernameStyles}
+                transition={springTransition}
               >
                 {token.username}
               </motion.span>
@@ -83,15 +106,32 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
             layout="position"
             className={geistMono.className}
             style={valuationStyles}
+            transition={springTransition}
           >
-            ${formatNumber(token.valuation)}
+            <div style={valuationBadgeStyle}>
+              ${formatNumber(token.valuation)}
+            </div>
           </motion.div>
         </motion.div>
+
+        {isOpen && (
+          <motion.div
+            layout="position"
+            style={{
+              width: "100%",
+              height: "1px",
+              backgroundColor: "rgba(0, 0, 0, 0.03)",
+            }}
+            transition={springTransition}
+          />
+        )}
+
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             style={tokenInfoContainerStyles}
+            transition={{ duration: 0.15 }}
           >
             <TokenInfo personalToken={token} />
           </motion.div>
@@ -108,8 +148,18 @@ const containerStyles = {
   flexDirection: "column" as const,
   zIndex: 10,
   borderRadius: "24px",
-  border: "var(--border)",
-  background: "var(--layer1-bg-color)",
+  // border: "var(--border)",
+  // background: "var(--layer1-bg-color)",
+  backdropFilter: "blur(8px)",
+  WebkitBackdropFilter: "blur(8px)",
+  backgroundColor: "rgba(255, 255, 255, 0.6)",
+
+  border: "1px solid rgba(0, 0, 0, 0.05)",
+  transition: "border 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease",
+  "&:hover": {
+    border: "2px solid rgba(0, 0, 0, 0.1)",
+  },
+
   position: "relative" as const,
   justifyContent: "space-between",
   boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.05)",
@@ -117,16 +167,16 @@ const containerStyles = {
   flexWrap: "wrap" as const,
   overflow: "hidden" as const,
   gap: 0,
-  transition: "border-radius 0.3s ease, box-shadow 0.3s ease",
+  // transition: "border-radius 0.3s ease, box-shadow 0.3s ease",
 };
 
 const mainTokenContainerStyles = {
   display: "flex",
   flexDirection: "row" as const,
   alignItems: "center",
-  background: "white",
+
   width: "100%",
-  padding: "24px",
+  padding: "1.5rem",
   justifyContent: "space-between",
   flexWrap: "wrap" as const,
   borderRadius: 24,
@@ -138,7 +188,9 @@ const openStyles = {
   zIndex: 100,
   width: 600,
   cursor: "default",
+  border: "5px solid rgba(0, 0, 0, 0.025)",
   boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.12)",
+  padding: "3rem",
 };
 
 const overlayStyles = {
@@ -177,16 +229,29 @@ const nameStyles = {
 };
 
 const usernameStyles = {
-  fontSize: "14px",
+  fontSize: "15px",
   fontWeight: 500,
   color: "#b2b2b2",
 };
 
 const valuationStyles = {
-  fontSize: "16px",
+  fontSize: "15px",
+  fontWeight: 480,
   color: "#00bf4c",
+};
+
+const valuationBadgeStyle = {
+  display: "flex",
+  flexDirection: "row" as const,
+  alignItems: "center",
+  gap: "0.5rem",
+  padding: "0.5rem 0.75rem",
+  background: "rgba(0, 191, 76, 0.1)",
+  borderRadius: "8px",
+  width: "fit-content",
 };
 
 const tokenInfoContainerStyles = {
   width: "100%",
+  paddingTop: "1.5rem",
 };

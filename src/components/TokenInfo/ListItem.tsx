@@ -92,7 +92,7 @@ const styles = {
     background: "rgba(0, 0, 0, 0.03)",
   },
   rightLabel: {
-    fontSize: "1rem",
+    fontSize: "15px",
     color: "rgba(0, 0, 0, 0.45)",
   },
 };

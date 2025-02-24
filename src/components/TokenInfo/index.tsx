@@ -83,7 +83,6 @@ const styles = {
     flexDirection: "row" as const,
     gap: spacing,
     width: "100%",
-    padding: "3rem",
   },
   column: {
     display: "flex",
