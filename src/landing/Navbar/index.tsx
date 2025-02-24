@@ -59,7 +59,7 @@ const Navbar = () => {
       background: "rgba(255, 255, 255, 0.65)",
       backdropFilter: "blur(5px)",
       borderRadius: "24px",
-      width: 500,
+      width: screenWidth < 600 ? "calc(100% - 3rem)" : 500,
     },
     links: {
       display: "flex",
@@ -79,12 +79,12 @@ const Navbar = () => {
   };
 
   if (screenWidth < 0) return;
-
   return (
     <motion.nav
       style={styles.nav}
       initial={{
         border: "1px solid rgba(0, 0, 0, 0)",
+        opacity: 0,
       }}
       animate={{
         width: screenWidth > 600 ? "500px" : "calc(100% - 3rem)",
@@ -93,8 +93,14 @@ const Navbar = () => {
             ? "1px solid rgba(0, 0, 0, 0.05)"
             : "1px solid rgba(0, 0, 0, 0)",
         padding: scrollY > 10 ? (screenWidth > 600 ? "1.5rem" : "1rem") : 0,
+        opacity: 1,
       }}
-      transition={{ type: "spring", stiffness: 100, damping: 15 }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        opacity: { duration: 0.3 },
+      }}
     >
       <Logo />
       <div style={styles.links}>

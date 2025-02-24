@@ -43,6 +43,8 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
     setIsHovered(false);
   };
 
+  if (screenWidth < 0) return;
+
   return (
     <>
       {isOpen && (
