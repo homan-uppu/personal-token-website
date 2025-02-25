@@ -1,0 +1,264 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 350;
+  margin: auto;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.titleContainer {
+  position: relative;
+  padding: 2rem;
+  padding-top: 1.7rem;
+  color: var(--logo-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 248, 220, 0.15) 0%,
+    rgba(255, 252, 235, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 400% 400%;
+}
+
+.titleContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 19px,
+      rgba(0, 0, 0, 0.037) 20px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 19px,
+      rgba(0, 0, 0, 0.037) 20px
+    ),
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.9) 100%
+    );
+  pointer-events: none;
+}
+
+.content {
+  font-size: var(--font-size-essay);
+  color: var(--font-color-primary);
+  line-height: 1.55;
+  font-size: var(--font-size-essay);
+  font-weight: 440;
+  max-width: 600px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .content {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .titleContainer {
+    padding-top: 1.88rem;
+  }
+}
+
+.content h2 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--text-color-secondary);
+  font-weight: 350;
+  text-transform: uppercase;
+  margin: 0;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+.content h3 {
+  font-size: 1rem;
+  color: var(--text-color-secondary);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 480;
+}
+
+.content blockquote {
+  margin-block-start: 0rem;
+  margin-inline-start: 0px;
+  color: var(--text-color-secondary);
+  font-style: italic;
+}
+
+.content h4 {
+  font-size: var(--font-size-essay);
+  color: var(--text-color-primary);
+  margin-bottom: 0.25rem;
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+.todo {
+  border-radius: var(--border-radius-medium);
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: start;
+  gap: 0.25rem;
+  background: #fff4f4;
+  margin-bottom: 1rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.todoSpan {
+  color: #a7a7a7;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.content strong {
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
+.content em {
+  color: var(--text-color-primary);
+  font-style: italic;
+  font-weight: 550;
+}
+
+.content p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.content ol,
+.content ul {
+  margin-bottom: 1rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  margin-left: 2.5rem;
+}
+
+.content li {
+  margin-bottom: 0.25rem;
+}
+
+.content a {
+  cursor: pointer;
+  font-weight: 480;
+  color: var(--link-color);
+}
+
+.content a:hover {
+  color: var(--link-color-hover);
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.content pre {
+  white-space: pre-wrap;
+  font-size: 0.825rem;
+  line-height: 1.4;
+  background-color: var(--layer1-bg-color);
+  padding: 1rem;
+  border-radius: var(--border-radius-medium);
+  margin: 1rem 0;
+}
+
+.content .footnotes {
+  color: var(--text-color-secondary);
+  font-size: var(--font-size-caption);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.content .footnotes a {
+  font-size: 12px;
+}
+
+.divider {
+  width: 10%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);
+  margin: 2rem auto;
+  border: none;
+}
+
+.headingSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 2.5rem;
+}
+
+.heroImage {
+  border-radius: var(--border-radius-large);
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content img {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.caption {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.date {
+  display: block;
+  font-weight: 400;
+  font-size: var(--font-size-essay);
+  color: var(--text-color-light);
+}
+
+.timeRow {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  color: var(--text-color-light);
+  align-items: center;
+}

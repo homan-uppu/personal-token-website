@@ -22,7 +22,11 @@ const useScrollPosition = () => {
   return scrollPosition;
 };
 
-const Navbar = () => {
+interface NavbarProps {
+  pageID?: string;
+}
+
+const Navbar = ({ pageID }: NavbarProps) => {
   const scrollY = useScrollPosition();
   const [screenWidth, setScreenWidth] = useState(-1);
 
@@ -78,6 +82,10 @@ const Navbar = () => {
         color: "black",
       },
     },
+    activeLink: {
+      color: "rgba(0, 0, 0, 0.9)",
+      fontWeight: 500,
+    },
   };
 
   if (screenWidth < 0) return;
@@ -94,7 +102,12 @@ const Navbar = () => {
           scrollY > 10
             ? "1px solid rgba(0, 0, 0, 0.05)"
             : "1px solid rgba(0, 0, 0, 0)",
-        padding: scrollY > 10 ? (screenWidth > 600 ? "1.5rem" : "1rem") : 0,
+        padding:
+          scrollY > 10
+            ? screenWidth > 600
+              ? "0.5rem 1rem"
+              : "0.5rem 1rem"
+            : 0,
         opacity: 1,
       }}
       transition={{
@@ -109,7 +122,14 @@ const Navbar = () => {
       </Link>
       <div style={styles.links}>
         {links.map((link) => (
-          <Link key={link.href} href={link.href} style={styles.link}>
+          <Link
+            key={link.href}
+            href={link.href}
+            style={{
+              ...styles.link,
+              ...(pageID === link.href.substring(1) && styles.activeLink),
+            }}
+          >
             {link.label}
           </Link>
         ))}
