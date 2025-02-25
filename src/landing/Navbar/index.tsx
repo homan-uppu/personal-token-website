@@ -64,7 +64,7 @@ const Navbar = ({ pageID }: NavbarProps) => {
       background: "rgba(255, 255, 255, 0.65)",
       backdropFilter: "blur(5px)",
       borderRadius: "24px",
-      width: screenWidth < 600 ? "calc(100% - 3rem)" : 500,
+      width: screenWidth < 600 ? "calc(100% - 3rem)" : 588,
     },
     links: {
       display: "flex",
@@ -96,7 +96,7 @@ const Navbar = ({ pageID }: NavbarProps) => {
         opacity: 0,
       }}
       animate={{
-        width: screenWidth > 600 ? "500px" : "calc(100% - 3rem)",
+        width: screenWidth > 600 ? "588px" : "calc(100% - 3rem)",
         border:
           scrollY > 10
             ? "1px solid rgba(0, 0, 0, 0.05)"
