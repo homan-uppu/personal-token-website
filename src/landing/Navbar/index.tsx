@@ -70,17 +70,6 @@ const Navbar = ({ pageID }: NavbarProps) => {
       display: "flex",
       gap: "24px",
     },
-    link: {
-      color: "rgba(0, 0, 0, 0.6)",
-      fontSize: "16px",
-      textDecoration: "none",
-      transition: "color 0.2s",
-      cursor: "pointer",
-      fontWeight: 420,
-      "&:hover": {
-        color: "black",
-      },
-    },
     activeLink: {
       color: "rgba(0, 0, 0, 0.9)",
       fontWeight: 500,
@@ -123,9 +112,9 @@ const Navbar = ({ pageID }: NavbarProps) => {
         {links.map((link) => (
           <Link
             key={link.href}
+            className={fileStyles.link}
             href={link.href}
             style={{
-              ...styles.link,
               ...(pageID === link.href.substring(1) && styles.activeLink),
             }}
           >

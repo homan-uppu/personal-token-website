@@ -9,3 +9,17 @@
 .logoContainer:hover {
   background-color: rgba(0, 0, 0, 0.02);
 }
+
+.link {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+  font-weight: 420;
+}
+
+.link:hover {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+}
