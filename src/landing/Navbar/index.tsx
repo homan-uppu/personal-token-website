@@ -46,9 +46,8 @@ const Navbar = ({ pageID }: NavbarProps) => {
   }, []);
 
   const links = [
-    { href: "/why", label: "why" },
     { href: "/how", label: "how" },
-    { href: "/faq", label: "faq" },
+    { href: "/why", label: "why" },
   ];
 
   const styles = {
