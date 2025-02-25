@@ -9,6 +9,23 @@
   padding-bottom: 6rem;
 }
 
+.tocContainer {
+  position: fixed;
+  left: calc((100vw - 588px) / 2 - 180px);
+  /* left: 300px; */
+  top: 351px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+@media (max-width: 1000px) {
+  .tocContainer {
+    position: static;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    padding-bottom: 2.7rem;
+    padding-top: 0.6rem;
+  }
+}
+
 .title {
   font-size: 2rem;
   font-weight: 350;

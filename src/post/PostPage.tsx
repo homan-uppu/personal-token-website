@@ -1,5 +1,5 @@
 import Navbar from "@/landing/Navbar";
-
+import TOC from "./TOC";
 import styles from "./Content.module.css";
 import { Geist_Mono } from "next/font/google";
 
@@ -10,6 +10,7 @@ interface PostPageProps {
   children: React.ReactNode;
   caption?: string;
   pageID?: string;
+  labels?: string[];
 }
 
 export const PostPage = ({
@@ -17,6 +18,7 @@ export const PostPage = ({
   children,
   caption,
   pageID,
+  labels,
 }: PostPageProps) => {
   return (
     <div className={styles.container}>
@@ -26,6 +28,11 @@ export const PostPage = ({
           <h1 className={`${styles.title}`}>{title}</h1>
         </div>
         {caption && <div className={styles.caption}>{caption}</div>}
+        {labels && (
+          <div className={styles.tocContainer}>
+            <TOC labels={labels} />
+          </div>
+        )}
         {children}
       </div>
     </div>
