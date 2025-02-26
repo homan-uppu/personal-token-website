@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            Contact
+            contact
           </a>
         </div>
       </div>

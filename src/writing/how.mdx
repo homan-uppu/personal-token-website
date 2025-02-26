@@ -1,56 +1,80 @@
-### The Network
 
-This system works as a network of personal tokens, along with the metadata required to keep track of who owns how much of what. From here on out I'll refer to this system as the “Network”.
+### Overview
 
-Both the individual raising capital, and the investor investing in others will need their own personal token in the Network to be able to transact with each other.
+- personal tokens exist in a sufficiently decentralized network.
+- 
 
 ### A personal token
 
-A personal token is a fictional entity that represents:
+Your personal token represents your equities in companies and other personal tokens. <Annotation>NOT included are other personal assets such as homes, etc.</Annotation>
 
-- the owner of this personal token.
-- wallet that stores $. (used to invest in other tokens, and where capital is deposited when a user raises money)
-- which personal tokens own how much equity in this personal token (as number of shares out of total shares available).
-- assets: the other personal tokens and companies (outside of the Network - i.e. in the "real world") that this personal token holds equity in.
-- a history of all the transactions this personal token has been involved in.
+Your personal token is divided into 10 million shares. You can sell up to 20% of your personal token (2 million shares) to others. Those who own shares of your personal token are your "shareholders".
 
-There is no notion of a “user” in the Network. A user is simply represented by their personal token. A user cannot own more than one personal token. A user holds equity in other personal tokens (by investing in them) **_through_** their personal token. For example, if Alice has 5% equity in Bob’s personal token, Bob’s personal token equity will be represented in the assets of Alice's personal token.
+Your personal token contains information about who you are, your token shareholders, and history of transactions: fundraising events, assets (equities in companies and other personal tokens and investment history.
 
-When I use to the word "user" I'm referring to the person behind the personal token who is acting in the Network through their personal token.
+You can only have one personal token on the network. You can't delete an existing personal token to create a new one.
 
-Personal tokens are fundamentally different from companies. While company shareholders can vote on company decisions, personal token holders don't have voting rights over the person they invest in. When you own someone's personal token, you don't 'own' any part of that actual person, you only get a share of the wealth they create.
+A personal token is associated with a wallet that holds [USDC](https://www.circle.com/usdc). This wallet is where funds are deposited when you successfully raise capital by selling shares of your personal token, and where funds are withdrawn from to facilitate investments you make in other personal tokens.
 
-A personal token's value comes from how much wealth people think its owner will make in the future. For example: Amy sells shares of her personal token to investors. When Amy does well and shows she can be successful, people believe she'll create more wealth in the future, so her token becomes more valuable. But if Amy keeps struggling and doesn't show promise, her token loses value.
+ To create your token: [apply here](/todo) for early access. As of now, we are only accepting individuals based out of the US without a history of any kind of fraud. We will perform a background check before issuing your personal token.
 
-### Raise money
+### Raising capital
 
-A user can raise capital by selling equity in their personal token through discrete fundraising rounds. Raising money through discrete fundraising rounds rather than allowing anyone to buy / sell anytime is important because it gives individuals greater control over who they allow to have equity in their personal tokens.
+You can raise capital by selling shares of your personal token through discrete fundraising "rounds".
 
-Users can raise money by selling shares of their personal token through discrete fundraising "rounds". Having set fundraising rounds, instead of letting anyone buy or sell at any time, gives users greater control over who owns shares of their personal token.
+When you initiate a round, you specify how much equity you want to sell for how much (i.e. price per share).
 
-When a user initiates a fundraising round, they specify information about the raise, such as:
+You can share a link to your round to prospective investors who can accept your proposal with information about how much equity they want to buy at your proposed rate. You have the final say about which investors you accept and reject.
 
-- Number of shares being offered.
-- Price per share.
-- Minimum investment amount
-- Total fundraising target
+When you complete the round, within minutes the funds are deposited into your personal token wallet.
 
-A user can share a link to this active fundraising round to people they want as investors.
+### Dividends
 
-The owner of a personal token has the final say about who can be a shareholder of their personal token. When a fundraising round is completed, the Network applies the transaction: money is transferred, and ownership information is updated.
+If you have shareholders in your personal token, whenever you sell equity in a personal token that you've invested in, or in a company (which is ofc outside of the network), the capital you gain from that sale is distributed to those who hold equity in your personal token - proportional to how much equity they hold.
 
-### Invest
+Capital gains from selling equity (whether in companies or in personal tokens) flow directly to the holders of the seller's personal token, but do not cascade further up the network. For example, if Alice holds Bob's personal token, and Bob holds Dan's personal token, then when Dan sells equity and generates capital gains, these gains are distributed proportionally to Dan's token holders (which includes Bob) but stop there - they do not automatically flow up to Bob's token holders (which includes Alice). Alice can only benefit from Dan's success indirectly if Bob's token value increases due to his gains from Dan, and Alice then sells her equity in Bob's token at this higher value.
+
+Dividends are immediately paid out when you sell equity in a personal token - since that capital and information lies within the network. On the other hand, when you sell equity in a company, it's your responsibility to pay dividends for that to your shareholders through the network. You can do this on a yearly basis, on / before the US tax deadline. We're building tooling to make this a very simple process for you. Any discrepancies / delays may affect your reputation in the network, which will be visible to your shareholders, future shareholders, and those you want to invest in.
+
+### Investing
+
+When you are ready to invest in a personal token..
 
 In order for an investor to accept an invitation to invest (when a user sends them an invite link for their round), they need sufficient capital in their personal token wallet to cover the investment amount.
 
-### Sell
+### Selling equity
 
 When a shareholder wants to sell their equity in a personal token, they initiate a “Sale Request” in the Network. This request specifies the number of shares they wish to sell, their asking price, and how long the offer remains valid. Similar to private companies' [Right of First Refusal](https://www.angellist.com/learn/right-of-first-refusal) (ROFR), the token holder gets the first opportunity to purchase these shares. This ensures token holders maintain influence over their cap table and prevents unwanted parties from acquiring shares. If the token holder declines to purchase the shares, other existing shareholders receive second priority to maintain alignment among current investors.
 
 The ROFR period lasts 14 days for the token holder and an additional 7 days for existing shareholders. If no existing shareholders purchase the shares during this period, the seller can either list their shares on the Network's internal marketplace or have someone they know apply to invest. All transfers must be approved by the token holder, and shares can only be transferred to other verified users in the Network. <Annotation>a token holder is incentivized to not be a menace by unfairly rejecting all sales because that would likely spook existing and future investors, and tarnish their reputation</Annotation>
 
-### Capital distribution
+### The network token
 
-When a user sells their equity in another personal token, or equity in a company (outside of the Network), the capital gained from such a transaction is distributed amongst those who hold equity in this user's personal token - proportional to how much equity they hold.
+The Network Token is similar to other personal tokens except that:
 
-When someone sells their equity - whether it's in another personal token or in a company outside the Network - the capital gained from that sale are shared among all shareholders of their personal token. Each shareholder receives capital proportional to the equity they hold.
+1. It is not tied to any individual user, but rather to the Network itself.
+2. Its shares can be traded freely without requiring anyone's approval.
+
+Whenever equity in a personal token is sold on the network through a fundraising event, a small equity stake (0.1%) in each personal token is automatically granted to the Network Token as a "transaction fee". The more fundraising rounds for a personal token, the greater the Network token's equity in that personal token.
+
+Therefore, the Network token acts as an index of all of the personal tokens in the Network.
+
+The Network Token is divided into 100 million shares that can be freely traded, allowing anyone to invest in the overall growth and success of the Network.
+
+As with with personal tokens, whenever a user sells their equity in any personal token, say Amy sells her equity in Jane's personal token, a percentage of the capital gains falls into the wallet of the Network token proportional to how much equity the Network token holds in Amy's personal token.
+
+<NetworkTokenScene />
+
+The wallet associated with the Network token will be treated as the Network's treasury. To balance operational needs with shareholder returns, when new revenue enters the treasury, 30% is immediately distributed to Network Token shareholders, while 70% is retained in the treasury to be used for the Network's functions: legal compliance, development of new features, security, and anything that's is required to preserve the integrity of the Network. <Annotation>over time, the distribution percentage (how much of capital gains is distributed to Network token holders vs. how much is preserved in treasury) will become more skewed towards distributing to shareholders over retaining in treasury</Annotation>
+
+### Frequently asked
+
+<Accordion title="What if the personal token holder never starts a company?">
+Personal tokens incentivize VCs / mentors to help individuals who may never want to start a company, but instead join great ones - because they can still capture the value those individuals create (through personal tokens) even though they can't invest in their companies (because they won't start any).
+</Accordion>
+
+<Accordion title="What would be the standard initial valuation?">
+As with investing in early stage startups, personal token valuations for the first fundraise will likely default to an soft standard (a standard that is recommended, but not enforced). I predict that will be somewhere between $50k - $500k for 1% of equity.
+
+This default valuation is greater than the default US startup valuation (i.e. $500k for 3 - 7% equity in the US) because a personal token captures value from _all_ of the companies its owner gains equity at in the future, as opposed to a single company - hence the standard valuation for a personal token should be higher than it is for a startup.
+</Accordion>

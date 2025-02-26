@@ -4,6 +4,8 @@ import How from "@/writing/how.mdx";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { mdxComponents } from "../../../mdx-components";
+import Accordion from "@/white-paper/Accordion";
+import { NetworkTokenScene } from "@/white-paper/Assets";
 
 // In a server component or page
 const getMarkdownContent = () => {
@@ -31,7 +33,14 @@ export default function HowPage() {
 
   return (
     <PostPage title="How it works" pageID="how" labels={sections}>
-      <How components={{ ...mdxComponents, Annotation }} />
+      <How
+        components={{
+          ...mdxComponents,
+          Annotation,
+          Accordion,
+          NetworkTokenScene,
+        }}
+      />
     </PostPage>
   );
 }
