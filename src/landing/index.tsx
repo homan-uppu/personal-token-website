@@ -12,10 +12,10 @@ const Landing = () => {
       <div className={styles.content}>
         <Navbar />
         <div className={styles.main}>
+          <HeroCaption />
           <div className={styles.visual}>
             <PersonalTokenComp token={dummyPersonalToken} />
           </div>
-          <HeroCaption />
           <LandingText />
         </div>
       </div>

@@ -8,6 +8,16 @@
   margin-top: 6rem;
 }
 
+.content {
+  font-size: var(--font-size-essay);
+  color: var(--font-color-primary);
+  line-height: 1.55;
+  font-size: var(--font-size-essay);
+  font-weight: 410;
+  max-width: 600px;
+  width: 100%;
+}
+
 .tocContainer {
   position: fixed;
   left: calc((100vw - 588px) / 2 - 180px);
@@ -78,16 +88,6 @@
       rgba(255, 255, 255, 0.9) 100%
     );
   pointer-events: none;
-}
-
-.content {
-  font-size: var(--font-size-essay);
-  color: var(--font-color-primary);
-  line-height: 1.55;
-  font-size: var(--font-size-essay);
-  font-weight: 440;
-  max-width: 600px;
-  width: 100%;
 }
 
 @media (max-width: 900px) {
@@ -190,15 +190,14 @@
 
 .content a {
   cursor: pointer;
-  font-weight: 480;
-  color: var(--link-color);
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
 }
 
 .content a:hover {
-  color: var(--link-color-hover);
-  text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+  color: var(--text-color-primary);
 }
 
 .content pre {

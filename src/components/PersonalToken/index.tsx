@@ -269,6 +269,7 @@ const nameContainerStyles = {
   flexDirection: "column" as const,
   gap: "0px",
   flex: 1,
+  justifyContent: "center",
 };
 
 const nameStyles = {
@@ -280,6 +281,7 @@ const usernameStyles = {
   fontSize: "15px",
   fontWeight: 500,
   color: "#b2b2b2",
+  marginTop: "-3px",
 };
 
 const valuationStyles = {
