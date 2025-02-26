@@ -1,9 +1,10 @@
 import HeroCaption from "@/writing/hero.mdx";
 import LandingText from "@/writing/landing.mdx";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 import styles from "./Landing.module.css";
 import { PersonalTokenComp } from "@/components/PersonalToken";
 import { dummyPersonalToken } from "@/util/models";
+import Footer from "@/components/Footer/Footer";
 
 const Landing = () => {
   return (
@@ -17,6 +18,10 @@ const Landing = () => {
           <HeroCaption />
           <LandingText />
         </div>
+      </div>
+      <div className={styles.footerContainer}>
+        {" "}
+        <Footer />{" "}
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
-import Navbar from "@/landing/Navbar";
+import Navbar from "@/components/Navbar";
 import TOC from "./TOC";
 import styles from "./Content.module.css";
 import { Geist_Mono } from "next/font/google";
+import Footer from "@/components/Footer/Footer";
 
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
@@ -35,6 +36,7 @@ export const PostPage = ({
         )}
         {children}
       </div>
+      <Footer />
     </div>
   );
 };

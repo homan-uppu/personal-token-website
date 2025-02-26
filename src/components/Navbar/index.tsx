@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Logo from "../Logo";
+import Logo from "../../landing/Logo";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
