@@ -18,10 +18,10 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  font-weight: 500;
+  font-weight: 420;
 }
 
 .innerContent {
