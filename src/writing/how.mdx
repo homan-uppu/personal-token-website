@@ -1,4 +1,3 @@
-
 ### A personal token
 
 Your personal token represents your equities in companies and other personal tokens. <Annotation>NOT included are other personal assets such as homes, etc.</Annotation>
@@ -7,9 +6,9 @@ Personal tokens exist within a network (the "Network"). Every user, whether they
 
 When you first create your personal token, it's divided into 10 million shares - which you own all of. When you raise capital, you issue new shares to investors who become your personal token "shareholders".
 
-Your personal token contains information about who you are, your token shareholders, and history of transactions: fundraising events, assets (equities in companies and other personal tokens and investment history.
+Your personal token contains information about who you are, your token shareholders, and history of transactions: fundraising events, assets (equities in companies and other personal tokens) and investment history.
 
-*TODO: add the personal token visual here*.
+{/* <PersonalTokenVisualization /> */}
 
 You can only have one personal token on the network. You can't delete an existing personal token to create a new one.
 
@@ -23,7 +22,7 @@ When you initiate a round, you specify the terms of your offering: how many shar
 
 You can share a link to your active round with prospective investors, who can then indicate their interest and proposed investment amount. You maintain complete control over investor selection, allowing you to curate your cap table strategically. Each investor you accept will receive shares proportional to their investment, becoming shareholders.
 
-When you complete the round, the investment funds are immediately deposited into your personal token wallet, and the Network automatically updates all ownership records to reflect the new distribution of shares. 
+When you complete the round, the investment funds are immediately deposited into your personal token wallet, and the Network automatically updates all ownership records to reflect the new distribution of shares.
 
 ### Dilution
 
@@ -34,6 +33,7 @@ Dilution is when the percentage ownership of existing shareholders, including th
 For example: let's say your personal token has 10 million total shares, and you own 9 million (90%) after an initial fundraising round where investors purchased 1 million shares (10%). If you decide to raise more capital by selling an additional 1 million new shares, the total share count increases to 11 million. After this second round, you would own 9 million out of 11 million shares (approximately 81.8%), while your initial investors would own 1 million out of 11 million (approximately 9.1%). T
 
 To create alignment with early investors who take the highest risk, personal tokens incorporate certain protections borrowed from traditional equity structures:
+
 1. **Pro rata rights**: existing shareholders have the right (but not obligation) to participate in future funding rounds to maintain their ownership percentage. This gives early believers in your potential the opportunity to continue supporting your journey without being diluted.
 2. **Information rights**: shareholders must receive notice of an upcoming fundraising round at least a week in advance so that they have time to exercise their pro rata rights.
 3. **Anti-dilution provisions**: if you raise capital at a valuation lower than previous rounds (a "down round"), the Network will automatically adjust share allocations to protect early investors from severe dilution, similar to [weighted-average anti-dilution provisions](https://www.andrew.cmu.edu/user/fd0n/53%20Weighted%20Average%20Anti-dilution.htm) in traditional venture financing.
@@ -64,11 +64,12 @@ We're going to make this process as simple and automated as possible. We'll be t
 
 ### Investing
 
-You can invest in personal tokens *through* your personal token.
+You can invest in personal tokens _through_ your personal token.
 
 In order to accept an invitation from a user to invest, you must have sufficient capital in your personal token wallet to cover the investment amount.
 
 There are 2 ways to profit from investing:
+
 1. Dividends
 2. Selling shares to another investor (or back to the token owner) at a higher price than you bought them for.
 
@@ -85,11 +86,13 @@ For example: an investor purchased 100,000 shares of your personal token at $2 p
 ### Transaction fees
 
 When you use the Network, three types of transaction fees apply:
+
 1. Gas fee: a nominal amount (usually a few dollars) to facilitate the transaction in the Network.
 2. Secondary sales fee: a 2% fee on secondary market transactions, split between token owners (1.5%) and the Network (0.5%).
 3. Equity fee: a small equity stake in the personal token (0.1%) is given to the Network for each fundraising round.
 
 To facilitate the secondary sales and equity fees we have a "Network token." The Network Token is similar to other personal tokens except that:
+
 1. It's not tied to any individual user, but rather to the Network itself.
 2. It represents ownership in an index of all personal tokens in the ecosystem.
 
@@ -123,10 +126,14 @@ Personal tokens open investment opportunities that simply didn't exist before. Y
 As with investing in early stage startups, personal token valuations for the first fundraise will likely default to an soft standard (a standard that is recommended, but not enforced). I predict that will be somewhere between $50k - $500k for 1% of equity.
 
 This default valuation is greater than the default US startup valuation (i.e. $500k for 3 - 7% equity in the US) because a personal token captures value from _all_ of the companies its owner gains equity at in the future, as opposed to a single company - hence the standard valuation for a personal token should be higher than it is for a startup.
+
 </Accordion>
 
 <Accordion title="What if the personal token holder never starts a company?">
-Personal tokens incentivize VCs / mentors to help individuals who may never want to start a company, but instead join great ones - because they can still capture the value those individuals create (through personal tokens) even though they can't invest in their companies (because they won't start any).
+  Personal tokens incentivize VCs / mentors to help individuals who may never
+  want to start a company, but instead join great ones - because they can still
+  capture the value those individuals create (through personal tokens) even
+  though they can't invest in their companies (because they won't start any).
 </Accordion>
 
 <Accordion title="What happens when a personal token owner dies?">
@@ -149,4 +156,5 @@ Personal tokens represent a direct investment in an individual's career and pote
 Our secondary sales process with right of first refusal periods provides sufficient liquidity for investors while preserving these important protections. The 2% royalty on secondary transactions creates incentives for token holders to approve reasonable sales, ensuring a balanced ecosystem that respects both liquidity needs and the personal nature of these investments.
 
 Maybe there will come a time when a personal token IPO makes sense.
+
 </Accordion>

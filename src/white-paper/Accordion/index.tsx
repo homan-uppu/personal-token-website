@@ -53,9 +53,7 @@ const Accordion = ({ children, title }: AccordionProps) => {
         </span>
       </div>
 
-      <AnimatePresence>
-        {isExpanded && <div className={styles.innerContent}>{children}</div>}
-      </AnimatePresence>
+      {isExpanded && <div className={styles.innerContent}>{children}</div>}
     </div>
   );
 };

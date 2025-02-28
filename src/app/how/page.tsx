@@ -6,6 +6,9 @@ import { join } from "path";
 import { mdxComponents } from "../../../mdx-components";
 import Accordion from "@/white-paper/Accordion";
 import { NetworkTokenScene } from "@/white-paper/Assets";
+import { PersonalTokenComp } from "@/components/PersonalToken";
+import { dummyPersonalToken } from "@/util/models";
+import { TokenInfo } from "@/components/TokenInfo";
 
 // In a server component or page
 const getMarkdownContent = () => {
@@ -27,6 +30,16 @@ const parseMdx = (content: string): string[] => {
 
   return labels;
 };
+const PersonalTokenVisualization = () => (
+  <div style={containerStyles}>
+    <TokenInfo personalToken={dummyPersonalToken} isMobile={false} />
+  </div>
+);
+
+const containerStyles = {
+  paddingTop: "2rem",
+  paddingBottom: "3rem",
+};
 
 export default function HowPage() {
   const sections = parseMdx(getMarkdownContent());
@@ -39,6 +52,7 @@ export default function HowPage() {
           Annotation,
           Accordion,
           NetworkTokenScene,
+          PersonalTokenVisualization,
         }}
       />
     </PostPage>
