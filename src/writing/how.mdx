@@ -3,17 +3,17 @@
 
 Your personal token represents your equities in companies and other personal tokens. <Annotation>NOT included are other personal assets such as homes, etc.</Annotation>
 
-Personal tokens exist within a network. Every user, whether they want to raise capital, or invest in other personal tokens, will need to have a personal token.
+Personal tokens exist within a network (the "Network"). Every user, whether they want to raise capital, or invest in other personal tokens, will need to create their personal token ([apply here](/todo) for early access. As of now, we are only accepting individuals based out of the US without a history of any kind of fraud. We will perform a background check before issuing your personal token.).
 
 When you first create your personal token, it's divided into 10 million shares - which you own all of. When you raise capital, you issue new shares to investors who become your personal token "shareholders".
 
 Your personal token contains information about who you are, your token shareholders, and history of transactions: fundraising events, assets (equities in companies and other personal tokens and investment history.
 
+*TODO: add the personal token visual here*.
+
 You can only have one personal token on the network. You can't delete an existing personal token to create a new one.
 
 A personal token is associated with a wallet that holds [USDC](https://www.circle.com/usdc). This wallet is where funds are deposited when you successfully raise capital by selling shares of your personal token, and where funds are withdrawn from to facilitate investments you make in other personal tokens.
-
-To create your token: [apply here](/todo) for early access. As of now, we are only accepting individuals based out of the US without a history of any kind of fraud. We will perform a background check before issuing your personal token.
 
 ### Raising capital
 
@@ -21,7 +21,7 @@ You can raise capital by selling shares of your personal token through discrete 
 
 When you initiate a round, you specify the terms of your offering: how many shares you want to sell and at what price per share. This establishes your token's valuation and determines how much ownership percentage you're transferring to investors. For example, selling 1 million shares (10% of your token) at $1 per share values your entire token at $10 million.
 
-You can share a link to your active round with prospective investors, who can then indicate their interest and proposed investment amount. You maintain complete control over investor selection, allowing you to curate your cap table strategically. Each investor you accept will receive shares proportional to their investment, becoming partial owners of your personal token's future value.
+You can share a link to your active round with prospective investors, who can then indicate their interest and proposed investment amount. You maintain complete control over investor selection, allowing you to curate your cap table strategically. Each investor you accept will receive shares proportional to their investment, becoming shareholders.
 
 When you complete the round, the investment funds are immediately deposited into your personal token wallet, and the Network automatically updates all ownership records to reflect the new distribution of shares. 
 
@@ -29,57 +29,89 @@ When you complete the round, the investment funds are immediately deposited into
 
 With each funding round, ownership percentages shift as new shares are issued. Your original shareholders (including yourself) will experience some degree of ownership dilution as the total number of outstanding shares increases.
 
-Dilution is when the percentage ownership (of the personal token) of existing shareholders, including the token owner, decreases when the token owner issues new shares when they fundraise.
+Dilution is when the percentage ownership of existing shareholders, including the token owner, decreases when the token owner issues new shares during a fundraising round.
 
 To create alignment with early investors who take the highest risk, personal tokens incorporate certain protections borrowed from traditional equity structures:
 1. **Pro rata rights**: existing shareholders have the right (but not obligation) to participate in future funding rounds to maintain their ownership percentage. This gives early believers in your potential the opportunity to continue supporting your journey without being diluted.
-2. **Information rights**: Shareholders must receive notice of an upcoming fundraising round at least a week in advance so that they have time to exercise their pro rata rights.
-3. **Anti-dilution provisions**: if you raise capital at a valuation lower than previous rounds (a "down round"), the Network may automatically adjust share allocations to protect early investors from severe dilution, similar to weighted-average anti-dilution provisions in traditional venture financing.
+2. **Information rights**: shareholders must receive notice of an upcoming fundraising round at least a week in advance so that they have time to exercise their pro rata rights.
+3. **Anti-dilution provisions**: if you raise capital at a valuation lower than previous rounds (a "down round"), the Network will automatically adjust share allocations to protect early investors from severe dilution, similar to [weighted-average anti-dilution provisions](https://www.andrew.cmu.edu/user/fd0n/53%20Weighted%20Average%20Anti-dilution.htm) in traditional venture financing.
 
 ### Dividends
 
-If you have shareholders in your personal token, whenever you sell equity in a personal token that you've invested in, or in a company (which is ofc outside of the network), the capital you gain from that sale is distributed to those who hold equity in your personal token - proportional to how much equity they hold.
+If you have shareholders in your personal token, whenever you sell equity in a personal token or a company at a profit, the capital gains (the profit portion, not the entire proceeds) from that sale are distributed to those who hold equity in your personal token - proportional to how much equity they hold.
 
-Capital gains from selling equity (whether in companies or in personal tokens) flow directly to the holders of the seller's personal token, but do not cascade further up the network. For example, if Alice holds share of Bob's personal token, and Bob holds shares of Dan's personal token, then when Dan sells equity and generates capital gains, these gains are distributed proportionally to Dan's token holders (which includes Bob) but stop there - they do not automatically flow up to Bob's token holders (which includes Alice). Alice can only benefit from Dan's success indirectly if Bob's token value increases due to his gains from Dan, and Alice then sells her equity in Bob's token at this higher value.
+For example, if you purchased personal token or company shares for $10,000 and later sold them for $15,000, the $5,000 profit would be distributed to your personal token shareholders according to their ownership percentages.
 
-Dividends are immediately paid out when you sell equity in a personal token - since that capital and information lies within the network. On the other hand, when you sell equity in a company, it's your responsibility to pay dividends for that to your shareholders through the network. You can do this on a yearly basis, on / before the US tax deadline. We're building tooling to make this a very simple process for you. Any discrepancies / delays may affect your reputation in the network, which will be visible to your shareholders, future shareholders, and those you want to invest in.
+Capital gains distributions flow directly to the holders of the seller's personal token, but do not cascade further up the network. For example, if Alice holds shares of Bob's personal token, and Bob holds shares of Dan's personal token, then when Dan sells equity and generates capital gains, these gains are distributed proportionally to Dan's token holders (including Bob) but stop there - they do not automatically flow up to Bob's token holders (like Alice). Alice can only benefit from Dan's success indirectly if Bob's token value increases due to his gains from Dan, and Alice then sells her equity in Bob's token at this higher value.
+
+Dividends are immediately paid out when you sell equity in a personal token - since that capital and information lies within the network. On the other hand, when you sell equity in a company, it's your responsibility to pay dividends for that to your shareholders through the network. You can do this on a yearly basis, by the US tax deadline.
+
+We're building tooling to make this a very simple process for you. Any discrepancies / delays may affect your reputation in the network, which will be visible to your shareholders, future shareholders, and those you want to invest in.
+
+### Reporting
+
+If you have shareholders, when you sell equity in companies, since they exist outside of the Network, it's your responsibility to report these transactions and distribute the appropriate capital gains to your shareholders. If you don't have shareholders there's no need to report.
+
+You are required to report your equity sales once a year, before the tax deadline. You'll provide basic information about what you sold, when you sold it, your original purchase price, and the sale price.
+
+Most users can complete this annual reporting in minutes through our simple interface. We're actively building integrations with popular equity management platforms and investment services, which will allow many of your transactions to be imported automatically when these integrations launch. For transactions not covered by these integrations, you'll upload standard documents you're already preparing for taxes, like transaction records or tax forms. Our system calculates the capital gains and processes the actual distribution to your shareholders. If your personal token wallet doesn't have sufficient capital, you will be prompted to deposit the necessary funds.
+
+The Network maintains a reputation system that tracks your reporting history and accuracy. Consistent, timely reporting enhances your reputation score, which is visible to current and potential investors. Significant discrepancies or delays in reporting may affect this score. For larger transactions, a small percentage of distributed funds may be temporarily held in escrow until verification is complete.
+
+We're going to make this process as simple and automated as possible. We'll be there by your side to minimize admin BS.
 
 ### Investing
 
-In order for an investor to accept an invitation to invest (when a user sends them an invite link for their round), they need sufficient capital in their personal token wallet to cover the investment amount.
+You can invest in personal tokens *through* your personal token.
 
-### Selling equity
+In order to accept an invitation from a user to invest, you must have sufficient capital in your personal token wallet to cover the investment amount.
 
-When a shareholder wants to sell their equity in a personal token, they initiate a “Sale Request” in the Network. This request specifies the number of shares they wish to sell, their asking price, and how long the offer remains valid. Similar to private companies' [Right of First Refusal](https://www.angellist.com/learn/right-of-first-refusal) (ROFR), the token holder gets the first opportunity to purchase these shares. This ensures token holders maintain influence over their cap table and prevents unwanted parties from acquiring shares. If the token holder declines to purchase the shares, other existing shareholders receive second priority to maintain alignment among current investors.
+There are 2 ways to profit from investing:
+1. Dividends
+2. Selling shares to another investor (or back to the token owner) at a higher price than you bought them for.
 
-The ROFR period lasts 14 days for the token holder and an additional 7 days for existing shareholders. If no existing shareholders purchase the shares during this period, the seller can either list their shares on the Network's internal marketplace or have someone they know apply to invest. All transfers must be approved by the token holder, and shares can only be transferred to other verified users in the Network. <Annotation>a token holder is incentivized to not be a menace by unfairly rejecting all sales because that would likely spook existing and future investors, and tarnish their reputation</Annotation>
+### Secondary sales
+
+When a shareholder wants to sell their equity in a personal token, they initiate a "Secondary Sale Request" in the Network. This request specifies the number of shares they wish to sell, their asking price, and how long the offer remains valid. Similar to private companies' [Right of First Refusal](https://www.angellist.com/learn/right-of-first-refusal) (ROFR), the token holder gets the first opportunity to purchase these shares. This ensures token holders maintain influence over their cap table and prevents unwanted parties from acquiring shares. If the token holder declines to purchase the shares, other existing shareholders receive second priority to maintain alignment among current investors.
+
+The ROFR period lasts 14 days for the token holder and an additional 7 days for existing shareholders. If no existing shareholders purchase the shares during this period, the seller can either list their shares on the Network's internal marketplace or have someone they know apply to invest. All transfers must be approved by the token holder, and shares can only be transferred to other verified users in the Network.
+
+For each completed secondary sale, a small royalty fee (2%) is automatically collected from the transaction value. This fee is split between the token owner (1.5%) and the Network (0.5%). This royalty structure creates an incentive for token owners to approve secondary sales, providing liquidity for early investors while generating ongoing returns for token owners as their personal token gains popularity in the secondary market.
 
 ### Transaction fees
 
-In addition to personal tokens, there's a Network token. The Network Token is similar to other personal tokens except that:
-1. It is not tied to any individual user, but rather to the Network itself.
-2. Its shares can be traded freely without requiring anyone's approval.
+When you use the Network, three types of transaction fees apply:
+1. Gas fee: a nominal amount (usually a few dollars) to facilitate the transaction in the Network.
+2. Secondary sales fee: a 2% fee on secondary market transactions, split between token owners (1.5%) and the Network (0.5%).
+3. Equity fee: a small equity stake in the personal token (0.1%) is given to the Network for each fundraising round.
 
-Whenever equity in a personal token is sold on the network through a fundraising event, a small equity stake (0.1%) in each personal token is automatically granted to the Network Token as a "transaction fee". The more fundraising rounds for a personal token, the greater the Network token's equity in that personal token.
+To facilitate the secondary sales and equity fees we have a "Network token." The Network Token is similar to other personal tokens except that:
+1. It's not tied to any individual user, but rather to the Network itself.
+2. It represents ownership in an index of all personal tokens in the ecosystem.
 
-Therefore, the Network token acts as an index of all of the personal tokens in the Network.
+Whenever equity in a personal token is sold through a fundraising event, the 0.1% equity stake is automatically granted to the Network Token. The more fundraising rounds for a personal token, the greater the Network token's equity in that personal token.
 
-The Network Token is divided into 100 million shares that can be freely traded, allowing anyone to invest in the overall growth and success of the Network.
+The Network token has a total supply of 100 million shares, with only 20% (20 million shares) available for trading at launch. This controlled release helps maintain stability in the early phases of the Network. The available supply will increase gradually over time as the Network grows, with additional portions being released at key milestones in the Network's development.
 
-As with with personal tokens, whenever a user sells their equity in any personal token, say Amy sells her equity in Jane's personal token, a percentage of the capital gains falls into the wallet of the Network token proportional to how much equity the Network token holds in Amy's personal token.
-
-<NetworkTokenScene />
-
-The wallet associated with the Network token will be treated as the Network's treasury. To balance operational needs with shareholder returns, when new revenue enters the treasury, 30% is immediately distributed to Network Token shareholders, while 70% is retained in the treasury to be used for the Network's functions: legal compliance, development of new features, security, and anything that's is required to preserve the integrity of the Network. <Annotation>over time, the distribution percentage (how much of capital gains is distributed to Network token holders vs. how much is preserved in treasury) will become more skewed towards distributing to shareholders over retaining in treasury</Annotation>
+Similar to personal tokens, the Network token accrues dividends. The wallet associated with the Network token serves as the Network's treasury. When new revenue enters the treasury, 30% is immediately distributed to Network Token shareholders, while 70% is retained to fund operations, legal compliance, development, security, and maintenance of the Network. Over time, as the Network matures, the distribution percentage will gradually increase to favor shareholders.
 
 ### Frequently asked
+
+<Accordion title="Why raise through personal tokens instead of through a company?">
+</Accordion>
+
+<Accordion title="How would a personal token be valued?">
+As with investing in early stage startups, personal token valuations for the first fundraise will likely default to an soft standard (a standard that is recommended, but not enforced). I predict that will be somewhere between $50k - $500k for 1% of equity.
+
+This default valuation is greater than the default US startup valuation (i.e. $500k for 3 - 7% equity in the US) because a personal token captures value from _all_ of the companies its owner gains equity at in the future, as opposed to a single company - hence the standard valuation for a personal token should be higher than it is for a startup.
+</Accordion>
 
 <Accordion title="What if the personal token holder never starts a company?">
 Personal tokens incentivize VCs / mentors to help individuals who may never want to start a company, but instead join great ones - because they can still capture the value those individuals create (through personal tokens) even though they can't invest in their companies (because they won't start any).
 </Accordion>
 
-<Accordion title="What would be the standard initial valuation?">
-As with investing in early stage startups, personal token valuations for the first fundraise will likely default to an soft standard (a standard that is recommended, but not enforced). I predict that will be somewhere between $50k - $500k for 1% of equity.
-
-This default valuation is greater than the default US startup valuation (i.e. $500k for 3 - 7% equity in the US) because a personal token captures value from _all_ of the companies its owner gains equity at in the future, as opposed to a single company - hence the standard valuation for a personal token should be higher than it is for a startup.
+<Accordion title="What happens when a personal token owner dies?">
 </Accordion>
+
+- Would there be some notion of a "personal token IPO" similar to companies such that anyone can freely buy and sell shares without going through a tightly controlled fundraising process? What could be the benefits of this? Why wouldn't it make sense?
+- 
