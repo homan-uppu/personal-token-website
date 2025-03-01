@@ -12,6 +12,12 @@ interface ListItemProps {
   rightLabel: string;
 }
 
+// Dictionary for company-specific image scaling
+const companyImageScaling: Record<string, number> = {
+  microsoft: 0.8,
+  apple: 0.9,
+};
+
 export const ListItem = ({
   picSrc,
   labelMain,
@@ -19,6 +25,18 @@ export const ListItem = ({
   rightLabel,
 }: ListItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Determine if we need to scale the image based on the picSrc
+  const getImageScale = () => {
+    for (const [company, scale] of Object.entries(companyImageScaling)) {
+      if (picSrc.toLowerCase().includes(company)) {
+        return scale;
+      }
+    }
+    return 1; // Default scale if no match
+  };
+
+  const imageScale = getImageScale();
 
   return (
     <div
@@ -30,7 +48,15 @@ export const ListItem = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div style={styles.leftSide}>
-        <img src={picSrc} style={styles.profilePic} />
+        <div style={styles.imageContainer}>
+          <img
+            src={picSrc}
+            style={{
+              ...styles.profilePic,
+              transform: `scale(${imageScale})`,
+            }}
+          />
+        </div>
         <div style={styles.nameContainer}>
           <div style={styles.name}>{labelMain}</div>
           {labelSecondary && (
@@ -65,6 +91,13 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: "0.5rem",
+  },
+  imageContainer: {
+    width: "1.5rem",
+    height: "1.5rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   profilePic: {
     width: "1.5rem",

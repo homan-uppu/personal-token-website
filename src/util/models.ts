@@ -41,7 +41,7 @@ export const dummyPersonalToken: PersonalToken = {
     {
       holder: {
         profilePicSrc: "/images/jane.png",
-        name: "Jane Doe",
+        name: "(self)",
         username: "@janedoe",
         valuation: 200000,
         walletValue: 200000,
@@ -51,7 +51,7 @@ export const dummyPersonalToken: PersonalToken = {
     {
       holder: {
         profilePicSrc: "/images/amy.png",
-        name: "Amy K",
+        name: "Amy K.",
         username: "@amyk",
         valuation: 300000,
         walletValue: 300000,
@@ -61,7 +61,7 @@ export const dummyPersonalToken: PersonalToken = {
     {
       holder: {
         profilePicSrc: "/images/sam.png",
-        name: "Sam C",
+        name: "Sam C.",
         username: "@samc",
         valuation: 150000,
         walletValue: 150000,
@@ -74,21 +74,21 @@ export const dummyPersonalToken: PersonalToken = {
       type: TokenType.PersonalToken,
       personalToken: {
         profilePicSrc: "/images/sam.png",
-        name: "Sam C",
+        name: "Sam C.",
         username: "@samc",
-        valuation: 150000,
+        valuation: 500000,
       },
-      equity: 0.03,
+      equity: 0.01,
     },
     {
       type: TokenType.PersonalToken,
       personalToken: {
         profilePicSrc: "/images/maya.png",
         username: "@mayap",
-        name: "Maya P",
-        valuation: 300000,
+        name: "Maya",
+        valuation: 3000000,
       },
-      equity: 0.04,
+      equity: 0.02,
     },
     {
       type: TokenType.Company,
