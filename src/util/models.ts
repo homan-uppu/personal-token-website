@@ -34,10 +34,20 @@ export const dummyPersonalToken: PersonalToken = {
   name: "Jane Doe",
   username: "@janedoe",
   valuation: 9000000,
-  bio: "Researching novel, quick acting, acne treatments.",
+  bio: "Independent nuclear fusion researcher focusing on small-scale tokamak reactor designs.",
   lastRoundDate: new Date("2024-01-01"),
-  linkInBio: "amyk.xyz",
+  linkInBio: "janedoe.xyz",
   shareholders: [
+    {
+      holder: {
+        profilePicSrc: "/images/jane.png",
+        name: "Jane Doe",
+        username: "@janedoe",
+        valuation: 200000,
+        walletValue: 200000,
+      },
+      equity: 0.97,
+    },
     {
       holder: {
         profilePicSrc: "/images/amy.png",
@@ -46,17 +56,17 @@ export const dummyPersonalToken: PersonalToken = {
         valuation: 300000,
         walletValue: 300000,
       },
-      equity: 0.95,
+      equity: 0.01,
     },
     {
       holder: {
-        profilePicSrc: "/images/jane.png",
-        name: "Jane S",
-        username: "@janes",
-        valuation: 100000,
-        walletValue: 100000,
+        profilePicSrc: "/images/sam.png",
+        name: "Sam C",
+        username: "@samc",
+        valuation: 150000,
+        walletValue: 150000,
       },
-      equity: 0.05,
+      equity: 0.02,
     },
   ],
   portfolio: [
@@ -66,9 +76,9 @@ export const dummyPersonalToken: PersonalToken = {
         profilePicSrc: "/images/sam.png",
         name: "Sam C",
         username: "@samc",
-        valuation: 3000000,
+        valuation: 150000,
       },
-      equity: 0.02,
+      equity: 0.03,
     },
     {
       type: TokenType.PersonalToken,
@@ -76,36 +86,117 @@ export const dummyPersonalToken: PersonalToken = {
         profilePicSrc: "/images/maya.png",
         username: "@mayap",
         name: "Maya P",
-        valuation: 14000000,
+        valuation: 300000,
       },
-      equity: 0.03,
+      equity: 0.04,
     },
     {
       type: TokenType.Company,
       company: {
-        name: "OpenAI",
-        profilePicSrc: "/images/openai.png",
-        valuation: 30000000,
+        name: "Tesla",
+        profilePicSrc: "/images/tesla.png",
+        valuation: 6000,
       },
-      equity: 0.013,
+      equity: 0.08,
     },
     {
       type: TokenType.Company,
       company: {
-        name: "Reddit",
-        profilePicSrc: "/images/reddit.png",
-        valuation: 2000000,
+        name: "Microsoft",
+        profilePicSrc: "/images/microsoft.png",
+        valuation: 100000,
       },
-      equity: 0.0042,
+      equity: 0.05,
     },
     {
       type: TokenType.Company,
       company: {
         name: "Apple",
         profilePicSrc: "/images/apple.png",
-        valuation: 300000000,
+        valuation: 80000,
       },
-      equity: 0.0001,
+      equity: 0.06,
     },
   ],
 };
+
+// export const dummyPersonalToken: PersonalToken = {
+//   profilePicSrc: "/images/jane.png",
+//   name: "Jane Doe",
+//   username: "@janedoe",
+//   valuation: 9000000,
+//   bio: "Researching novel, quick acting, acne treatments.",
+//   lastRoundDate: new Date("2024-01-01"),
+//   linkInBio: "amyk.xyz",
+//   shareholders: [
+//     {
+//       holder: {
+//         profilePicSrc: "/images/amy.png",
+//         name: "Amy K",
+//         username: "@amyk",
+//         valuation: 300000,
+//         walletValue: 300000,
+//       },
+//       equity: 0.95,
+//     },
+//     {
+//       holder: {
+//         profilePicSrc: "/images/jane.png",
+//         name: "Jane S",
+//         username: "@janes",
+//         valuation: 100000,
+//         walletValue: 100000,
+//       },
+//       equity: 0.05,
+//     },
+//   ],
+//   portfolio: [
+//     {
+//       type: TokenType.PersonalToken,
+//       personalToken: {
+//         profilePicSrc: "/images/sam.png",
+//         name: "Sam C",
+//         username: "@samc",
+//         valuation: 3000000,
+//       },
+//       equity: 0.02,
+//     },
+//     {
+//       type: TokenType.PersonalToken,
+//       personalToken: {
+//         profilePicSrc: "/images/maya.png",
+//         username: "@mayap",
+//         name: "Maya P",
+//         valuation: 14000000,
+//       },
+//       equity: 0.03,
+//     },
+//     {
+//       type: TokenType.Company,
+//       company: {
+//         name: "OpenAI",
+//         profilePicSrc: "/images/openai.png",
+//         valuation: 30000000,
+//       },
+//       equity: 0.013,
+//     },
+//     {
+//       type: TokenType.Company,
+//       company: {
+//         name: "Reddit",
+//         profilePicSrc: "/images/reddit.png",
+//         valuation: 2000000,
+//       },
+//       equity: 0.0042,
+//     },
+//     {
+//       type: TokenType.Company,
+//       company: {
+//         name: "Apple",
+//         profilePicSrc: "/images/apple.png",
+//         valuation: 300000000,
+//       },
+//       equity: 0.0001,
+//     },
+//   ],
+// };

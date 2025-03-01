@@ -40,6 +40,11 @@ export const PersonalTokenStatic = () => {
 
       <div style={dividerStyles} />
 
+      {/* <div style={{ marginBottom: "0rem", marginTop: "1.5rem" }}>
+        Independent nuclear fusion researcher focusing on small-scale tokamak
+        reactor designs.
+      </div> */}
+
       <div style={tokenInfoContainerStyles}>
         <TokenInfo personalToken={token} isMobile={isMobile} />
       </div>
