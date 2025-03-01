@@ -73,5 +73,5 @@ const dividerStyles = {
 
 const tokenInfoContainerStyles = {
   width: "100%",
-  paddingTop: "1.5rem",
+  paddingTop: "1.45rem",
 };

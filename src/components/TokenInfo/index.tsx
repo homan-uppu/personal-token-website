@@ -75,6 +75,7 @@ export const TokenInfo: FC<TokenInfoProps> = ({ personalToken, isMobile }) => {
             width: "1px",
             background: "rgba(0, 0, 0, 0.03)",
             alignSelf: "stretch",
+            marginTop: 4,
           }}
         />
       )}

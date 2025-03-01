@@ -19,17 +19,21 @@
   position: static;
   width: 100%;
 }
-
 .annotationMarker {
   color: var(--text-color-light);
   cursor: pointer;
   display: inline;
   font-size: 0.9rem;
   padding: 2px 4px;
-  border: var(--border);
-  border-radius: 4px;
-  background-color: var(--layer2-bg-color);
   gap: 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 1068px) {
+  .annotationMarker {
+    border: var(--border);
+    background-color: var(--layer2-bg-color);
+  }
 }
 
 .annotationMarker:hover {
