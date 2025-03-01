@@ -9,6 +9,7 @@ import { NetworkTokenScene } from "@/white-paper/Assets";
 import { PersonalTokenComp } from "@/components/PersonalToken";
 import { dummyPersonalToken } from "@/util/models";
 import { TokenInfo } from "@/components/TokenInfo";
+import { PersonalTokenStatic } from "@/components/PersonalToken/PersonalTokenStatic";
 
 // In a server component or page
 const getMarkdownContent = () => {
@@ -32,7 +33,7 @@ const parseMdx = (content: string): string[] => {
 };
 const PersonalTokenVisualization = () => (
   <div style={containerStyles}>
-    <TokenInfo personalToken={dummyPersonalToken} isMobile={false} />
+    <PersonalTokenStatic />
   </div>
 );
 

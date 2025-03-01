@@ -49,3 +49,9 @@ export const parseMdxSections = (mdxContent: string): string[][] => {
 
   return sections;
 };
+
+export const springTransition = {
+  type: "spring",
+  stiffness: 900,
+  damping: 50,
+};
