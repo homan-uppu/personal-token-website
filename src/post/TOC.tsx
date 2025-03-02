@@ -10,7 +10,6 @@ const TOC = ({ labels }: TOCProps) => {
   const handleClick = (label: string) => {
     const id = label.toLowerCase().replace(/ /g, "-");
     const element = document.getElementById(id);
-    console.log("going to: ", id);
     if (element) {
       const offset = 96;
       const elementPosition =

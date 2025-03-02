@@ -102,7 +102,7 @@ export default function Annotation({ children }: AnnotationProps) {
         )
       ) : (
         <AnnotationContent
-          style={{ left: leftPosition > 0 ? leftPosition + 24 : -1000 }}
+          style={{ left: leftPosition > 0 ? leftPosition + 96 : -1000 }}
         >
           {children}
         </AnnotationContent>

@@ -23,8 +23,31 @@ const Landing = () => {
         {" "}
         <Footer />{" "}
       </div>
+      <div style={verticalBarLeftStyle}></div>
+      <div style={verticalBarRightStyle}></div>
     </div>
   );
+};
+
+// Styles for vertical bars
+const verticalBarLeftStyle = {
+  position: "fixed" as const,
+  top: 0,
+  left: "calc((100vw - 588px) / 2 - 48px)",
+  width: "1px",
+  height: "100vh",
+  backgroundColor: "rgba(0, 0, 0, 0.025)",
+  zIndex: 1,
+};
+
+const verticalBarRightStyle = {
+  position: "fixed" as const,
+  top: 0,
+  left: "calc((100vw - 588px) / 2 + 588px + 48px)",
+  width: "1px",
+  height: "100vh",
+  backgroundColor: "rgba(0, 0, 0, 0.025)",
+  zIndex: 1,
 };
 
 export default Landing;
