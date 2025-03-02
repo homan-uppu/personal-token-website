@@ -24,9 +24,10 @@ const useScrollPosition = () => {
 
 interface NavbarProps {
   pageID?: string;
+  alwaysShowScrolled?: boolean;
 }
 
-const Navbar = ({ pageID }: NavbarProps) => {
+const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
   const scrollY = useScrollPosition();
   const [screenWidth, setScreenWidth] = useState(-1);
 
@@ -61,7 +62,6 @@ const Navbar = ({ pageID }: NavbarProps) => {
 
       justifyContent: "space-between",
       alignItems: "center",
-      background: "rgba(255, 255, 255, 0.65)",
       backdropFilter: "blur(5px)",
       borderRadius: "24px",
       width: screenWidth < 600 ? "calc(100% - 3rem)" : 588,
@@ -87,11 +87,15 @@ const Navbar = ({ pageID }: NavbarProps) => {
       animate={{
         width: screenWidth > 600 ? "588px" : "calc(100% - 3rem)",
         border:
-          scrollY > 10
+          alwaysShowScrolled || scrollY > 10
             ? "1px solid rgba(0, 0, 0, 0.05)"
             : "1px solid rgba(0, 0, 0, 0)",
+        background:
+          alwaysShowScrolled || scrollY > 10
+            ? "rgba(255, 255, 255, 0.65)"
+            : "transparent",
         padding:
-          scrollY > 10
+          alwaysShowScrolled || scrollY > 10
             ? screenWidth > 600
               ? "0.5rem 1rem"
               : "0.5rem 1rem"

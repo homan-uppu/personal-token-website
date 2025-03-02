@@ -45,6 +45,19 @@ export const mdxComponents: MDXComponents = {
   blockquote: (props) => {
     return <blockquote className={sourceSerif.className} {...props} />;
   },
+  hr: () => {
+    return (
+      <div
+        style={{
+          height: "1px",
+          background: "rgba(0, 0, 0, 0.03)",
+          width: "100%",
+          marginTop: "2rem",
+          marginBottom: "2rem",
+        }}
+      />
+    );
+  },
   h1: (props) => {
     const label = props.children as string;
     return (
@@ -91,5 +104,5 @@ export const mdxComponents: MDXComponents = {
 };
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return { mdxComponents, ...components };
+  return { ...mdxComponents, ...components };
 }
