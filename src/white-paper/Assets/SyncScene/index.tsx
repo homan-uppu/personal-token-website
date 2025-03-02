@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { SectionHeader } from "../PersonalToken";
-import { dummyPersonalToken, TokenType } from "../PersonalToken/models";
+import { dummyPersonalToken, TokenType } from "@/util/models";
 import { LineItem } from "../PersonalToken/LineItem";
 import styles from "./SyncScene.module.css";
 import { useIsMobile } from "@/white-paper/Content";

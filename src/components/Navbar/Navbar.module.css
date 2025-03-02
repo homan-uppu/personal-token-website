@@ -1,0 +1,40 @@
+.logoContainer {
+  padding: 0.25rem 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logoContainer:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.link {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+  font-weight: 420;
+}
+
+.link:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.ctaButton {
+  /* padding: 0.25rem 0.75rem; */
+  /* background-color: rgba(0, 0, 0, 0.032); */
+  color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 460;
+  font-size: 16px;
+  cursor: pointer;
+}
+.ctaButton:hover {
+  color: var(--logo-green);
+  /* background-color: var(--badge-bg); */
+  transition: color 0.2s ease, background-color 0.2s ease;
+}

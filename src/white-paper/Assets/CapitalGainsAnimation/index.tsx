@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import { PersonalTokenComp } from "../PersonalToken";
-import { dummyPersonalToken, PersonalToken } from "../PersonalToken/models";
+import { dummyPersonalToken, PersonalToken } from "@/util/models";
 import { Card } from "../Card";
 import { Geist_Mono } from "next/font/google";
 const geistMono = Geist_Mono({ subsets: ["latin"] });

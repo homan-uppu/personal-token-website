@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 100%;
   padding: 1.5rem;
-  background: var(--layer1-bg-color);
+  background: var(--layer2-bg-color);
   border-radius: 24px;
   gap: 1rem;
   margin-bottom: 1rem;
@@ -18,10 +18,10 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  font-weight: 500;
+  font-weight: 420;
 }
 
 .innerContent {

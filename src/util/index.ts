@@ -11,18 +11,12 @@ export const formatNumber = (
 ): string => {
   if (num >= 1000000) {
     const millions = num / 1000000;
-    return `${
-      millions % 1 === 0 && !alwaysShowDecimal
-        ? Math.floor(millions)
-        : millions.toFixed(1)
-    }M`;
+    const formatted = millions.toFixed(1);
+    return `${formatted.endsWith(".0") ? formatted.slice(0, -2) : formatted}M`;
   } else if (num >= 1000) {
     const thousands = num / 1000;
-    return `${
-      thousands % 1 === 0 && !alwaysShowDecimal
-        ? Math.floor(thousands)
-        : thousands.toFixed(1)
-    }K`;
+    const formatted = thousands.toFixed(1);
+    return `${formatted.endsWith(".0") ? formatted.slice(0, -2) : formatted}K`;
   }
   return num.toString();
 };
@@ -54,4 +48,10 @@ export const parseMdxSections = (mdxContent: string): string[][] => {
   }
 
   return sections;
+};
+
+export const springTransition = {
+  type: "spring",
+  stiffness: 900,
+  damping: 50,
 };
