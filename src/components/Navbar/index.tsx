@@ -69,6 +69,7 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
     links: {
       display: "flex",
       gap: "24px",
+      alignItems: "center",
     },
     activeLink: {
       color: "rgba(0, 0, 0, 0.9)",
@@ -125,6 +126,20 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
             {link.label}
           </Link>
         ))}
+        <a
+          href="https://forms.gle/GHTx6Aec7PBzg2EW9"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={fileStyles.ctaButton}
+          style={
+            {
+              // marginRight: scrollY > 10 ? "-6px" : "0",
+              // transition: "margin-right 0.2s ease",
+            }
+          }
+        >
+          join
+        </a>
       </div>
     </motion.nav>
   );
