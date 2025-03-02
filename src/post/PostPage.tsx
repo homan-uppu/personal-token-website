@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import TOC from "./TOC";
 import styles from "./Content.module.css";
+import titleBgStyles from "./TitleBg.module.css";
 import { Geist_Mono } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
 
@@ -26,6 +27,7 @@ export const PostPage = ({
       <Navbar pageID={pageID} />
       <div className={styles.content}>
         <div className={styles.titleContainer}>
+          <div className={titleBgStyles.titleBg} />
           <h1 className={`${styles.title}`}>{title}</h1>
         </div>
         {caption && <div className={styles.caption}>{caption}</div>}
