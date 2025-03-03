@@ -17,11 +17,10 @@ const Landing = () => {
             <PersonalTokenComp token={dummyPersonalToken} />
           </div>
           <LandingText />
+          {/* <div className={styles.footerContainer}>
+            <Footer />
+          </div> */}
         </div>
-      </div>
-      <div className={styles.footerContainer}>
-        {" "}
-        <Footer />{" "}
       </div>
       <div style={verticalBarLeftStyle}></div>
       <div style={verticalBarRightStyle}></div>

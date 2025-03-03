@@ -8,12 +8,12 @@
   --logo-green: #04ab46;
   --link-color: #125df3;
   --link-color-hover: #0d44b3;
+  --layer1-bg-color: #fefefe;
+  --layer2-bg-color: #fafaf9;
+  --bg-hover: #f8f8f7;
 
-  --layer1-bg-color: #fbfbfb;
-  --layer2-bg-color: #f5f5f2;
-  --bg-hover: #f2f2ef;
-
-  --main-bg: rgba(245, 245, 242, 0.5);
+  /* --main-bg: rgba(245, 245, 242, 0.5); */
+  --main-bg: white;
 
   --badge-bg: rgba(0, 191, 76, 0.1);
 

@@ -1,7 +1,7 @@
 .container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; /* Changed from height to min-height to accommodate content */
   padding: 1.5rem;
   background-color: var(--main-bg); /* Subtle gray/gold background */
   background-image: radial-gradient(
@@ -30,6 +30,8 @@
     1px 100%;
   background-repeat: no-repeat;
   animation: fadeIn 1.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 
 .footerContainer {
@@ -37,11 +39,19 @@
   max-width: 588px;
   margin: auto;
   margin-top: 3rem;
-  /* Ensure footer is properly positioned at the bottom */
+  /* Footer will be at the bottom if content is short, or after content if it's long */
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+@media (max-width: 700px) {
+  .footerContainer {
+    position: relative;
+    width: 100vw;
+    margin-left: -24px;
+  }
 }
 
 .background {
