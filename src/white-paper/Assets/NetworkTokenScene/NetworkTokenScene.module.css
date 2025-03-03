@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--layer1-bg-color);
+  background: var(--layer2-bg-color);
   border-radius: 12px;
   padding: 8px 16px;
 }
