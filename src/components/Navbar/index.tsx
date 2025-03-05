@@ -59,12 +59,12 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
       transform: "translateX(-50%)",
       zIndex: 20,
       display: screenWidth < 0 ? "none" : "flex",
-
       justifyContent: "space-between",
       alignItems: "center",
       backdropFilter: "blur(5px)",
       borderRadius: "24px",
-      width: screenWidth < 600 ? "calc(100% - 3rem)" : 588,
+      width: screenWidth >= 800 ? "calc(800px - 6rem)" : "calc(100% - 3rem)",
+      margin: "0 auto",
     },
     links: {
       display: "flex",
@@ -86,7 +86,7 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
         opacity: 0,
       }}
       animate={{
-        width: screenWidth > 600 ? "588px" : "calc(100% - 3rem)",
+        width: screenWidth >= 800 ? "calc(800px - 6rem)" : "calc(100% - 3rem)",
         border:
           alwaysShowScrolled || scrollY > 10
             ? "1px solid rgba(0, 0, 0, 0.05)"
@@ -97,7 +97,7 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
             : "transparent",
         padding:
           alwaysShowScrolled || scrollY > 10
-            ? screenWidth > 600
+            ? screenWidth >= 800
               ? "0.5rem 1rem"
               : "0.5rem 1rem"
             : 0,
