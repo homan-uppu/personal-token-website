@@ -45,11 +45,11 @@ const Landing = () => {
                 <Primary>Grounded in real value.</Primary>
               </SubHeader>
               <Body>
-                A PersonalToken's value is grounded in its owner’s equities in
+                A PersonalToken's value is grounded in its owner's equities in
                 companies and other personal tokens.
               </Body>
             </Block>
-            <Block noPadding>
+            <Block noPadding centered>
               <LandingImage src="/images/grounded.png" alt="." />
             </Block>
           </Row>
@@ -63,7 +63,7 @@ const Landing = () => {
                 your token.
               </Body>
             </Block>
-            <Block noPadding>
+            <Block noPadding centered>
               <LandingImage src="/images/equity-pie.png" alt="." />
             </Block>
           </Row>

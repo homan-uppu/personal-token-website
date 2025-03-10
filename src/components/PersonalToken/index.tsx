@@ -93,7 +93,11 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
         }}
         transition={springTransition}
       >
-        <PersonalTokenHeader token={token} isOpen={isOpen} />
+        <PersonalTokenHeader
+          token={token}
+          isOpen={isOpen}
+          isHovered={isHovered}
+        />
 
         {isOpen && (
           <motion.div

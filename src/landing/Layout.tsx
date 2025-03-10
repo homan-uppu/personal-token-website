@@ -43,11 +43,11 @@ export const Block = ({
       style={{
         ...blockStyles.block,
         width: width || "50%",
-        height: height || "300px",
+        height: height || "400px",
         gap: gap || "0.5rem",
         borderRight: borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
         alignItems: centered ? "center" : "start",
-        padding: noPadding ? "2rem" : "3rem",
+        padding: noPadding ? "0rem" : "3rem",
         ...style,
       }}
     >
@@ -77,6 +77,7 @@ const landingImageStyles = {
     position: "relative" as const,
     width: "100%",
     height: "100%",
+    maxWidth: "300px",
     overflow: "hidden",
   },
   image: {
