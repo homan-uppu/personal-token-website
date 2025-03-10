@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const Row = ({
   children,
   style,
@@ -24,6 +26,8 @@ export const Block = ({
   borderRight,
   gap,
   style,
+  centered,
+  noPadding,
 }: {
   children: React.ReactNode;
   width?: string;
@@ -31,6 +35,8 @@ export const Block = ({
   borderRight?: boolean;
   gap?: string;
   style?: React.CSSProperties;
+  centered?: boolean;
+  noPadding?: boolean;
 }) => {
   return (
     <div
@@ -40,12 +46,47 @@ export const Block = ({
         height: height || "300px",
         gap: gap || "0.5rem",
         borderRight: borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
+        alignItems: centered ? "center" : "start",
+        padding: noPadding ? "2rem" : "3rem",
         ...style,
       }}
     >
       {children}
     </div>
   );
+};
+
+export const LandingImage = ({
+  src,
+  alt,
+  style,
+}: {
+  src: string;
+  alt: string;
+  style?: React.CSSProperties;
+}) => {
+  return (
+    <div style={{ ...landingImageStyles.container, ...style }}>
+      <Image src={src} alt={alt} fill style={landingImageStyles.image} />
+    </div>
+  );
+};
+
+const landingImageStyles = {
+  container: {
+    position: "relative" as const,
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain" as const,
+    objectPosition: "center",
+    // objectFit: "cover" as const,
+    // objectPosition: "center",
+  },
 };
 
 // Update styles object to include block styles
@@ -57,8 +98,8 @@ const blockStyles = {
     display: "flex",
     flexDirection: "column" as const,
     justifyContent: "center",
-    alignItems: "center",
-    gap: "0.5rem",
+    alignItems: "start",
+    gap: "1rem",
   },
 };
 
@@ -90,11 +131,11 @@ const subHeaderStyles = {
   base: {
     fontSize: "24px",
     lineHeight: "32px",
-    fontWeight: 500,
+    fontWeight: 460,
   },
   colors: {
     primary: "rgba(0, 0, 0, 0.9)",
-    secondary: "rgba(0, 0, 0, 0.5)",
+    secondary: "rgb(143 153 168)",
   },
 };
 
@@ -139,13 +180,40 @@ export const GreenSpan = ({
 const greenSpanStyles = {
   base: {
     color: "var(--logo-green)",
-    fontWeight: 500,
+    fontWeight: 460,
   },
 };
 
 const primaryStyles = {
   base: {
     color: subHeaderStyles.colors.primary,
+    fontWeight: 460,
+  },
+};
+
+export const Body = ({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) => {
+  return (
+    <span
+      style={{
+        ...bodyStyles.base,
+        ...style,
+      }}
+    >
+      {children}
+    </span>
+  );
+};
+
+const bodyStyles = {
+  base: {
+    fontSize: "1rem",
+    color: "rgba(0, 0, 0, 0.5)",
     fontWeight: 500,
   },
 };

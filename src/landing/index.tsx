@@ -4,8 +4,17 @@ import Navbar from "../components/Navbar";
 import styles from "./Landing.module.css";
 import { PersonalTokenComp } from "@/components/PersonalToken";
 import { dummyPersonalToken } from "@/util/models";
-import { Block, GreenSpan, Primary, Row, SubHeader } from "./Layout";
+import {
+  Block,
+  Body,
+  GreenSpan,
+  LandingImage,
+  Primary,
+  Row,
+  SubHeader,
+} from "./Layout";
 import titleBgStyles from "../post/TitleBg.module.css";
+import { DottedGrid } from "./Backgrounds/DottedGrid/DottedGrid";
 
 const Landing = () => {
   return (
@@ -14,45 +23,15 @@ const Landing = () => {
         <Navbar />
         <div className={styles.main}>
           <Row>
-            {/* <div
-              style={{ background: "rgba(0, 0, 0 ,0.015" }}
-              className={titleBgStyles.titleBg}
-            /> */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                // backgroundImage: "url(/images/mountain.png)",
-                background: "rgba(0, 0, 0, 0.025)",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                opacity: 0.7,
-                zIndex: -1,
-                // filter: "invert(1) grayscale(1)",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  background:
-                    "radial-gradient(circle at center, transparent 50%, rgba(255, 255, 255, 0.5) 100%)",
-                  zIndex: 1,
-                }}
-              ></div>
-            </div>
-            <Block width="100%" height="500px">
+            <DottedGrid height={500} width={800} />
+            <Block width="100%" height="500px" centered>
               <SubHeader isPrimary>
                 A <GreenSpan>PersonalToken</GreenSpan> represents an
                 individual's potential.
               </SubHeader>
-              <SubHeader>Sell shares, raise $. Back talent earlier.</SubHeader>
+              <SubHeader>
+                Sell shares to raise $. Back talent earlier.
+              </SubHeader>
             </Block>
           </Row>
           <Row>
@@ -63,42 +42,61 @@ const Landing = () => {
           <Row>
             <Block borderRight>
               <SubHeader>
-                <Primary>Grounded</Primary> in ownership of{" "}
-                <Primary>companies</Primary> & other{" "}
-                <GreenSpan>PersonalToken</GreenSpan>s.
+                <Primary>Grounded in real value.</Primary>
               </SubHeader>
+              <Body>
+                A PersonalToken's value is grounded in its owner’s equities in
+                companies and other personal tokens.
+              </Body>
             </Block>
-            <Block>poop</Block>
+            <Block noPadding>
+              <LandingImage src="/images/grounded.png" alt="." />
+            </Block>
           </Row>
           <Row>
             <Block borderRight>
               <SubHeader>
-                <Primary>Raise $</Primary> in exhange for equity in future
-                wealth.
+                <Primary>Raise $</Primary>
               </SubHeader>
+              <Body>
+                By giving up equity in your future outcomes through shares of
+                your token.
+              </Body>
             </Block>
-            <Block>poop.</Block>
+            <Block noPadding>
+              <LandingImage src="/images/equity-pie.png" alt="." />
+            </Block>
           </Row>
           <Row>
             <Block borderRight>
               <SubHeader>
-                Finance <Primary>learning</Primary> without taking on debt.
+                <Primary>Learn without debt.</Primary>
               </SubHeader>
+              <Body>
+                Finance your learning and ambitious experimentation without
+                taking on debt. Share risk (and potential reward) with
+                investors.
+              </Body>
             </Block>
             <Block>
               <SubHeader>
-                Back talent early: <Primary>before</Primary> they start
-                companies.
+                <Primary>Back talent early.</Primary>
+              </SubHeader>
+              <Body>
+                Invest in talent before they start companies & in those who may
+                never start one, but still go on to do great work.
+              </Body>
+            </Block>
+          </Row>
+          <Row>
+            <Block width="100%" centered>
+              <SubHeader>
+                <Primary>Join the waitlist.</Primary>
               </SubHeader>
             </Block>
           </Row>
           <Row>
-            <Block width="100%">
-              <SubHeader>Join the waitlist.</SubHeader>
-            </Block>
-          </Row>
-          <Row>
-            <Block width="100%">
+            <Block width="100%" centered>
               <SubHeader>
                 A <Primary>primitive</Primary> designed for the age of
                 creativity
