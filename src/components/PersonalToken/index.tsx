@@ -69,7 +69,7 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
                   left: "1rem",
                 }
               : {
-                  top: "10vh",
+                  top: "23vh",
                   left: "calc(50vw - 300px)",
                 }),
             ...openStyles,
