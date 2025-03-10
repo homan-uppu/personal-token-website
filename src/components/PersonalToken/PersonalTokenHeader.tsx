@@ -11,11 +11,13 @@ import Image from "next/image";
 interface PersonalTokenHeaderProps {
   token: PersonalToken;
   isOpen: boolean;
+  isHovered?: boolean;
 }
 
 export const PersonalTokenHeader = ({
   token,
   isOpen,
+  isHovered = false,
 }: PersonalTokenHeaderProps) => {
   return (
     <motion.div
@@ -37,7 +39,10 @@ export const PersonalTokenHeader = ({
           alt={`${token.name}'s profile picture`}
           width={50}
           height={50}
-          style={profilePicStyles}
+          style={{
+            ...profilePicStyles,
+            filter: isHovered || isOpen ? "none" : "grayscale(100%)",
+          }}
         />
 
         <motion.div
@@ -65,7 +70,16 @@ export const PersonalTokenHeader = ({
         style={valuationStyles}
         transition={springTransition}
       >
-        <div style={valuationBadgeStyle}>${formatNumber(token.valuation)}</div>
+        <div
+          style={{
+            ...valuationBadgeStyle,
+            backgroundColor:
+              isHovered || isOpen ? valuationBadgeStyle.background : "#F4F4F4",
+            color: isHovered || isOpen ? "var(--logo-color)" : "#727272",
+          }}
+        >
+          ${formatNumber(token.valuation)}
+        </div>
       </motion.div>
     </motion.div>
   );
@@ -92,6 +106,7 @@ const picNameContainerStyles = {
 const profilePicStyles = {
   borderRadius: "2px",
   objectFit: "cover" as const,
+  transition: "all 0.3s ease",
 };
 
 const nameContainerStyles = {
@@ -129,4 +144,5 @@ const valuationBadgeStyle = {
   background: "var(--badge-bg)",
   borderRadius: "8px",
   width: "fit-content",
+  transition: "all 0.3s ease",
 };

@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import fileStyles from "./Navbar.module.css";
+import { CONSTANTS } from "@/util";
+import { useScreenWidth } from "@/landing/Layout";
 
 const useScrollPosition = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -21,30 +23,19 @@ const useScrollPosition = () => {
 
   return scrollPosition;
 };
-
 interface NavbarProps {
   pageID?: string;
   alwaysShowScrolled?: boolean;
+  width?: number;
 }
 
-const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
+const Navbar = ({
+  pageID,
+  alwaysShowScrolled = false,
+  width = 800,
+}: NavbarProps) => {
   const scrollY = useScrollPosition();
-  const [screenWidth, setScreenWidth] = useState(-1);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    // Initial value
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const screenWidth = useScreenWidth();
 
   const links = [
     { href: "/how", label: "how" },
@@ -59,12 +50,13 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
       transform: "translateX(-50%)",
       zIndex: 20,
       display: screenWidth < 0 ? "none" : "flex",
-
       justifyContent: "space-between",
       alignItems: "center",
       backdropFilter: "blur(5px)",
       borderRadius: "24px",
-      width: screenWidth < 600 ? "calc(100% - 3rem)" : 588,
+      width:
+        screenWidth >= 800 ? `calc(${width}px - 6rem)` : "calc(100% - 3rem)",
+      margin: "0 auto",
     },
     links: {
       display: "flex",
@@ -86,7 +78,8 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
         opacity: 0,
       }}
       animate={{
-        width: screenWidth > 600 ? "588px" : "calc(100% - 3rem)",
+        width:
+          screenWidth >= 800 ? `calc(${width}px - 6rem)` : "calc(100% - 3rem)",
         border:
           alwaysShowScrolled || scrollY > 10
             ? "1px solid rgba(0, 0, 0, 0.05)"
@@ -97,7 +90,7 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
             : "transparent",
         padding:
           alwaysShowScrolled || scrollY > 10
-            ? screenWidth > 600
+            ? screenWidth >= 800
               ? "0.5rem 1rem"
               : "0.5rem 1rem"
             : 0,
@@ -127,7 +120,7 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
           </Link>
         ))}
         <a
-          href="https://forms.gle/GHTx6Aec7PBzg2EW9"
+          href={CONSTANTS.waitlistUrl}
           target="_blank"
           rel="noopener noreferrer"
           className={fileStyles.ctaButton}

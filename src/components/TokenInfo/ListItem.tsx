@@ -54,6 +54,7 @@ export const ListItem = ({
             style={{
               ...styles.profilePic,
               transform: `scale(${imageScale})`,
+              filter: isHovered ? "none" : "grayscale(100%)",
             }}
           />
         </div>
@@ -104,6 +105,8 @@ const styles = {
     height: "1.5rem",
     borderRadius: "50%",
     objectFit: "cover" as const,
+    filter: "grayscale(100%)",
+    transition: "all 0.3s ease",
   },
   nameContainer: {
     display: "flex",

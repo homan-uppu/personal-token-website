@@ -3,55 +3,56 @@
 import React, { useState } from "react";
 
 import fileStyles from "./Footer.module.css";
+import { CONSTANTS } from "@/util";
+import { useScreenWidth } from "@/landing/Layout";
 
-const Footer: React.FC = () => {
+const FooterLink: React.FC<{
+  url: string;
+  label: string;
+  external?: boolean;
+}> = ({ url, label, external = false }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const screenWidth = useScreenWidth();
 
   return (
-    <footer className={fileStyles.footer}>
-      <div style={styles.container}>
-        <div style={styles.rightSection}>
-          <a
-            href="https://x.com/homan_u"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              ...styles.link,
-              ...(isHovered && styles.linkHover),
-            }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            contact
-          </a>
+    <a
+      href={url}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className={`${fileStyles.link} ${isHovered ? fileStyles.link : ""}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {label}
+    </a>
+  );
+};
+const Footer: React.FC<{
+  marginTop?: string | number;
+  marginBottom?: string | number;
+  padding?: string | number;
+  border?: string;
+}> = ({ marginTop, marginBottom, padding, border }) => {
+  return (
+    <footer
+      className={fileStyles.footer}
+      style={{ marginTop, marginBottom, padding, border }}
+    >
+      <div className={fileStyles.container}>
+        <div className={fileStyles.linksSection}>
+          <FooterLink url="/how" label="How it works" />
+          <FooterLink url="/why" label="Why" />
+          <FooterLink url="/contribute" label="Contribute" />
+          <FooterLink
+            label="Join waitlist"
+            url={CONSTANTS.waitlistUrl}
+            external
+          />
+          <FooterLink url="https://x.com/homan_u" label="Contact" external />
         </div>
       </div>
     </footer>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "0 0px",
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  rightSection: {
-    display: "flex",
-    alignItems: "center",
-  },
-  link: {
-    color: "rgba(0, 0, 0,0.25)",
-    textDecoration: "none",
-    fontSize: "14px",
-    fontWeight: 500,
-    transition: "color 0.2s ease",
-  },
-  linkHover: {
-    color: "rgba(0, 0, 0, 0.7)",
-  },
 };
 
 export default Footer;

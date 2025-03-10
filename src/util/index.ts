@@ -55,3 +55,7 @@ export const springTransition = {
   stiffness: 900,
   damping: 50,
 };
+
+export const CONSTANTS = {
+  waitlistUrl: "https://forms.gle/GHTx6Aec7PBzg2EW9",
+};

@@ -69,7 +69,7 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
                   left: "1rem",
                 }
               : {
-                  top: "10vh",
+                  top: "23vh",
                   left: "calc(50vw - 300px)",
                 }),
             ...openStyles,
@@ -93,7 +93,11 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
         }}
         transition={springTransition}
       >
-        <PersonalTokenHeader token={token} isOpen={isOpen} />
+        <PersonalTokenHeader
+          token={token}
+          isOpen={isOpen}
+          isHovered={isHovered}
+        />
 
         {isOpen && (
           <motion.div
@@ -193,7 +197,7 @@ const closeButtonStyles = {
   backgroundColor: "rgba(255, 255, 255, 0.6)",
   backdropFilter: "blur(8px)",
   WebkitBackdropFilter: "blur(8px)",
-  boxShadow: "0px 2px 12px rgba(0, 0, 0, 0.1)",
+  // boxShadow: "0px 2px 12px rgba(0, 0, 0, 0.1)",
   cursor: "pointer",
   fontSize: "16px",
   fontWeight: 500,
