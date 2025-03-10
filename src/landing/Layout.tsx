@@ -28,6 +28,8 @@ export const Block = ({
   style,
   centered,
   noPadding,
+  background = "#FDFDFD",
+  lighting,
 }: {
   children: React.ReactNode;
   width?: string;
@@ -37,6 +39,8 @@ export const Block = ({
   style?: React.CSSProperties;
   centered?: boolean;
   noPadding?: boolean;
+  background?: string;
+  lighting?: boolean;
 }) => {
   return (
     <div
@@ -48,6 +52,10 @@ export const Block = ({
         borderRight: borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
         alignItems: centered ? "center" : "start",
         padding: noPadding ? "0rem" : "3rem",
+        background,
+        backgroundImage: lighting
+          ? "radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)"
+          : "none",
         ...style,
       }}
     >
@@ -93,6 +101,7 @@ const landingImageStyles = {
 // Update styles object to include block styles
 const blockStyles = {
   block: {
+    position: "relative",
     height: "300px",
     width: "50%",
     padding: "3rem",

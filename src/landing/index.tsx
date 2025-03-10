@@ -15,6 +15,8 @@ import {
 } from "./Layout";
 import titleBgStyles from "../post/TitleBg.module.css";
 import { DottedGrid } from "./Backgrounds/DottedGrid/DottedGrid";
+import { Lines } from "./Backgrounds/Lines/Lines";
+import MotionBg from "./Backgrounds/MotionBg/MotionBg";
 
 const Landing = () => {
   return (
@@ -23,7 +25,6 @@ const Landing = () => {
         <Navbar />
         <div className={styles.main}>
           <Row>
-            <DottedGrid height={500} width={800} />
             <Block width="100%" height="500px" centered>
               <SubHeader isPrimary>
                 A <GreenSpan>PersonalToken</GreenSpan> represents an
@@ -32,10 +33,12 @@ const Landing = () => {
               <SubHeader>
                 Sell shares to raise $. Back talent earlier.
               </SubHeader>
+              <Lines direction={false} width={800} height={500} />
+              <Lines direction={true} width={800} height={500} />
             </Block>
           </Row>
           <Row>
-            <Block width="100%" height="200px">
+            <Block width="100%" height="200px" background="white">
               <PersonalTokenComp token={dummyPersonalToken} />
             </Block>
           </Row>
@@ -48,13 +51,17 @@ const Landing = () => {
                 A PersonalToken's value is grounded in its owner's equities in
                 companies and other personal tokens.
               </Body>
+              <Lines direction={false} />
             </Block>
-            <Block noPadding centered>
+            <Block noPadding centered background="white" lighting>
               <LandingImage src="/images/grounded.png" alt="." />
             </Block>
           </Row>
           <Row>
-            <Block borderRight>
+            <Block noPadding centered background="white" borderRight lighting>
+              <LandingImage src="/images/equity-pie.png" alt="." />
+            </Block>
+            <Block>
               <SubHeader>
                 <Primary>Raise $</Primary>
               </SubHeader>
@@ -62,9 +69,7 @@ const Landing = () => {
                 By giving up equity in your future outcomes through shares of
                 your token.
               </Body>
-            </Block>
-            <Block noPadding centered>
-              <LandingImage src="/images/equity-pie.png" alt="." />
+              <Lines direction={true} />
             </Block>
           </Row>
           <Row>
@@ -73,10 +78,10 @@ const Landing = () => {
                 <Primary>Learn without debt.</Primary>
               </SubHeader>
               <Body>
-                Finance your learning and ambitious experimentation without
-                taking on debt. Share risk (and potential reward) with
-                investors.
+                Finance learning and ambitious experiments without taking on
+                debt. Share risk with investors.
               </Body>
+              <Lines direction={false} />
             </Block>
             <Block>
               <SubHeader>
@@ -86,10 +91,11 @@ const Landing = () => {
                 Invest in talent before they start companies & in those who may
                 never start one, but still go on to do great work.
               </Body>
+              <Lines direction={true} />
             </Block>
           </Row>
           <Row>
-            <Block width="100%" centered>
+            <Block width="100%" centered background="white">
               <SubHeader>
                 <Primary>Join the waitlist.</Primary>
               </SubHeader>
