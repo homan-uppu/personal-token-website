@@ -120,7 +120,16 @@ const Landing = () => {
               </SubHeader>
             </Block>
           </Row>
-          <Footer />
+
+          <div
+            style={{
+              width: "100%",
+              height: "1px",
+              backgroundColor: "rgba(0, 0, 0, 0.035)",
+            }}
+          ></div>
+
+          <Footer border="none" />
         </div>
       </div>
 

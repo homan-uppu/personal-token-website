@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import fileStyles from "./Footer.module.css";
 import { CONSTANTS } from "@/util";
+import { useScreenWidth } from "@/landing/Layout";
 
 const FooterLink: React.FC<{
   url: string;
@@ -11,16 +12,14 @@ const FooterLink: React.FC<{
   external?: boolean;
 }> = ({ url, label, external = false }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const screenWidth = useScreenWidth();
 
   return (
     <a
       href={url}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      style={{
-        ...styles.link,
-        ...(isHovered && styles.linkHover),
-      }}
+      className={`${fileStyles.link} ${isHovered ? fileStyles.link : ""}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -28,12 +27,19 @@ const FooterLink: React.FC<{
     </a>
   );
 };
-
-const Footer: React.FC = () => {
+const Footer: React.FC<{
+  marginTop?: string | number;
+  marginBottom?: string | number;
+  padding?: string | number;
+  border?: string;
+}> = ({ marginTop, marginBottom, padding, border }) => {
   return (
-    <footer className={fileStyles.footer}>
-      <div style={styles.container}>
-        <div style={styles.linksSection}>
+    <footer
+      className={fileStyles.footer}
+      style={{ marginTop, marginBottom, padding, border }}
+    >
+      <div className={fileStyles.container}>
+        <div className={fileStyles.linksSection}>
           <FooterLink url="/how" label="How it works" />
           <FooterLink url="/why" label="Why" />
           <FooterLink url="/contribute" label="Contribute" />
@@ -47,33 +53,6 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
-
-const styles = {
-  container: {
-    margin: "0 auto",
-    padding: "0 0px",
-    display: "flex",
-    justifyContent: "flex-start",
-    paddingBottom: "6rem",
-    paddingTop: "3rem",
-  },
-  linksSection: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "start",
-    gap: "1rem",
-  },
-  link: {
-    color: "rgba(0, 0, 0,0.25)",
-    textDecoration: "none",
-    fontSize: "16px",
-    fontWeight: 500,
-    transition: "color 0.2s ease",
-  },
-  linkHover: {
-    color: "rgba(0, 0, 0, 0.7)",
-  },
 };
 
 export default Footer;

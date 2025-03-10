@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import fileStyles from "./Navbar.module.css";
 import { CONSTANTS } from "@/util";
+import { useScreenWidth } from "@/landing/Layout";
 
 const useScrollPosition = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -22,30 +23,19 @@ const useScrollPosition = () => {
 
   return scrollPosition;
 };
-
 interface NavbarProps {
   pageID?: string;
   alwaysShowScrolled?: boolean;
+  width?: number;
 }
 
-const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
+const Navbar = ({
+  pageID,
+  alwaysShowScrolled = false,
+  width = 800,
+}: NavbarProps) => {
   const scrollY = useScrollPosition();
-  const [screenWidth, setScreenWidth] = useState(-1);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    // Initial value
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const screenWidth = useScreenWidth();
 
   const links = [
     { href: "/how", label: "how" },
@@ -64,7 +54,8 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
       alignItems: "center",
       backdropFilter: "blur(5px)",
       borderRadius: "24px",
-      width: screenWidth >= 800 ? "calc(800px - 6rem)" : "calc(100% - 3rem)",
+      width:
+        screenWidth >= 800 ? `calc(${width}px - 6rem)` : "calc(100% - 3rem)",
       margin: "0 auto",
     },
     links: {
@@ -87,7 +78,8 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
         opacity: 0,
       }}
       animate={{
-        width: screenWidth >= 800 ? "calc(800px - 6rem)" : "calc(100% - 3rem)",
+        width:
+          screenWidth >= 800 ? `calc(${width}px - 6rem)` : "calc(100% - 3rem)",
         border:
           alwaysShowScrolled || scrollY > 10
             ? "1px solid rgba(0, 0, 0, 0.05)"

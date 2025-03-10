@@ -24,7 +24,7 @@ export const PostPage = ({
 }: PostPageProps) => {
   return (
     <div className={styles.container}>
-      <Navbar pageID={pageID} />
+      <Navbar pageID={pageID} width={688} />
       <div className={styles.content}>
         <div className={styles.titleContainer}>
           <div className={titleBgStyles.titleBg} />
@@ -38,7 +38,9 @@ export const PostPage = ({
         )}
         {children}
       </div>
-      <Footer />
+
+      <Footer marginTop={"2rem"} marginBottom={"2rem"} />
+
       <div style={verticalBarLeftStyle}></div>
       <div style={verticalBarRightStyle}></div>
     </div>

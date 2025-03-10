@@ -26,7 +26,7 @@ export const WaitlistBlock = () => {
           padding: isMobile ? "6rem 1.5rem" : "6rem 3rem",
         }}
         onMouseEnter={(e) =>
-          (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.035)")
+          (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.025)")
         }
         onMouseLeave={(e) =>
           (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.015)")
@@ -55,7 +55,7 @@ const contentContainerStyle = {
   display: "flex",
   backgroundColor: "rgba(0, 0, 0, 0.015)",
   border: "1px solid rgba(0, 0, 0, 0.025)",
-  borderRadius: 24,
+  borderRadius: 16,
   justifyContent: "center",
   alignItems: "center",
   padding: "6rem 3rem",
