@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import fileStyles from "./Navbar.module.css";
+import { CONSTANTS } from "@/util";
 
 const useScrollPosition = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -127,7 +128,7 @@ const Navbar = ({ pageID, alwaysShowScrolled = false }: NavbarProps) => {
           </Link>
         ))}
         <a
-          href="https://forms.gle/GHTx6Aec7PBzg2EW9"
+          href={CONSTANTS.waitlistUrl}
           target="_blank"
           rel="noopener noreferrer"
           className={fileStyles.ctaButton}

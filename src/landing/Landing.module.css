@@ -55,7 +55,8 @@
   justify-content: start;
   align-items: start;
   /* padding-bottom: calc(4rem - 1rem); */
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto; /* Center horizontally */
   margin-top: 80px;
   font-weight: 410;

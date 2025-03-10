@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export const Row = ({
   children,
@@ -7,17 +10,46 @@ export const Row = ({
   children: React.ReactNode;
   style?: React.CSSProperties;
 }) => {
-  return <div style={{ ...styles.row, ...style }}>{children}</div>;
+  const screenWidth = useScreenWidth();
+  const isMobile = screenWidth < 800;
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: isMobile ? "column" : "row",
+        width: "100%",
+        borderTop: "1px solid rgba(0, 0, 0, 0.035)",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
-const styles = {
-  row: {
-    position: "relative" as const,
-    display: "flex",
-    flexDirection: "row" as const,
-    width: "100%",
-    borderTop: "1px solid rgba(0, 0, 0, 0.035)",
-  },
+export const useScreenWidth = () => {
+  const [screenWidth, setScreenWidth] = useState(-1);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Initial call to set the correct width
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return screenWidth;
 };
 export const Block = ({
   children,
@@ -30,28 +62,41 @@ export const Block = ({
   noPadding,
   background = "#FDFDFD",
   lighting,
+  alignItemsMobile = "start",
 }: {
   children: React.ReactNode;
   width?: string;
   height?: string;
   borderRight?: boolean;
   gap?: string;
-  style?: React.CSSProperties;
   centered?: boolean;
   noPadding?: boolean;
   background?: string;
   lighting?: boolean;
+  alignItemsMobile?: "center" | "start";
+  style?: React.CSSProperties;
 }) => {
+  const screenWidth = useScreenWidth();
+  const isMobile = screenWidth < 800;
+
+  console.log("screenWidth: ", screenWidth);
+
   return (
     <div
       style={{
-        ...blockStyles.block,
-        width: width || "50%",
-        height: height || "400px",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        width: isMobile ? "100%" : width || "50%",
+        height: height || (isMobile ? "400px" : "400px"),
         gap: gap || "0.5rem",
-        borderRight: borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
-        alignItems: centered ? "center" : "start",
-        padding: noPadding ? "0rem" : "3rem",
+        borderRight:
+          !isMobile && borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
+        borderBottom:
+          isMobile && borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
+        alignItems: isMobile ? alignItemsMobile : centered ? "center" : "start",
+        padding: noPadding ? "0rem" : isMobile ? "1.5rem" : "3rem",
         background,
         backgroundImage: lighting
           ? "radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)"
@@ -74,43 +119,29 @@ export const LandingImage = ({
   style?: React.CSSProperties;
 }) => {
   return (
-    <div style={{ ...landingImageStyles.container, ...style }}>
-      <Image src={src} alt={alt} fill style={landingImageStyles.image} />
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        maxWidth: "250px",
+        overflow: "hidden",
+        ...style,
+      }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          objectPosition: "center",
+        }}
+      />
     </div>
   );
-};
-
-const landingImageStyles = {
-  container: {
-    position: "relative" as const,
-    width: "100%",
-    height: "100%",
-    maxWidth: "300px",
-    overflow: "hidden",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    objectFit: "contain" as const,
-    objectPosition: "center",
-    // objectFit: "cover" as const,
-    // objectPosition: "center",
-  },
-};
-
-// Update styles object to include block styles
-const blockStyles = {
-  block: {
-    position: "relative",
-    height: "300px",
-    width: "50%",
-    padding: "3rem",
-    display: "flex",
-    flexDirection: "column" as const,
-    justifyContent: "center",
-    alignItems: "start",
-    gap: "1rem",
-  },
 };
 
 export const SubHeader = ({
@@ -122,31 +153,22 @@ export const SubHeader = ({
   isPrimary?: boolean;
   style?: React.CSSProperties;
 }) => {
+  const screenWidth = useScreenWidth();
+  const isMobile = screenWidth < 800;
+
   return (
     <div
       style={{
-        ...subHeaderStyles.base,
-        color: isPrimary
-          ? subHeaderStyles.colors.primary
-          : subHeaderStyles.colors.secondary,
+        fontWeight: 460,
+        color: isPrimary ? "rgba(0, 0, 0, 0.9)" : "rgb(143, 153, 168)",
+        fontSize: isMobile ? "20px" : "24px",
+        lineHeight: isMobile ? "28px" : "32px",
         ...style,
       }}
     >
       {children}
     </div>
   );
-};
-
-const subHeaderStyles = {
-  base: {
-    fontSize: "24px",
-    lineHeight: "32px",
-    fontWeight: 460,
-  },
-  colors: {
-    primary: "rgba(0, 0, 0, 0.9)",
-    secondary: "rgb(143 153 168)",
-  },
 };
 
 export const Primary = ({
@@ -159,7 +181,8 @@ export const Primary = ({
   return (
     <span
       style={{
-        ...primaryStyles.base,
+        color: "rgba(0, 0, 0, 0.9)",
+        fontWeight: 460,
         ...style,
       }}
     >
@@ -178,27 +201,14 @@ export const GreenSpan = ({
   return (
     <span
       style={{
-        ...greenSpanStyles.base,
+        color: "var(--logo-green)",
+        fontWeight: 460,
         ...style,
       }}
     >
       {children}
     </span>
   );
-};
-
-const greenSpanStyles = {
-  base: {
-    color: "var(--logo-green)",
-    fontWeight: 460,
-  },
-};
-
-const primaryStyles = {
-  base: {
-    color: subHeaderStyles.colors.primary,
-    fontWeight: 460,
-  },
 };
 
 export const Body = ({
@@ -211,19 +221,13 @@ export const Body = ({
   return (
     <span
       style={{
-        ...bodyStyles.base,
+        fontSize: "1rem",
+        color: "rgba(0, 0, 0, 0.5)",
+        fontWeight: 500,
         ...style,
       }}
     >
       {children}
     </span>
   );
-};
-
-const bodyStyles = {
-  base: {
-    fontSize: "1rem",
-    color: "rgba(0, 0, 0, 0.5)",
-    fontWeight: 500,
-  },
 };

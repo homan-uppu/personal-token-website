@@ -1,5 +1,3 @@
-import HeroCaption from "@/writing/hero.mdx";
-import LandingText from "@/writing/landing.mdx";
 import Navbar from "../components/Navbar";
 import styles from "./Landing.module.css";
 import { PersonalTokenComp } from "@/components/PersonalToken";
@@ -13,15 +11,16 @@ import {
   Row,
   SubHeader,
 } from "./Layout";
-import titleBgStyles from "../post/TitleBg.module.css";
-import { DottedGrid } from "./Backgrounds/DottedGrid/DottedGrid";
 import { Lines } from "./Backgrounds/Lines/Lines";
-import MotionBg from "./Backgrounds/MotionBg/MotionBg";
 import Footer from "@/components/Footer/Footer";
+import React from "react";
+import { WaitlistBlock } from "./WaitlistBlock";
+import { LoadingPage } from "./LoadingPage";
 
 const Landing = () => {
   return (
     <div className={styles.container}>
+      <LoadingPage />
       <div className={styles.content}>
         <Navbar />
         <div className={styles.main}>
@@ -54,15 +53,18 @@ const Landing = () => {
               </Body>
               <Lines direction={false} />
             </Block>
-            <Block noPadding centered background="white" lighting>
+            <Block
+              noPadding
+              centered
+              background="white"
+              lighting
+              alignItemsMobile="center"
+            >
               <LandingImage src="/images/grounded.png" alt="." />
             </Block>
           </Row>
           <Row>
-            <Block noPadding centered background="white" borderRight lighting>
-              <LandingImage src="/images/equity-pie.png" alt="." />
-            </Block>
-            <Block>
+            <Block borderRight>
               <SubHeader>
                 <Primary>Raise $</Primary>
               </SubHeader>
@@ -71,6 +73,15 @@ const Landing = () => {
                 your token.
               </Body>
               <Lines direction={true} />
+            </Block>
+            <Block
+              noPadding
+              centered
+              background="white"
+              lighting
+              alignItemsMobile="center"
+            >
+              <LandingImage src="/images/equity-pie.png" alt="." />
             </Block>
           </Row>
           <Row>
@@ -96,14 +107,10 @@ const Landing = () => {
             </Block>
           </Row>
           <Row>
-            <Block width="100%" centered background="white">
-              <SubHeader>
-                <Primary>Join the waitlist.</Primary>
-              </SubHeader>
-            </Block>
+            <WaitlistBlock />
           </Row>
           <Row>
-            <Block width="100%" centered>
+            <Block width="100%" centered alignItemsMobile="start">
               <SubHeader>
                 A <Primary>primitive</Primary> designed for the age of
                 creativity

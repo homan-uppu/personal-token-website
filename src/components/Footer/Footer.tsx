@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 
 import fileStyles from "./Footer.module.css";
+import { CONSTANTS } from "@/util";
 
 const FooterLink: React.FC<{
   url: string;
@@ -37,9 +38,8 @@ const Footer: React.FC = () => {
           <FooterLink url="/why" label="Why" />
           <FooterLink url="/contribute" label="Contribute" />
           <FooterLink
-            url=""
             label="Join waitlist"
-            url="https://forms.gle/GHTx6Aec7PBzg2EW9"
+            url={CONSTANTS.waitlistUrl}
             external
           />
           <FooterLink url="https://x.com/homan_u" label="Contact" external />
@@ -55,6 +55,8 @@ const styles = {
     padding: "0 0px",
     display: "flex",
     justifyContent: "flex-start",
+    paddingBottom: "6rem",
+    paddingTop: "3rem",
   },
   linksSection: {
     display: "flex",

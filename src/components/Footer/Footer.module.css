@@ -2,13 +2,11 @@
   width: calc(100%);
   padding: 3rem;
   border-top: 1px solid rgba(0, 0, 0, 0.025);
-  margin-top: 3rem;
 }
 
 @media (max-width: 768px) {
   .footer {
     width: calc(100%);
-    margin: 3rem auto 0;
-    padding: 16px;
+    padding: 1.5rem;
   }
 }
