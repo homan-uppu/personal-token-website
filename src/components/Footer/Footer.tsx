@@ -4,26 +4,45 @@ import React, { useState } from "react";
 
 import fileStyles from "./Footer.module.css";
 
-const Footer: React.FC = () => {
+const FooterLink: React.FC<{
+  url: string;
+  label: string;
+  external?: boolean;
+}> = ({ url, label, external = false }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
+    <a
+      href={url}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      style={{
+        ...styles.link,
+        ...(isHovered && styles.linkHover),
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {label}
+    </a>
+  );
+};
+
+const Footer: React.FC = () => {
+  return (
     <footer className={fileStyles.footer}>
       <div style={styles.container}>
-        <div style={styles.rightSection}>
-          <a
-            href="https://x.com/homan_u"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              ...styles.link,
-              ...(isHovered && styles.linkHover),
-            }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            contact
-          </a>
+        <div style={styles.linksSection}>
+          <FooterLink url="/how" label="How it works" />
+          <FooterLink url="/why" label="Why" />
+          <FooterLink url="/contribute" label="Contribute" />
+          <FooterLink
+            url=""
+            label="Join waitlist"
+            url="https://forms.gle/GHTx6Aec7PBzg2EW9"
+            external
+          />
+          <FooterLink url="https://x.com/homan_u" label="Contact" external />
         </div>
       </div>
     </footer>
@@ -32,20 +51,21 @@ const Footer: React.FC = () => {
 
 const styles = {
   container: {
-    maxWidth: "1200px",
     margin: "0 auto",
     padding: "0 0px",
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
   },
-  rightSection: {
+  linksSection: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
+    alignItems: "start",
+    gap: "1rem",
   },
   link: {
     color: "rgba(0, 0, 0,0.25)",
     textDecoration: "none",
-    fontSize: "14px",
+    fontSize: "16px",
     fontWeight: 500,
     transition: "color 0.2s ease",
   },

@@ -17,6 +17,7 @@ import titleBgStyles from "../post/TitleBg.module.css";
 import { DottedGrid } from "./Backgrounds/DottedGrid/DottedGrid";
 import { Lines } from "./Backgrounds/Lines/Lines";
 import MotionBg from "./Backgrounds/MotionBg/MotionBg";
+import Footer from "@/components/Footer/Footer";
 
 const Landing = () => {
   return (
@@ -112,6 +113,7 @@ const Landing = () => {
               </SubHeader>
             </Block>
           </Row>
+          <Footer />
         </div>
       </div>
 
