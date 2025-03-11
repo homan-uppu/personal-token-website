@@ -18,47 +18,54 @@ import { WaitlistBlock } from "./WaitlistBlock";
 import { LoadingPage } from "./LoadingPage";
 import { Grain } from "./Backgrounds/Grain/Grain";
 import { CONSTANTS } from "@/util";
+import Image from "next/image";
+import { Suspense } from "react";
 
 const Landing = () => {
   return (
     <div className={styles.container}>
       <LoadingPage />
       <Grain />
-      <div
-        style={{
-          position: "absolute",
-          top: "-5rem",
-          left: 0,
-          width: "100%",
-          height: "calc(703px + 5rem)",
-          overflow: "hidden",
-          zIndex: -1,
-        }}
-      >
-        <img
-          src="/images/landing.png"
-          alt="Landing"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center top",
-            opacity: 0.2, // Significantly reduced opacity to lighten the background
-          }}
-        />
+
+      <Suspense fallback={<div></div>}>
         <div
           style={{
             position: "absolute",
-            bottom: 0,
+            top: "-5rem",
             left: 0,
             width: "100%",
-            height: "40%", // Increased gradient height
-            background:
-              "linear-gradient(to bottom, rgba(253, 253, 253, 0), rgba(253, 253, 253, 1))",
-            pointerEvents: "none",
+            height: "calc(703px + 5rem)",
+            overflow: "hidden",
+            zIndex: -1,
           }}
-        ></div>
-      </div>
+        >
+          <Image
+            src="/images/landing.png"
+            alt="Landing"
+            width={2000}
+            height={1000}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              opacity: 0.2, // Significantly reduced opacity to lighten the background
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              width: "100%",
+              height: "40%", // Increased gradient height
+              background:
+                "linear-gradient(to bottom, rgba(253, 253, 253, 0), rgba(253, 253, 253, 1))",
+              pointerEvents: "none",
+            }}
+          ></div>
+        </div>
+      </Suspense>
       <div className={styles.content}>
         <Navbar />
         <div className={styles.main}>
