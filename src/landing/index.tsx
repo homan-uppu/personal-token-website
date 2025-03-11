@@ -199,7 +199,6 @@ const verticalBarCenterStyle = {
   left: "50%",
   width: "1px",
   height: "100vh",
-  // backgroundColor: "rgba(0, 0, 0, 0.025)",
   zIndex: 0,
   borderLeft: "1px dashed rgba(0, 0, 0, 0.085)",
 };
