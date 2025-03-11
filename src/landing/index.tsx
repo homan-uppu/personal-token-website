@@ -95,7 +95,7 @@ const Landing = () => {
               </SubHeader>
               <Body>
                 A PersonalToken's value is grounded in its owner's equities in
-                companies and other personal tokens.
+                companies and other PersonalTokens.
               </Body>
             </Block>
             <Block noPadding centered lighting alignItemsMobile="center">
@@ -125,7 +125,7 @@ const Landing = () => {
               </SubHeader>
               <Body>
                 Finance learning and ambitious experiments without taking on
-                debt. Share risk with investors.
+                debt by sharing risk with investors.
               </Body>
             </Block>
             <Block background={CONSTANTS.blockGradientBg}>
@@ -134,7 +134,7 @@ const Landing = () => {
               </SubHeader>
               <Body>
                 Invest in talent before they start companies & in those who may
-                never start one, but still go on to do great work.
+                never start one but still go on to do great work.
               </Body>
             </Block>
           </Row>
@@ -174,7 +174,7 @@ export const FullScreenDivider = () => {
       style={{
         width: "100vw",
         height: "1px",
-        backgroundColor: "rgba(0, 0, 0, 0.035)",
+        backgroundColor: "rgba(0, 0, 0, 0.05)",
         position: "relative",
         left: "50%",
         transform: "translateX(-50%)",
@@ -189,7 +189,7 @@ const verticalBarLeftStyle = {
   left: "calc((100vw - 800px) / 2)",
   width: "1px",
   height: "100vh",
-  backgroundColor: "rgba(0, 0, 0, 0.035)",
+  backgroundColor: "rgba(0, 0, 0, 0.05)",
   zIndex: 1,
 };
 
@@ -201,7 +201,7 @@ const verticalBarCenterStyle = {
   height: "100vh",
   // backgroundColor: "rgba(0, 0, 0, 0.025)",
   zIndex: 0,
-  borderLeft: "1px dashed rgba(0, 0, 0, 0.035)",
+  borderLeft: "1px dashed rgba(0, 0, 0, 0.085)",
 };
 
 const verticalBarRightStyle = {
@@ -210,7 +210,7 @@ const verticalBarRightStyle = {
   left: "calc((100vw - 800px) / 2 + 800px)",
   width: "1px",
   height: "100vh",
-  backgroundColor: "rgba(0, 0, 0, 0.035)",
+  backgroundColor: "rgba(0, 0, 0, 0.05)",
   zIndex: 1,
 };
 

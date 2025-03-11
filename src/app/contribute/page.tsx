@@ -4,7 +4,7 @@ import Why from "@/writing/contribute.mdx";
 
 export default function HowPage() {
   return (
-    <PostPage title="Contribute" pageID="contribute">
+    <PostPage title="Contribute" pageID="contribute" noFooter>
       <Why components={{ Annotation }} />
     </PostPage>
   );

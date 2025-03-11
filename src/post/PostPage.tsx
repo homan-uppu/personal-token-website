@@ -13,6 +13,7 @@ interface PostPageProps {
   caption?: string;
   pageID?: string;
   labels?: string[];
+  noFooter?: boolean;
 }
 
 export const PostPage = ({
@@ -21,6 +22,7 @@ export const PostPage = ({
   caption,
   pageID,
   labels,
+  noFooter,
 }: PostPageProps) => {
   return (
     <div className={styles.container}>
@@ -39,7 +41,7 @@ export const PostPage = ({
         {children}
       </div>
 
-      <Footer marginTop={"2rem"} marginBottom={"2rem"} />
+      {!noFooter && <Footer marginTop={"2rem"} marginBottom={"2rem"} />}
 
       <div style={verticalBarLeftStyle}></div>
       <div style={verticalBarRightStyle}></div>
