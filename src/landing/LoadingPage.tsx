@@ -10,11 +10,11 @@ export const LoadingPage = () => {
 
   useEffect(() => {
     if (screenWidth > 0) {
-      //   // Instead of immediately hiding, we'll set a timeout to allow the animation to complete
-      //   setTimeout(() => {
-      //     setVisible(false);
-      //   }, 2000); // 2 seconds total for the animation
-      setVisible(false);
+      // Instead of immediately hiding, we'll set a timeout to allow the animation to complete
+      setTimeout(() => {
+        setVisible(false);
+      }, 200); // 2 seconds total for the animation
+      //   setVisible(false);
     }
   }, [screenWidth]);
 
