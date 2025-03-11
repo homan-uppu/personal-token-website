@@ -58,4 +58,6 @@ export const springTransition = {
 
 export const CONSTANTS = {
   waitlistUrl: "https://forms.gle/GHTx6Aec7PBzg2EW9",
+  blockGradientBg:
+    "radial-gradient(circle at center, #FFFFFF 0%, #FAFAFA 100%)",
 };

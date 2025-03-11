@@ -29,7 +29,7 @@ export const WaitlistBlock = () => {
           (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.025)")
         }
         onMouseLeave={(e) =>
-          (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.015)")
+          (e.currentTarget.style.backgroundColor = "#FDFDFD")
         }
       >
         <SubHeader>
@@ -48,14 +48,15 @@ const waitlistBlockStyle = {
   position: "relative" as const,
   overflow: "hidden",
   padding: "3rem",
+  zIndex: 1,
 };
 
 const contentContainerStyle = {
   width: "100%",
   display: "flex",
-  backgroundColor: "rgba(0, 0, 0, 0.015)",
+  backgroundColor: "#FDFDFD",
   border: "1px solid rgba(0, 0, 0, 0.025)",
-  borderRadius: 16,
+  borderRadius: 0,
   justifyContent: "center",
   alignItems: "center",
   padding: "6rem 3rem",

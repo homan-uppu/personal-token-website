@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
 export const Row = ({
   children,
   style,
+  reverseInMobile,
 }: {
   children: React.ReactNode;
   style?: React.CSSProperties;
+  reverseInMobile?: boolean;
 }) => {
   const screenWidth = useScreenWidth();
   const isMobile = screenWidth < 800;
@@ -18,9 +19,12 @@ export const Row = ({
       style={{
         position: "relative",
         display: "flex",
-        flexDirection: isMobile ? "column" : "row",
+        flexDirection: isMobile
+          ? reverseInMobile
+            ? "column-reverse"
+            : "column"
+          : "row",
         width: "100%",
-        borderTop: "1px solid rgba(0, 0, 0, 0.035)",
         ...style,
       }}
     >
@@ -60,8 +64,9 @@ export const Block = ({
   style,
   centered,
   noPadding,
-  background = "#FDFDFD",
+  background = "transparent",
   lighting,
+  centerLight,
   alignItemsMobile = "start",
 }: {
   children: React.ReactNode;
@@ -73,13 +78,12 @@ export const Block = ({
   noPadding?: boolean;
   background?: string;
   lighting?: boolean;
+  centerLight?: boolean;
   alignItemsMobile?: "center" | "start";
   style?: React.CSSProperties;
 }) => {
   const screenWidth = useScreenWidth();
   const isMobile = screenWidth < 800;
-
-  console.log("screenWidth: ", screenWidth);
 
   return (
     <div
@@ -89,7 +93,7 @@ export const Block = ({
         flexDirection: "column",
         justifyContent: "center",
         width: isMobile ? "100%" : width || "50%",
-        height: height || (isMobile ? "400px" : "400px"),
+        height: height || (isMobile ? "300px" : "400px"),
         gap: gap || "0.5rem",
         borderRight:
           !isMobile && borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
@@ -97,10 +101,12 @@ export const Block = ({
           isMobile && borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
         alignItems: isMobile ? alignItemsMobile : centered ? "center" : "start",
         padding: noPadding ? "0rem" : isMobile ? "1.5rem" : "3rem",
-        background,
-        backgroundImage: lighting
-          ? "radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)"
-          : "none",
+        background: background,
+        // backgroundImage: lighting
+        //   ? "radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)"
+        //   : centerLight
+        //   ? "radial-gradient(circle at center, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 50%)"
+        //   : "none",
         ...style,
       }}
     >
@@ -154,7 +160,7 @@ export const SubHeader = ({
   style?: React.CSSProperties;
 }) => {
   const screenWidth = useScreenWidth();
-  const isMobile = screenWidth < 800;
+  const isMobile = screenWidth < 500;
 
   return (
     <div

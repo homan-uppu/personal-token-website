@@ -52,7 +52,7 @@ const Navbar = ({
       display: screenWidth < 0 ? "none" : "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      backdropFilter: "blur(5px)",
+      backdropFilter: alwaysShowScrolled || scrollY > 10 ? "blur(4px)" : "",
       borderRadius: "24px",
       width:
         screenWidth >= 800 ? `calc(${width}px - 6rem)` : "calc(100% - 3rem)",
@@ -86,7 +86,7 @@ const Navbar = ({
             : "1px solid rgba(0, 0, 0, 0)",
         background:
           alwaysShowScrolled || scrollY > 10
-            ? "rgba(255, 255, 255, 0.65)"
+            ? "rgba(255, 255, 255, 0.35)"
             : "transparent",
         padding:
           alwaysShowScrolled || scrollY > 10

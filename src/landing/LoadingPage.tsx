@@ -30,7 +30,7 @@ export const LoadingPage = () => {
             transition: { duration: 1, ease: "easeInOut" },
           }}
         >
-          <svg width="50" height="50" viewBox="0 0 100 100">
+          {/* <svg width="50" height="50" viewBox="0 0 100 100">
             <circle
               cx="50"
               cy="50"
@@ -60,7 +60,7 @@ export const LoadingPage = () => {
                 repeatType: "loop",
               }}
             />
-          </svg>
+          </svg> */}
         </motion.div>
       )}
     </AnimatePresence>
