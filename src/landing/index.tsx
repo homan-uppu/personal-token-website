@@ -82,7 +82,7 @@ const Landing = () => {
           </Row>
           <FullScreenDivider />
           <Row>
-            <Block background={CONSTANTS.blockGradientBg}>
+            <Block background={CONSTANTS.blockGradientBg} borderBottomMobile>
               <SubHeader>
                 <Primary>Grounded in real value.</Primary>
               </SubHeader>
@@ -100,7 +100,7 @@ const Landing = () => {
             <Block noPadding centered lighting alignItemsMobile="center">
               <LandingImage src="/images/equity-pie.png" alt="." />
             </Block>
-            <Block background={CONSTANTS.blockGradientBg}>
+            <Block background={CONSTANTS.blockGradientBg} borderBottomMobile>
               <SubHeader>
                 <Primary>Raise $</Primary>
               </SubHeader>
@@ -112,7 +112,7 @@ const Landing = () => {
           </Row>
           <FullScreenDivider />
           <Row>
-            <Block background={CONSTANTS.blockGradientBg}>
+            <Block background={CONSTANTS.blockGradientBg} borderBottomMobile>
               <SubHeader>
                 <Primary>Learn without debt.</Primary>
               </SubHeader>

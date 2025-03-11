@@ -68,6 +68,7 @@ export const Block = ({
   lighting,
   centerLight,
   alignItemsMobile = "start",
+  borderBottomMobile,
 }: {
   children: React.ReactNode;
   width?: string;
@@ -80,6 +81,7 @@ export const Block = ({
   lighting?: boolean;
   centerLight?: boolean;
   alignItemsMobile?: "center" | "start";
+  borderBottomMobile?: boolean;
   style?: React.CSSProperties;
 }) => {
   const screenWidth = useScreenWidth();
@@ -98,7 +100,9 @@ export const Block = ({
         borderRight:
           !isMobile && borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
         borderBottom:
-          isMobile && borderRight ? "1px dashed rgba(0, 0, 0, 0.035)" : "none",
+          (isMobile && borderRight) || (isMobile && borderBottomMobile)
+            ? "1px dashed rgba(0, 0, 0, 0.035)"
+            : "none",
         alignItems: isMobile ? alignItemsMobile : centered ? "center" : "start",
         padding: noPadding ? "0rem" : isMobile ? "1.5rem" : "3rem",
         background: background,
