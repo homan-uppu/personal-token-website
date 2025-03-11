@@ -128,7 +128,7 @@ const Landing = () => {
                 debt by sharing risk with investors.
               </Body>
             </Block>
-            <Block background={CONSTANTS.blockGradientBg}>
+            <Block>
               <SubHeader>
                 <Primary>Back talent early.</Primary>
               </SubHeader>
