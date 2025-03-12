@@ -109,7 +109,7 @@ const Landing = () => {
             </Block>
             <Block background={CONSTANTS.blockGradientBg} borderBottomMobile>
               <SubHeader>
-                <Primary>Raise $</Primary>
+                <Primary>Raise capital.</Primary>
               </SubHeader>
               <Body>
                 By giving up equity in your future outcomes through shares of
