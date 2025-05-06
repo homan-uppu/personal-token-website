@@ -31,7 +31,7 @@ const Logo = ({
         <circle cx="10" cy="10.5" r="8.9" stroke="#04AB46" strokeWidth="1.8" />
       </svg>
 
-      <span style={styles.text}>PersonalToken</span>
+      <span style={styles.text}>personalToken</span>
     </div>
   );
 };

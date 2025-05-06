@@ -42,11 +42,11 @@ const containerStyles = {
   paddingBottom: "3rem",
 };
 
-export default function HowPage() {
+export default function Docs() {
   const sections = parseMdx(getMarkdownContent());
 
   return (
-    <PostPage title="How it works" pageID="how" labels={sections}>
+    <PostPage title="docs" pageID="docs" labels={sections}>
       <How
         components={{
           ...mdxComponents,

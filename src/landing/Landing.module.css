@@ -58,8 +58,19 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto; /* Center horizontally */
-  margin-top: 80px;
   font-weight: 410;
+}
+
+.main p {
+  color: rgba(0, 0, 0, 0.7) !important;
+  margin-bottom: 24px !important;
+  font-size: 17px !important;
+}
+
+.main h3 {
+  color: black !important;
+  margin-top: 96px !important;
+  font-size: 17px !important;
 }
 
 .visual {

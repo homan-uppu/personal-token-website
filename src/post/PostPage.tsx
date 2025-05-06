@@ -29,10 +29,10 @@ export const PostPage = ({
       <Navbar pageID={pageID} width={688} />
       <div className={styles.content}>
         <div className={styles.titleContainer}>
-          <div className={titleBgStyles.titleBg} />
           <h1 className={`${styles.title}`}>{title}</h1>
+          {caption && <div className={styles.caption}>{caption}</div>}
         </div>
-        {caption && <div className={styles.caption}>{caption}</div>}
+
         {labels && (
           <div className={styles.tocContainer}>
             <TOC labels={labels} />

@@ -38,8 +38,8 @@ const Navbar = ({
   const screenWidth = useScreenWidth();
 
   const links = [
-    { href: "/how", label: "how" },
-    { href: "/why", label: "why" },
+    { href: "/docs", label: "docs" },
+    { href: "https://unfck.education", label: "why" },
   ];
 
   const styles = {
@@ -107,18 +107,39 @@ const Navbar = ({
         <Logo />
       </Link>
       <div style={styles.links}>
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            className={fileStyles.link}
-            href={link.href}
-            style={{
-              ...(pageID === link.href.substring(1) && styles.activeLink),
-            }}
-          >
-            {link.label}
-          </Link>
-        ))}
+        {links.map((link) => {
+          // Check if the link is external (starts with http or https)
+          const isExternal = /^https?:\/\//.test(link.href);
+          if (isExternal) {
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={fileStyles.link}
+                style={{
+                  ...(pageID === link.href.substring(1) && styles.activeLink),
+                }}
+              >
+                {link.label}
+              </a>
+            );
+          } else {
+            return (
+              <Link
+                key={link.href}
+                className={fileStyles.link}
+                href={link.href}
+                style={{
+                  ...(pageID === link.href.substring(1) && styles.activeLink),
+                }}
+              >
+                {link.label}
+              </Link>
+            );
+          }
+        })}
         <a
           href={CONSTANTS.waitlistUrl}
           target="_blank"
