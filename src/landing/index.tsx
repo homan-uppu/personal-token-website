@@ -8,6 +8,10 @@ import Image from "next/image";
 import LandingMDX from "@/writing/landing.mdx";
 import { PostPage } from "@/post/PostPage";
 
+const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <div style={wrapperStyle}>{children}</div>
+);
+
 const Landing = () => {
   return (
     <div className={styles.container}>
@@ -20,9 +24,15 @@ const Landing = () => {
             <LandingMDX
               components={{
                 PersonalTokenComp: () => (
-                  <PersonalTokenComp token={dummyPersonalToken} />
+                  <Wrapper>
+                    <PersonalTokenComp token={dummyPersonalToken} />
+                  </Wrapper>
                 ),
-                Image,
+                Image: (props: any) => (
+                  <Wrapper>
+                    <Image {...props} />
+                  </Wrapper>
+                ),
               }}
             />
           </PostPage>
@@ -30,6 +40,16 @@ const Landing = () => {
       </div>
     </div>
   );
+};
+
+const wrapperStyle: React.CSSProperties = {
+  width: "100%",
+  marginTop: "48px",
+  marginBottom: "64px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  minHeight: "100px",
 };
 
 export default Landing;
