@@ -3,10 +3,12 @@ import { PersonalTokenComp } from "@/components/PersonalToken";
 import { dummyPersonalToken } from "@/util/models";
 import React from "react";
 import { LoadingPage } from "./LoadingPage";
-import { Grain } from "./Backgrounds/Grain/Grain";
 import Image from "next/image";
 import LandingMDX from "@/writing/landing.mdx";
 import { PostPage } from "@/post/PostPage";
+import { Grain } from "./Grain";
+import EmailCapture from "@/components/EmailCapture/EmailCapture";
+import Accordion from "@/white-paper/Accordion";
 
 const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div style={wrapperStyle}>{children}</div>
@@ -33,6 +35,8 @@ const Landing = () => {
                     <Image {...props} />
                   </Wrapper>
                 ),
+                EmailCapture: () => <EmailCapture />,
+                Accordion,
               }}
             />
           </PostPage>
