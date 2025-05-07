@@ -27,10 +27,19 @@ const EmailCapture: React.FC = () => {
     setTouched(true);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isValidEmail(email)) {
       setState("success");
-      // Here you would typically send the email to your backend
+      // Fire and forget: send to backend, but don't wait for result
+      fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }).catch(() => {
+        // Ignore errors, user always sees checkmark
+      });
     } else {
       setShake(true);
       setTouched(true);
