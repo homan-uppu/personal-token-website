@@ -65,62 +65,65 @@ const EmailCapture: React.FC = () => {
 
   return (
     <div style={emailCaptureStyles.container}>
-      <div style={emailCaptureStyles.inputWrapper}>
-        {/* Input is always rendered, but disabled and unfocusable in success state */}
-        <input
-          ref={inputRef}
-          type="email"
-          placeholder="Enter your email for early access."
-          value={email}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          style={{
-            ...emailCaptureStyles.input,
-            ...(shake ? emailCaptureStyles.inputShake : {}),
-            border: "1px solid rgba(0,0,0,0.03)",
-            background: state === "success" ? "#fafaf9" : "transparent",
-            color: state === "success" ? "#111" : "#111",
-            cursor: state === "success" ? "default" : "text",
-          }}
-          autoComplete="email"
-          spellCheck={false}
-          disabled={state === "success"}
-          tabIndex={state === "success" ? -1 : 0}
-          readOnly={state === "success"}
-        />
-        {/* Arrow or checkmark in the same spot */}
-        <div style={emailCaptureStyles.iconSlot}>
-          <AnimatePresence mode="wait" initial={false}>
-            {state === "input" && showArrow && (
-              <motion.button
-                key="arrow"
-                type="button"
-                onClick={handleSubmit}
-                style={emailCaptureStyles.arrowButton}
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 16 }}
-                transition={springTransition}
-                tabIndex={0}
-                aria-label="Submit email"
-              >
-                <ArrowIcon />
-              </motion.button>
-            )}
-            {state === "success" && (
-              <motion.span
-                key="checkmark"
-                initial={{ opacity: 0, scale: 0.8, x: 16 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                exit={{ opacity: 0, scale: 0.8, x: 16 }}
-                transition={springTransition}
-                style={emailCaptureStyles.checkmarkButton}
-                aria-label="Success"
-              >
-                <CheckmarkIcon />
-              </motion.span>
-            )}
-          </AnimatePresence>
+      <div style={emailCaptureStyles.rowWrapper}>
+        <label style={emailCaptureStyles.label} htmlFor="email-capture-input">
+          early access:
+        </label>
+        <div style={emailCaptureStyles.inputWrapper}>
+          {/* Input is always rendered, but disabled and unfocusable in success state */}
+          <input
+            id="email-capture-input"
+            ref={inputRef}
+            type="email"
+            placeholder="enter your email."
+            value={email}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            style={{
+              ...emailCaptureStyles.input,
+              ...(shake ? emailCaptureStyles.inputShake : {}),
+              cursor: state === "success" ? "default" : "text",
+            }}
+            autoComplete="email"
+            spellCheck={false}
+            disabled={state === "success"}
+            tabIndex={state === "success" ? -1 : 0}
+            readOnly={state === "success"}
+          />
+          {/* Arrow or checkmark in the same spot */}
+          <div style={emailCaptureStyles.iconSlot}>
+            <AnimatePresence mode="wait" initial={false}>
+              {state === "input" && showArrow && (
+                <motion.button
+                  key="arrow"
+                  type="button"
+                  onClick={handleSubmit}
+                  style={emailCaptureStyles.arrowButton}
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 16 }}
+                  transition={springTransition}
+                  tabIndex={0}
+                  aria-label="Submit email"
+                >
+                  <ArrowIcon />
+                </motion.button>
+              )}
+              {state === "success" && (
+                <motion.span
+                  key="checkmark"
+                  initial={{ opacity: 0, scale: 0.8, x: 16 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, x: 16 }}
+                  transition={springTransition}
+                  style={emailCaptureStyles.checkmarkButton}
+                  aria-label="Success"
+                >
+                  <CheckmarkIcon />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
@@ -187,10 +190,38 @@ const borderRadius = 16;
 const emailCaptureStyles = {
   container: {
     display: "flex",
-    justifyContent: "start",
+    justifyContent: "center",
     alignItems: "center",
+    border: "1px solid rgba(0, 0, 0, 0.03)",
     minHeight: "54px",
     width: "100%",
+    background: "var(--layer2-bg-color)", // dark background for emphasis
+    borderRadius: borderRadius,
+    boxSizing: "border-box" as const,
+    padding: "24px",
+    marginTop: "96px",
+    marginBottom: "96px",
+  } as React.CSSProperties,
+
+  rowWrapper: {
+    display: "flex",
+    flexDirection: "row" as const,
+    alignItems: "center",
+    width: "100%",
+    gap: 8,
+    padding: "0 0",
+  } as React.CSSProperties,
+
+  label: {
+    color: "black", // white text for label
+    fontWeight: 500,
+    fontSize: 16,
+    marginRight: 0,
+    minWidth: 110,
+    textAlign: "left" as const,
+    letterSpacing: 0,
+    userSelect: "none" as const,
+    flexShrink: 0,
   } as React.CSSProperties,
 
   inputWrapper: {
@@ -199,22 +230,23 @@ const emailCaptureStyles = {
     maxWidth: "100%",
     display: "flex",
     alignItems: "center",
-    background: "#fafaf9",
+    background: "transparent",
     borderRadius: borderRadius,
-    padding: "0 0",
     minHeight: 48,
     transition: "box-shadow 0.18s",
+    flexGrow: 1,
   } as React.CSSProperties,
 
   input: {
     width: "100%",
     fontSize: 16,
-    border: "1px solid rgba(0,0,0,0.03)",
+    // border: "1px solid rgba(255,255,255,0.18)", // lighter border for lighter dark bg
+    border: "none",
     borderRadius: borderRadius,
     outline: "none",
     padding: "14px 48px 14px 20px",
-    background: "transparent",
-    color: "#111",
+    background: "#FAFAFA", // lighter shade of dark than container
+    color: "#000", // flip color of text to white
     fontWeight: 500,
     transition: "border 0.18s, box-shadow 0.18s",
     boxSizing: "border-box" as const,

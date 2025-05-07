@@ -152,7 +152,7 @@ const Navbar = ({
             }
           }
         >
-          join
+          access
         </a>
       </div>
     </motion.nav>
