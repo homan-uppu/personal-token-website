@@ -58,18 +58,18 @@
   font-weight: 410;
 }
 
-.main div {
+/* .main div {
   font-size: 17px !important;
 }
 
 .main input {
   font-size: 17px !important;
-}
+} */
 
 .main p {
   color: rgba(0, 0, 0, 0.7) !important;
   margin-bottom: 24px !important;
-  font-size: 17px !important;
+  /* font-size: 17px !important; */
 }
 
 .main h3 {

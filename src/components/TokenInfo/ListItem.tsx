@@ -38,6 +38,9 @@ export const ListItem = ({
 
   const imageScale = getImageScale();
 
+  // Determine if we need to add a green stroke (only if labelSecondary === "PT")
+  const showGreenStroke = labelSecondary === "PT";
+
   return (
     <div
       style={{
@@ -48,7 +51,12 @@ export const ListItem = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div style={styles.leftSide}>
-        <div style={styles.imageContainer}>
+        <div
+          style={{
+            ...styles.imageContainer,
+            ...(showGreenStroke ? styles.greenStroke : {}),
+          }}
+        >
           <img
             src={picSrc}
             style={{
@@ -60,9 +68,7 @@ export const ListItem = ({
         </div>
         <div style={styles.nameContainer}>
           <div style={styles.name}>{labelMain}</div>
-          {labelSecondary && (
-            <div style={styles.tokenType}>{labelSecondary}</div>
-          )}
+          {/* No secondary label text anymore */}
         </div>
       </div>
       <div style={styles.line} />
@@ -94,19 +100,25 @@ const styles = {
     gap: "0.5rem",
   },
   imageContainer: {
-    width: "1.5rem",
-    height: "1.5rem",
+    width: "25px",
+    height: "25px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    boxSizing: "border-box" as const,
+  },
+  greenStroke: {
+    border: "1.5px solid var(--logo-green)",
+    borderRadius: "50%",
   },
   profilePic: {
-    width: "1.5rem",
-    height: "1.5rem",
+    width: "23px",
+    height: "23px",
     borderRadius: "50%",
     objectFit: "cover" as const,
     filter: "grayscale(100%)",
     transition: "all 0.3s ease",
+    display: "block",
   },
   nameContainer: {
     display: "flex",
@@ -117,10 +129,6 @@ const styles = {
   name: {
     fontSize: "1rem",
     fontWeight: 420,
-  },
-  tokenType: {
-    fontSize: "12px",
-    color: "rgba(0, 0, 0, 0.5)",
   },
   line: {
     flex: 1,

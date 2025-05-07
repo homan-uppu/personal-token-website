@@ -20,6 +20,7 @@ export const ShareholderListItem = ({
       picSrc={profilePicSrc}
       labelMain={name}
       rightLabel={`${equityPercentage}%`}
+      labelSecondary="PT"
     />
   );
 };
