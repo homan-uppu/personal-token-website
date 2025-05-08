@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 
 import fileStyles from "./Footer.module.css";
-import { CONSTANTS } from "@/util";
 import { useScreenWidth } from "@/landing/Layout";
 
 const FooterLink: React.FC<{
@@ -27,6 +26,7 @@ const FooterLink: React.FC<{
     </a>
   );
 };
+
 const Footer: React.FC<{
   marginTop?: string | number;
   marginBottom?: string | number;

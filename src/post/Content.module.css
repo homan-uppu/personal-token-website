@@ -29,7 +29,7 @@
   position: fixed;
   left: calc((100vw - 588px) / 2 - 158px - 48px);
   /* left: 300px; */
-  top: 353px;
+  top: 318px;
   max-height: 80vh;
   overflow-y: auto;
 }
