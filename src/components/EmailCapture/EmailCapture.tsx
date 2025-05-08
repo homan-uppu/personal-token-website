@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import styles from "./EmailCapture.module.css";
 
 // Custom hook to get screen width
 function useScreenWidth() {
@@ -77,27 +78,24 @@ const EmailCapture: React.FC = () => {
     mass: 0.7,
   };
 
-  // Responsive rowWrapper style
-  const rowWrapperStyle = {
-    ...emailCaptureStyles.rowWrapper,
-    ...(screenWidth < 700
-      ? emailCaptureStyles.rowWrapperCol
-      : emailCaptureStyles.rowWrapperRow),
-  };
+  // Responsive classes for rowWrapper and label
+  const rowWrapperClass = [
+    styles.rowWrapper,
+    screenWidth < 700 ? styles.rowWrapperCol : styles.rowWrapperRow,
+  ].join(" ");
 
-  // Responsive label style
-  const labelStyle = {
-    ...emailCaptureStyles.label,
-    ...(screenWidth < 700 ? emailCaptureStyles.labelCol : {}),
-  };
+  const labelClass = [
+    styles.label,
+    screenWidth < 700 ? styles.labelCol : "",
+  ].join(" ");
 
   return (
-    <div style={emailCaptureStyles.container} id="waitlist">
-      <div style={rowWrapperStyle}>
-        <label style={labelStyle} htmlFor="email-capture-input">
+    <div className={styles.container} id="waitlist">
+      <div className={rowWrapperClass}>
+        <label className={labelClass} htmlFor="email-capture-input">
           early access:
         </label>
-        <div style={emailCaptureStyles.inputWrapper}>
+        <div className={styles.inputWrapper}>
           {/* Input is always rendered, but disabled and unfocusable in success state */}
           <input
             id="email-capture-input"
@@ -107,9 +105,8 @@ const EmailCapture: React.FC = () => {
             value={email}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            className={[styles.input, shake ? styles.inputShake : ""].join(" ")}
             style={{
-              ...emailCaptureStyles.input,
-              ...(shake ? emailCaptureStyles.inputShake : {}),
               cursor: state === "success" ? "default" : "text",
             }}
             autoComplete="email"
@@ -119,14 +116,14 @@ const EmailCapture: React.FC = () => {
             readOnly={state === "success"}
           />
           {/* Arrow or checkmark in the same spot */}
-          <div style={emailCaptureStyles.iconSlot}>
+          <div className={styles.iconSlot}>
             <AnimatePresence mode="wait" initial={false}>
               {state === "input" && showArrow && (
                 <motion.button
                   key="arrow"
                   type="button"
                   onClick={handleSubmit}
-                  style={emailCaptureStyles.arrowButton}
+                  className={styles.arrowButton}
                   initial={{ opacity: 0, x: 16 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 16 }}
@@ -144,7 +141,7 @@ const EmailCapture: React.FC = () => {
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.8, x: 16 }}
                   transition={springTransition}
-                  style={emailCaptureStyles.checkmarkButton}
+                  className={styles.checkmarkButton}
                   aria-label="Success"
                 >
                   <CheckmarkIcon />
@@ -162,7 +159,7 @@ const ArrowIcon: React.FC = () => {
   const [hover, setHover] = useState(false);
   return (
     <span
-      style={arrowIconStyles.wrapper}
+      className={styles.arrowIconWrapper}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -192,7 +189,7 @@ const ArrowIcon: React.FC = () => {
 };
 
 const CheckmarkIcon: React.FC = () => (
-  <span style={arrowIconStyles.wrapper}>
+  <span className={styles.arrowIconWrapper}>
     <svg
       width="20"
       height="20"
@@ -210,172 +207,5 @@ const CheckmarkIcon: React.FC = () => (
     </svg>
   </span>
 );
-
-// --- Styles ---
-
-const borderRadius = 16;
-const border = "1px solid rgba(0, 0, 0, 0.03)";
-
-const emailCaptureStyles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    border: border,
-    minHeight: "54px",
-    width: "100%",
-    background: "var(--layer2-bg-color)", // dark background for emphasis
-    borderRadius: borderRadius,
-    boxSizing: "border-box" as const,
-    padding: "24px",
-    marginTop: "96px",
-    marginBottom: "96px",
-  } as React.CSSProperties,
-
-  // Default row (desktop)
-  rowWrapper: {
-    display: "flex",
-    width: "100%",
-    gap: 8,
-    padding: "0 0",
-  } as React.CSSProperties,
-
-  // Row direction for desktop
-  rowWrapperRow: {
-    flexDirection: "row" as const,
-    alignItems: "center",
-  } as React.CSSProperties,
-
-  // Column direction for mobile
-  rowWrapperCol: {
-    flexDirection: "column" as const,
-    alignItems: "stretch",
-    gap: 8,
-  } as React.CSSProperties,
-
-  label: {
-    color: "black", // white text for label
-    fontWeight: 500,
-    fontSize: 16,
-    marginRight: 0,
-    minWidth: 110,
-    letterSpacing: -0.2,
-    textAlign: "left" as const,
-    userSelect: "none" as const,
-    flexShrink: 0,
-    marginBottom: 0,
-  } as React.CSSProperties,
-
-  // Extra label style for mobile (column)
-  labelCol: {
-    marginBottom: 6,
-    minWidth: 0,
-    textAlign: "left" as const,
-  } as React.CSSProperties,
-
-  inputWrapper: {
-    position: "relative" as const,
-    width: "100%",
-    maxWidth: "100%",
-    display: "flex",
-    alignItems: "center",
-    background: "transparent",
-    borderRadius: borderRadius,
-    minHeight: 48,
-    transition: "box-shadow 0.18s",
-    flexGrow: 1,
-  } as React.CSSProperties,
-
-  input: {
-    width: "100%",
-    fontSize: 16,
-    border,
-    borderRadius: borderRadius / 1.5,
-    outline: "none",
-    padding: "14px 48px 14px 20px",
-    background: "#FAFAFA", // lighter shade of dark than container
-    color: "#000", // flip color of text to white
-    fontWeight: 500,
-    transition: "border 0.18s, box-shadow 0.18s",
-    boxSizing: "border-box" as const,
-    zIndex: 1,
-  } as React.CSSProperties,
-
-  inputShake: {
-    animation: "shake 0.4s cubic-bezier(.36,.07,.19,.97) both",
-  } as React.CSSProperties,
-
-  // This slot is always present, for arrow/checkmark, absolutely positioned
-  iconSlot: {
-    position: "absolute" as const,
-    right: 8,
-    top: "50%",
-    transform: "translateY(-50%)",
-    height: 36,
-    width: 36,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 2,
-    pointerEvents: "none", // let button handle pointer events, but not the slot
-  } as React.CSSProperties,
-
-  arrowButton: {
-    background: "none",
-    border: "none",
-    outline: "none",
-    padding: 0,
-    margin: 0,
-    cursor: "pointer",
-    zIndex: 2,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 36,
-    width: 36,
-    transition: "opacity 0.18s, background 0.18s",
-    pointerEvents: "auto", // allow pointer events for the button
-  } as React.CSSProperties,
-
-  checkmarkButton: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 36,
-    width: 36,
-    pointerEvents: "none", // checkmark is not interactive
-  } as React.CSSProperties,
-};
-
-// Arrow icon wrapper for hover state
-const arrowIconStyles = {
-  wrapper: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 36,
-    width: 36,
-    borderRadius: "50%",
-    transition: "background 0.18s",
-  } as React.CSSProperties,
-};
-
-// --- Keyframes for shake animation (inject into document head) ---
-if (
-  typeof window !== "undefined" &&
-  !document.getElementById("email-capture-shake-keyframes")
-) {
-  const style = document.createElement("style");
-  style.id = "email-capture-shake-keyframes";
-  style.innerHTML = `
-    @keyframes shake {
-      10%, 90% { transform: translateX(-1px); }
-      20%, 80% { transform: translateX(2px); }
-      30%, 50%, 70% { transform: translateX(-4px); }
-      40%, 60% { transform: translateX(4px); }
-    }
-  `;
-  document.head.appendChild(style);
-}
 
 export default EmailCapture;

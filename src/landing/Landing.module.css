@@ -42,10 +42,6 @@
   z-index: 1;
 }
 
-.main input::placeholder {
-  color: rgba(0, 0, 0, 0.2);
-}
-
 .main {
   display: flex;
   flex-direction: column;
@@ -57,14 +53,6 @@
   margin: 0 auto; /* Center horizontally */
   font-weight: 410;
 }
-
-/* .main div {
-  font-size: 17px !important;
-}
-
-.main input {
-  font-size: 17px !important;
-} */
 
 .main p {
   color: rgba(0, 0, 0, 0.7) !important;

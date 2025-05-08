@@ -2,7 +2,6 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  /* background-color: rgba(245, 245, 242, 0.8); */
   background-color: var(--main-bg);
 
   /* Prevent scrollbar from taking up width */
@@ -17,7 +16,6 @@ body::-webkit-scrollbar {
 
 body {
   color: var(--foreground);
-  background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
