@@ -1,10 +1,10 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
 import { getIdFromHeader } from "@/util";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Inter, Lora } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
-const sourceSerif = Source_Serif_4({ subsets: ["latin"] });
+const lora = Lora({ subsets: ["latin"] });
 
 import { Geist_Mono } from "next/font/google";
 const geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -43,7 +43,7 @@ export const mdxComponents: MDXComponents = {
     );
   },
   blockquote: (props) => {
-    return <blockquote className={sourceSerif.className} {...props} />;
+    return <blockquote className={lora.className} {...props} />;
   },
   hr: () => {
     return (
@@ -61,7 +61,7 @@ export const mdxComponents: MDXComponents = {
   h1: (props) => {
     const label = props.children as string;
     return (
-      <h1 id={getIdFromHeader(label)} className={inter.className} {...props} />
+      <h1 id={getIdFromHeader(label)} className={lora.className} {...props} />
     );
   },
   h2: (props) => {
@@ -92,13 +92,13 @@ export const mdxComponents: MDXComponents = {
   h3: (props) => {
     const label = props.children as string;
     return (
-      <h3 id={getIdFromHeader(label)} className={inter.className} {...props} />
+      <h3 id={getIdFromHeader(label)} className={lora.className} {...props} />
     );
   },
   h4: (props) => {
     const label = props.children as string;
     return (
-      <h4 id={getIdFromHeader(label)} className={inter.className} {...props} />
+      <h4 id={getIdFromHeader(label)} className={lora.className} {...props} />
     );
   },
 };

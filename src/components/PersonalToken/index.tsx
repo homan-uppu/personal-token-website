@@ -1,8 +1,7 @@
 "use client";
 
 import { PersonalToken } from "@/util/models";
-import { Geist_Mono } from "next/font/google";
-import { formatNumber, springTransition } from "@/util";
+import { springTransition } from "@/util";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { TokenInfo } from "@/components/TokenInfo";

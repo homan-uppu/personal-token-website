@@ -93,9 +93,10 @@
 }
 
 .content h3 {
-  font-size: 1rem;
-  color: var(--text-color-secondary);
+  font-size: 17px;
+  color: var(--logo-green);
   margin-top: 3rem;
+  letter-spacing: -0.01em;
   margin-bottom: 1rem;
   font-weight: 480;
 }
