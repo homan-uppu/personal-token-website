@@ -10,6 +10,7 @@ import { PersonalTokenComp } from "@/components/PersonalToken";
 import { dummyPersonalToken } from "@/util/models";
 import { TokenInfo } from "@/components/TokenInfo";
 import { PersonalTokenStatic } from "@/components/PersonalToken/PersonalTokenStatic";
+import EmailCapture from "@/components/EmailCapture/EmailCapture";
 
 // In a server component or page
 const getMarkdownContent = () => {
@@ -54,6 +55,7 @@ export default function Docs() {
           Accordion,
           NetworkTokenScene,
           PersonalTokenVisualization,
+          EmailCapture,
         }}
       />
     </PostPage>
