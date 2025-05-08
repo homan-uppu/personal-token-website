@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.03);
@@ -13,22 +14,20 @@
   margin-bottom: 96px;
 }
 
+@media (max-width: 700px) {
+  .container {
+    flex-direction: column;
+    gap: 8px;
+    justify-content: start;
+    align-items: start;
+  }
+}
+
 .rowWrapper {
   display: flex;
   width: 100%;
   gap: 8px;
   padding: 0 0;
-}
-
-.rowWrapperRow {
-  flex-direction: row;
-  align-items: center;
-}
-
-.rowWrapperCol {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
 }
 
 .label {
@@ -42,12 +41,6 @@
   user-select: none;
   flex-shrink: 0;
   margin-bottom: 0;
-}
-
-.labelCol {
-  margin-bottom: 6px;
-  min-width: 0;
-  text-align: left;
 }
 
 .inputWrapper {

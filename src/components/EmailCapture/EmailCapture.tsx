@@ -4,19 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./EmailCapture.module.css";
 
-// Custom hook to get screen width
-function useScreenWidth() {
-  const [width, setWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200
-  );
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  return width;
-}
-
 // Email validation regex (simple, but effective for most cases)
 const isValidEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -27,7 +14,6 @@ const EmailCapture: React.FC = () => {
   const [touched, setTouched] = useState(false);
   const [shake, setShake] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const screenWidth = useScreenWidth();
 
   // Remove shake after animation
   useEffect(() => {
@@ -78,77 +64,64 @@ const EmailCapture: React.FC = () => {
     mass: 0.7,
   };
 
-  // Responsive classes for rowWrapper and label
-  const rowWrapperClass = [
-    styles.rowWrapper,
-    screenWidth < 700 ? styles.rowWrapperCol : styles.rowWrapperRow,
-  ].join(" ");
-
-  const labelClass = [
-    styles.label,
-    screenWidth < 700 ? styles.labelCol : "",
-  ].join(" ");
-
   return (
     <div className={styles.container} id="waitlist">
-      <div className={rowWrapperClass}>
-        <label className={labelClass} htmlFor="email-capture-input">
-          early access:
-        </label>
-        <div className={styles.inputWrapper}>
-          {/* Input is always rendered, but disabled and unfocusable in success state */}
-          <input
-            id="email-capture-input"
-            ref={inputRef}
-            type="email"
-            placeholder="enter your email."
-            value={email}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            className={[styles.input, shake ? styles.inputShake : ""].join(" ")}
-            style={{
-              cursor: state === "success" ? "default" : "text",
-            }}
-            autoComplete="email"
-            spellCheck={false}
-            disabled={state === "success"}
-            tabIndex={state === "success" ? -1 : 0}
-            readOnly={state === "success"}
-          />
-          {/* Arrow or checkmark in the same spot */}
-          <div className={styles.iconSlot}>
-            <AnimatePresence mode="wait" initial={false}>
-              {state === "input" && showArrow && (
-                <motion.button
-                  key="arrow"
-                  type="button"
-                  onClick={handleSubmit}
-                  className={styles.arrowButton}
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 16 }}
-                  transition={springTransition}
-                  tabIndex={0}
-                  aria-label="Submit email"
-                >
-                  <ArrowIcon />
-                </motion.button>
-              )}
-              {state === "success" && (
-                <motion.span
-                  key="checkmark"
-                  initial={{ opacity: 0, scale: 0.8, x: 16 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, x: 16 }}
-                  transition={springTransition}
-                  className={styles.checkmarkButton}
-                  aria-label="Success"
-                >
-                  <CheckmarkIcon />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </div>
+      <label className={styles.label} htmlFor="email-capture-input">
+        early access:
+      </label>
+      <div className={styles.inputWrapper}>
+        {/* Input is always rendered, but disabled and unfocusable in success state */}
+        <input
+          id="email-capture-input"
+          ref={inputRef}
+          type="email"
+          placeholder="enter your email."
+          value={email}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          className={[styles.input, shake ? styles.inputShake : ""].join(" ")}
+          style={{
+            cursor: state === "success" ? "default" : "text",
+          }}
+          autoComplete="email"
+          spellCheck={false}
+          disabled={state === "success"}
+          tabIndex={state === "success" ? -1 : 0}
+          readOnly={state === "success"}
+        />
+        {/* Arrow or checkmark in the same spot */}
+        <div className={styles.iconSlot}>
+          <AnimatePresence mode="wait" initial={false}>
+            {state === "input" && showArrow && (
+              <motion.button
+                key="arrow"
+                type="button"
+                onClick={handleSubmit}
+                className={styles.arrowButton}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 16 }}
+                transition={springTransition}
+                tabIndex={0}
+                aria-label="Submit email"
+              >
+                <ArrowIcon />
+              </motion.button>
+            )}
+            {state === "success" && (
+              <motion.span
+                key="checkmark"
+                initial={{ opacity: 0, scale: 0.8, x: 16 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.8, x: 16 }}
+                transition={springTransition}
+                className={styles.checkmarkButton}
+                aria-label="Success"
+              >
+                <CheckmarkIcon />
+              </motion.span>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
