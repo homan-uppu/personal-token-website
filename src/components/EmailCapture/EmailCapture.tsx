@@ -186,13 +186,14 @@ const CheckmarkIcon: React.FC = () => (
 // --- Styles ---
 
 const borderRadius = 16;
+const border = "1px solid rgba(0, 0, 0, 0.03)";
 
 const emailCaptureStyles = {
   container: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    border: "1px solid rgba(0, 0, 0, 0.03)",
+    border: border,
     minHeight: "54px",
     width: "100%",
     background: "var(--layer2-bg-color)", // dark background for emphasis
@@ -218,8 +219,8 @@ const emailCaptureStyles = {
     fontSize: 16,
     marginRight: 0,
     minWidth: 110,
+    letterSpacing: -0.2,
     textAlign: "left" as const,
-    letterSpacing: 0,
     userSelect: "none" as const,
     flexShrink: 0,
   } as React.CSSProperties,
@@ -240,9 +241,8 @@ const emailCaptureStyles = {
   input: {
     width: "100%",
     fontSize: 16,
-    // border: "1px solid rgba(255,255,255,0.18)", // lighter border for lighter dark bg
-    border: "none",
-    borderRadius: borderRadius,
+    border,
+    borderRadius: borderRadius / 1.5,
     outline: "none",
     padding: "14px 48px 14px 20px",
     background: "#FAFAFA", // lighter shade of dark than container

@@ -1,17 +1,21 @@
+/* 
+  NOTE: CSS alone cannot fully prevent scroll jumps caused by dynamic content changes (like expanding/collapsing accordions) if the content above the viewport changes height. 
+  The property `overflow-anchor: none;` helps, but for a robust solution, JS is needed to manually restore scroll position.
+  See Accordion/index.tsx for scroll position handling.
+*/
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 1.5rem;
+  padding: 24px;
+  gap: 1rem;
   background: var(--layer2-bg-color);
   border-radius: 24px;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
+  margin-bottom: 24px;
 
-.container p {
-  margin: 0 !important;
-  margin-bottom: 1rem !important;
+  /* Prevent scroll anchoring to avoid scroll jumps on expand/collapse */
+  overflow-anchor: none;
+  /* overflow: hidden; */
 }
 
 .titleContainer {
@@ -21,10 +25,11 @@
   align-items: center;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  font-weight: 420;
+  font-weight: 410;
+  overflow-anchor: none;
 }
 
 .innerContent {
-  font-size: var(--font-size-essay);
   color: rgba(0, 0, 0, 0.55);
+  overflow-anchor: none;
 }
