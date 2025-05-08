@@ -3,6 +3,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Custom hook to get screen width
+function useScreenWidth() {
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return width;
+}
+
 // Email validation regex (simple, but effective for most cases)
 const isValidEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -13,6 +26,7 @@ const EmailCapture: React.FC = () => {
   const [touched, setTouched] = useState(false);
   const [shake, setShake] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const screenWidth = useScreenWidth();
 
   // Remove shake after animation
   useEffect(() => {
@@ -63,10 +77,24 @@ const EmailCapture: React.FC = () => {
     mass: 0.7,
   };
 
+  // Responsive rowWrapper style
+  const rowWrapperStyle = {
+    ...emailCaptureStyles.rowWrapper,
+    ...(screenWidth < 700
+      ? emailCaptureStyles.rowWrapperCol
+      : emailCaptureStyles.rowWrapperRow),
+  };
+
+  // Responsive label style
+  const labelStyle = {
+    ...emailCaptureStyles.label,
+    ...(screenWidth < 700 ? emailCaptureStyles.labelCol : {}),
+  };
+
   return (
-    <div style={emailCaptureStyles.container}>
-      <div style={emailCaptureStyles.rowWrapper}>
-        <label style={emailCaptureStyles.label} htmlFor="email-capture-input">
+    <div style={emailCaptureStyles.container} id="waitlist">
+      <div style={rowWrapperStyle}>
+        <label style={labelStyle} htmlFor="email-capture-input">
           early access:
         </label>
         <div style={emailCaptureStyles.inputWrapper}>
@@ -204,13 +232,25 @@ const emailCaptureStyles = {
     marginBottom: "96px",
   } as React.CSSProperties,
 
+  // Default row (desktop)
   rowWrapper: {
     display: "flex",
-    flexDirection: "row" as const,
-    alignItems: "center",
     width: "100%",
     gap: 8,
     padding: "0 0",
+  } as React.CSSProperties,
+
+  // Row direction for desktop
+  rowWrapperRow: {
+    flexDirection: "row" as const,
+    alignItems: "center",
+  } as React.CSSProperties,
+
+  // Column direction for mobile
+  rowWrapperCol: {
+    flexDirection: "column" as const,
+    alignItems: "stretch",
+    gap: 8,
   } as React.CSSProperties,
 
   label: {
@@ -223,6 +263,14 @@ const emailCaptureStyles = {
     textAlign: "left" as const,
     userSelect: "none" as const,
     flexShrink: 0,
+    marginBottom: 0,
+  } as React.CSSProperties,
+
+  // Extra label style for mobile (column)
+  labelCol: {
+    marginBottom: 6,
+    minWidth: 0,
+    textAlign: "left" as const,
   } as React.CSSProperties,
 
   inputWrapper: {

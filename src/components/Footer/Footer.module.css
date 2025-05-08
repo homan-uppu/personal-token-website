@@ -1,7 +1,5 @@
 .footer {
   width: calc(100%);
-  padding: 3rem;
-  border: 1px solid rgba(0, 0, 0, 0.035);
   margin-bottom: 0rem;
 }
 
@@ -9,7 +7,7 @@
   margin: 0 auto;
   padding: 0;
   display: flex;
-  justify-content: center;
+  justify-content: end;
 }
 
 .linksSection {
@@ -23,7 +21,7 @@
   color: rgba(0, 0, 0, 0.25);
   text-decoration: none;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   transition: color 0.2s ease;
 }
 

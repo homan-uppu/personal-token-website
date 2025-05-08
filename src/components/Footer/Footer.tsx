@@ -40,15 +40,11 @@ const Footer: React.FC<{
     >
       <div className={fileStyles.container}>
         <div className={fileStyles.linksSection}>
-          <FooterLink url="/how" label="How it works" />
-          <FooterLink url="/why" label="Why" />
-          <FooterLink url="/contribute" label="Contribute" />
           <FooterLink
-            label="Join waitlist"
-            url={CONSTANTS.waitlistUrl}
+            url="https://x.com/homanafterall"
+            label="Contact"
             external
           />
-          <FooterLink url="https://x.com/homan_u" label="Contact" external />
         </div>
       </div>
     </footer>

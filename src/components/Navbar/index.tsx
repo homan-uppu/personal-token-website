@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import fileStyles from "./Navbar.module.css";
-import { CONSTANTS } from "@/util";
 import { useScreenWidth } from "@/landing/Layout";
 
 const useScrollPosition = () => {
@@ -23,6 +22,7 @@ const useScrollPosition = () => {
 
   return scrollPosition;
 };
+
 interface NavbarProps {
   pageID?: string;
   alwaysShowScrolled?: boolean;
@@ -60,7 +60,7 @@ const Navbar = ({
     },
     links: {
       display: "flex",
-      gap: "24px",
+      gap: "16px",
       alignItems: "center",
     },
     activeLink: {
@@ -140,20 +140,24 @@ const Navbar = ({
             );
           }
         })}
-        <a
-          href={CONSTANTS.waitlistUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
           className={fileStyles.ctaButton}
-          style={
-            {
-              // marginRight: scrollY > 10 ? "-6px" : "0",
-              // transition: "margin-right 0.2s ease",
+          onClick={() => {
+            const waitlistDiv = document.getElementById("waitlist");
+            if (waitlistDiv) {
+              waitlistDiv.scrollIntoView({ behavior: "smooth" });
+              // Try to focus the input inside the waitlistDiv (EmailCapture)
+              setTimeout(() => {
+                const input = waitlistDiv.querySelector('input[type="email"]');
+                if (input) {
+                  (input as HTMLInputElement).focus();
+                }
+              }, 400); // Delay to allow scrollIntoView to finish
             }
-          }
+          }}
         >
-          access
-        </a>
+          join
+        </div>
       </div>
     </motion.nav>
   );
