@@ -57,12 +57,10 @@
 .main p {
   color: rgba(0, 0, 0, 0.7) !important;
   margin-bottom: 24px !important;
-  /* font-size: 17px !important; */
 }
 
 .main h3 {
   margin-top: 96px !important;
-  font-size: 17px !important;
 }
 
 .visual {
