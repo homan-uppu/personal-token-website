@@ -22,7 +22,7 @@ const Landing = () => {
 
       <div className={styles.content}>
         <div className={styles.main}>
-          <PostPage title="invest in people" caption="(actually)">
+          <PostPage title="Invest in people" caption="(actually)">
             <LandingMDX
               components={{
                 PersonalTokenComp: () => (

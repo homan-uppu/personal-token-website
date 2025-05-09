@@ -2,10 +2,11 @@ import Navbar from "@/components/Navbar";
 import TOC from "./TOC";
 import styles from "./Content.module.css";
 import titleBgStyles from "./TitleBg.module.css";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Lora } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
 
 const geistMono = Geist_Mono({ subsets: ["latin"] });
+const lora = Lora({ subsets: ["latin"] });
 
 interface PostPageProps {
   title: string;
@@ -29,7 +30,7 @@ export const PostPage = ({
       <Navbar pageID={pageID} width={688} />
       <div className={styles.content}>
         <div className={styles.titleContainer}>
-          <h1 className={`${styles.title}`}>{title}</h1>
+          <h1 className={`${styles.title} ${lora.className}`}>{title}</h1>
           {caption && <div className={styles.caption}>{caption}</div>}
         </div>
 

@@ -47,7 +47,7 @@ export default function Docs() {
   const sections = parseMdx(getMarkdownContent());
 
   return (
-    <PostPage title="docs" pageID="docs" labels={sections}>
+    <PostPage title="Docs" pageID="docs" labels={sections}>
       <How
         components={{
           ...mdxComponents,
