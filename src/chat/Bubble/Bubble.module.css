@@ -9,13 +9,15 @@
 
 /** Bubble (default, for Sender.User) */
 .bubble {
-  background: #fff;
+  /* background: #fff; */
+  background: #00b7ff;
+  color: white !important;
   border: 1px solid rgba(0, 0, 0, 0.03);
   border-radius: 16px;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   width: 100%;
 }
 
