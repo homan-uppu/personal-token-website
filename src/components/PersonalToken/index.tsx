@@ -141,7 +141,6 @@ export const PersonalTokenComp = ({ token }: PersonalTokenCompProps) => {
 
 const containerStyles = {
   display: "flex",
-  margin: "auto",
   flexDirection: "column" as const,
   zIndex: 10,
   borderRadius: "24px",

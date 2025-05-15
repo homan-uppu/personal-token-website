@@ -58,9 +58,8 @@ const Bubble: React.FC<BubbleProps> = ({
 const bubbleWrapperStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
-  alignItems: "flex-start",
-  maxWidth: 480,
-  width: "100%",
+  alignItems: "center",
+  width: 480,
   marginBottom: 16,
 };
 
@@ -72,7 +71,7 @@ const bubbleStyle = (sender: Sender): React.CSSProperties => ({
   boxShadow: sender === Sender.Homan ? undefined : "0 1px 2px rgba(0,0,0,0.03)",
   display: "flex",
   flexDirection: "column",
-  alignItems: "flex-start",
+  alignItems: "center",
   width: "100%",
 });
 

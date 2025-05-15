@@ -13,6 +13,8 @@ import {
 import Bubble from "./Bubble";
 import PillComponent from "./Pill";
 import styles from "./Chat.module.css";
+import { dummyPersonalToken } from "@/util/models";
+import { PersonalTokenComp } from "@/components/PersonalToken";
 
 // Helper to check if an object is a Pill
 function isPill(item: any): item is Pill {
@@ -97,13 +99,14 @@ const Chat: React.FC = () => {
         }
         if (
           item.type === MediaType.Component &&
-          item.value === "PersonalToken"
+          item.value === "PersonalTokenComponent"
         ) {
           // Placeholder for PersonalToken component
           return (
-            <span key={idx} className={styles.component}>
-              [PersonalToken Component]
-            </span>
+            <div key={idx} className={styles.component}>
+              <PersonalTokenComp token={dummyPersonalToken} />
+              <span className={styles.componentCaption}>(click me)</span>
+            </div>
           );
         }
 

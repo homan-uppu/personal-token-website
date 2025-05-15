@@ -38,13 +38,17 @@
 
 .component {
   display: inline-block;
-  background: #e0e7ff;
-  color: #3730a3;
-  border-radius: 8px;
-  padding: 2px 8px;
-  font-weight: 500;
-  font-size: 0.98rem;
-  margin: 0 2px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.componentCaption {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .followUpsContainer {

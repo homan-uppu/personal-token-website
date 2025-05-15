@@ -118,7 +118,7 @@ export const data: Node[] = [
               content: [
                 {
                   type: MediaType.Component,
-                  value: "PersonalToken",
+                  value: "PersonalTokenComponent",
                 },
               ],
             },
