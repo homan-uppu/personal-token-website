@@ -1,6 +1,7 @@
 .pillBubble {
   display: inline-block;
   background: #f0f0f0;
+  position: relative;
   border-radius: 8px;
   padding: 1px 8px;
   cursor: pointer;
@@ -9,6 +10,12 @@
   transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
   font-size: 15px;
   user-select: none;
+}
+
+.pillCaption {
+  position: absolute;
+  width: 100%;
+  left: calc(50% - 24px);
 }
 
 .pillBubble:hover,

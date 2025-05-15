@@ -15,6 +15,7 @@ import PillComponent from "./Pill";
 import styles from "./Chat.module.css";
 import { dummyPersonalToken } from "@/util/models";
 import { PersonalTokenComp } from "@/components/PersonalToken";
+import Caption from "@/components/Caption";
 
 // Helper to check if an object is a Pill
 function isPill(item: any): item is Pill {
@@ -34,6 +35,8 @@ const Chat: React.FC = () => {
   const [expandedPills, setExpandedPills] = useState<
     Record<string, number | null>
   >({});
+  // State: track if user has ever clicked on a pill
+  const [hasEverClickedOnPill, setHasEverClickedOnPill] = useState(false);
 
   // Handler for pill click
   const handlePillClick = (
@@ -44,6 +47,9 @@ const Chat: React.FC = () => {
     // Only expand if not already expanded
     const pillKey = `${bubbleIdx}-${contentIdx}`;
     if (expandedPills[pillKey] != null) return;
+
+    // Mark that user has clicked a pill at least once
+    if (!hasEverClickedOnPill) setHasEverClickedOnPill(true);
 
     // Expand ALL expansions in the expanded array
     pill.expanded.forEach((expansion, expansionIdx) => {
@@ -83,6 +89,8 @@ const Chat: React.FC = () => {
     setExpandedPills((prev) => ({ ...prev, [pillKey]: 0 }));
   };
 
+  const clickMeLabel = <Caption label="(click me)" />;
+
   // Render a single bubble's content
   const renderContent = (
     content: (ContentItem | Pill)[],
@@ -105,7 +113,7 @@ const Chat: React.FC = () => {
           return (
             <div key={idx} className={styles.component}>
               <PersonalTokenComp token={dummyPersonalToken} />
-              <span className={styles.componentCaption}>(click me)</span>
+              {clickMeLabel}
             </div>
           );
         }
@@ -136,8 +144,9 @@ const Chat: React.FC = () => {
             <PillComponent
               isExpanded={isExpanded}
               text={item.text}
+              caption={!hasEverClickedOnPill ? "(click me)" : undefined}
               onClick={() => handlePillClick(bubbleIdx, idx, item)}
-            />{" "}
+            />
           </React.Fragment>
         );
       }
