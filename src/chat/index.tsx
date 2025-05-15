@@ -65,6 +65,16 @@ const Chat: React.FC = () => {
         });
       }
       // Annotation and other positions can be handled here if needed
+      if (expansion.position === ExpansionPosition.Annotation) {
+        // Add the annotation to the bubble
+        setBubbles((prev) => {
+          const newBubbles = [...prev];
+          newBubbles[bubbleIdx].annotations =
+            expansion.content as ContentItem[];
+          console.log("newbubbles: ", newBubbles);
+          return newBubbles;
+        });
+      }
     });
 
     // Mark as expanded (using 0 for compatibility, but could be changed)
@@ -96,7 +106,24 @@ const Chat: React.FC = () => {
             </span>
           );
         }
+
         // Add support for Image/Video if needed
+        if (item.type === MediaType.Image) {
+          return (
+            <img
+              key={idx}
+              src={item.value}
+              alt=""
+              style={{
+                maxWidth: "320px",
+                maxHeight: "200px",
+                borderRadius: "8px",
+                margin: "8px 0",
+                display: "block",
+              }}
+            />
+          );
+        }
         return null;
       } else if (isPill(item)) {
         const pillKey = `${bubbleIdx}-${idx}`;
@@ -187,6 +214,15 @@ const Chat: React.FC = () => {
               </div>
             </Bubble>
             {/* Only render followups for the last bubble */}
+            {bubble.annotations && bubble.annotations.length > 0 && (
+              <div className={styles.annotationsContainer}>
+                {bubble.annotations.map((annotation, idx) => (
+                  <div key={idx} className={styles.annotation}>
+                    {renderContent([annotation], idx)}
+                  </div>
+                ))}
+              </div>
+            )}
             {idx === bubbles.length - 1 && renderFollowUps(bubble.followUps)}
           </div>
         );

@@ -40,6 +40,7 @@ export interface Node {
   id: string; // The question itself as the ID
   author: Sender;
   content: (ContentItem | Pill)[];
+  annotations?: ContentItem[];
   followUps?: string[];
 }
 
@@ -67,8 +68,25 @@ export const data: Node[] = [
               content: [
                 {
                   type: MediaType.Text,
-                  value:
-                    "your personal token represents your potential. its value is grounded in",
+                  value: "your personal token represents your",
+                },
+                {
+                  text: "potential",
+                  expanded: [
+                    {
+                      position: ExpansionPosition.Annotation,
+                      content: [
+                        {
+                          type: MediaType.Image,
+                          value: "/images/track-record.png",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: MediaType.Text,
+                  value: ". its value is grounded in",
                 },
                 {
                   text: "reality",
