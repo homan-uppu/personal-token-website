@@ -181,78 +181,101 @@ const Chat: React.FC = () => {
     );
   };
 
-  // Find the last index in the sequence of consecutive bubbles for which sender is homan
-  let lastHomanIdx: number | null = null;
-  for (let i = bubbles.length - 1; i >= 0; i--) {
-    if (bubbles[i].author === Sender.Homan) {
-      lastHomanIdx = i;
-      // Now check if previous bubble is also homan, keep going back
-      let j = i - 1;
-      while (j >= 0 && bubbles[j].author === Sender.Homan) {
-        lastHomanIdx = j;
-        j--;
-      }
-      // The last in the sequence is i, so break
-      lastHomanIdx = i;
-      break;
-    }
-  }
+  // Group bubbles into sequences of the same author
+  type BubbleGroup = {
+    author: Sender;
+    bubbles: Node[];
+    startIdx: number; // index in the original bubbles array
+  };
 
-  // Now, find the start and end of the last consecutive homan sequence
-  let lastHomanSeqStart: number | null = null;
-  let lastHomanSeqEnd: number | null = null;
-  for (let i = bubbles.length - 1; i >= 0; i--) {
-    if (bubbles[i].author === Sender.Homan) {
-      lastHomanSeqEnd = i;
-      let j = i;
-      while (j >= 0 && bubbles[j].author === Sender.Homan) {
-        lastHomanSeqStart = j;
-        j--;
+  const groupBubblesByAuthor = (bubbles: Node[]): BubbleGroup[] => {
+    if (bubbles.length === 0) return [];
+    const groups: BubbleGroup[] = [];
+    let currentAuthor = bubbles[0].author;
+    let currentGroup: Node[] = [];
+    let groupStartIdx = 0;
+    bubbles.forEach((bubble, idx) => {
+      if (bubble.author === currentAuthor) {
+        currentGroup.push(bubble);
+      } else {
+        groups.push({
+          author: currentAuthor,
+          bubbles: currentGroup,
+          startIdx: groupStartIdx,
+        });
+        currentAuthor = bubble.author;
+        currentGroup = [bubble];
+        groupStartIdx = idx;
       }
-      break;
+    });
+    // Push the last group
+    if (currentGroup.length > 0) {
+      groups.push({
+        author: currentAuthor,
+        bubbles: currentGroup,
+        startIdx: groupStartIdx,
+      });
     }
-  }
+    return groups;
+  };
+
+  // Group bubbles by author sequence
+  const bubbleGroups = groupBubblesByAuthor(bubbles);
+
+  // Helper to get the global bubble index for a group and local index
+  const getGlobalBubbleIdx = (group: BubbleGroup, localIdx: number) =>
+    group.startIdx + localIdx;
 
   return (
     <div className={styles.chatContainer}>
-      {bubbles.map((bubble, idx) => {
-        // Determine if this is the last bubble in the last sequence of consecutive homan bubbles
-        let showFooter = false;
-        if (
-          bubble.author === Sender.Homan &&
-          lastHomanSeqEnd !== null &&
-          idx === lastHomanSeqEnd
-        ) {
-          showFooter = true;
-        }
+      {bubbleGroups.map((group, groupIdx) => {
         return (
-          <div key={bubble.id || idx} className={styles.bubbleWrapper}>
-            <Bubble
-              sender={bubble.author}
-              footer={{
-                label: bubble.author === Sender.Homan ? "homan" : "",
-                link:
-                  bubble.author === Sender.Homan
-                    ? "https://x.com/homanafterall"
-                    : "",
-              }}
-              {...(showFooter ? { showFooter: true } : {})}
-            >
-              <div className={styles.bubbleContent}>
-                {renderContent(bubble.content, idx)}
-              </div>
-            </Bubble>
-            {/* Only render followups for the last bubble */}
-            {bubble.annotations && bubble.annotations.length > 0 && (
-              <div className={styles.annotationsContainer}>
-                {bubble.annotations.map((annotation, idx) => (
-                  <div key={idx} className={styles.annotation}>
-                    {renderContent([annotation], idx)}
-                  </div>
-                ))}
-              </div>
-            )}
-            {idx === bubbles.length - 1 && renderFollowUps(bubble.followUps)}
+          <div className={styles.bubbleSequence} key={`group-${groupIdx}`}>
+            {group.bubbles.map((bubble, localIdx) => {
+              const globalIdx = getGlobalBubbleIdx(group, localIdx);
+              // Show the homan label on the last bubble of EACH homan sequence
+              let showFooter = false;
+              if (
+                group.author === Sender.Homan &&
+                localIdx === group.bubbles.length - 1
+              ) {
+                showFooter = true;
+              }
+              return (
+                <div
+                  key={bubble.id || globalIdx}
+                  className={styles.bubbleWrapper}
+                >
+                  <Bubble
+                    sender={bubble.author}
+                    footer={{
+                      label: bubble.author === Sender.Homan ? "homan" : "",
+                      link:
+                        bubble.author === Sender.Homan
+                          ? "https://x.com/homanafterall"
+                          : "",
+                    }}
+                    {...(showFooter ? { showFooter: true } : {})}
+                  >
+                    <div className={styles.bubbleContent}>
+                      {renderContent(bubble.content, globalIdx)}
+                    </div>
+                  </Bubble>
+                  {/* Only render followups for the last bubble */}
+                  {bubble.annotations && bubble.annotations.length > 0 && (
+                    <div className={styles.annotationsContainer}>
+                      {bubble.annotations.map((annotation, idx) => (
+                        <div key={idx} className={styles.annotation}>
+                          {renderContent([annotation], idx)}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {globalIdx === bubbles.length - 1 &&
+                    renderFollowUps(bubble.followUps)}
+                </div>
+              );
+            })}
           </div>
         );
       })}

@@ -6,6 +6,13 @@
   min-height: 100vh;
   padding: 3rem;
   padding-top: 6rem;
+  gap: 48px;
+}
+
+.bubbleSequence {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .bubbleWrapper {
