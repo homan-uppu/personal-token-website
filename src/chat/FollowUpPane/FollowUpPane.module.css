@@ -1,0 +1,31 @@
+.followUpPaneContainer {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 480px;
+  max-width: 90vw;
+}
+
+.followUp {
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-top: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+  border: 1px solid transparent; /* Reserve space for border */
+  user-select: none;
+  display: inline-block;
+  background: #fbfbfb;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.followUp:hover,
+.followUp:focus {
+  background: #f9f9f9;
+  color: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}

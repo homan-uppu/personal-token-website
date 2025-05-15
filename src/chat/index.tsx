@@ -16,6 +16,7 @@ import styles from "./Chat.module.css";
 import { dummyPersonalToken } from "@/util/models";
 import { PersonalTokenComp } from "@/components/PersonalToken";
 import Caption from "@/components/Caption";
+import FollowUpPane from "./FollowUpPane";
 
 // Helper to check if an object is a Pill
 function isPill(item: any): item is Pill {
@@ -159,11 +160,23 @@ const Chat: React.FC = () => {
     if (!followUps || followUps.length === 0) return null;
     return (
       <div className={styles.followUpsContainer}>
-        {followUps.map((f, i) => (
-          <div key={i} className={styles.followUp}>
-            {f}
-          </div>
-        ))}
+        <FollowUpPane
+          followUps={followUps}
+          onClick={(label: string) => {
+            setBubbles((prevBubbles) => [
+              ...prevBubbles,
+              {
+                id: label + "poop",
+                author: Sender.User,
+                content: [{ type: MediaType.Text, value: label }],
+              },
+              // Find the node in data for which id === label, and add it as well
+              ...(chatData.find((node) => node.id === label)
+                ? [chatData.find((node) => node.id === label)!]
+                : []),
+            ]);
+          }}
+        />
       </div>
     );
   };

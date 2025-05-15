@@ -150,4 +150,24 @@ export const data: Node[] = [
     ],
     followUps: [],
   },
+  {
+    id: "Why would I want to sell equity in my personal token?",
+    author: Sender.Homan,
+    content: [
+      {
+        type: MediaType.Text,
+        value:
+          "Selling equity in your personal token allows you to access capital from supporters, fans, or investors who believe in your future potential. By offering a stake in your token, you can fund personal projects, education, or entrepreneurial ventures, while also building a community of people who are invested in your success.",
+      },
+      {
+        type: MediaType.Text,
+        value:
+          "Additionally, selling equity can help you signal your confidence in your own growth and create new opportunities for collaboration and networking. It's a way to align incentives between you and your supporters, as they benefit when you achieve your goals.",
+      },
+    ],
+    followUps: [
+      "What are the risks of selling equity in my personal token?",
+      "How do I decide how much equity to sell?",
+    ],
+  },
 ];
