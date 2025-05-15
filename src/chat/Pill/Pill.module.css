@@ -1,0 +1,41 @@
+.pillBubble {
+  display: inline-block;
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 2px 8px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  font-family: Georgia, serif;
+  transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.pillBubble:hover,
+.pillBubble:focus {
+  background: #e0e0e0;
+  outline: none;
+}
+
+/* Prevent background color change on hover/focus for .expanded */
+.expanded.pillBubble:hover,
+.expanded.pillBubble:focus {
+  background: #fafafa;
+  cursor: default;
+}
+
+.collapsed {
+  color: #222;
+}
+
+.expanded {
+  border: 1px dotted rgba(0, 0, 0, 0.15);
+  background: transparent;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+.pillDotted:hover,
+.pillDotted:focus {
+  border-color: #757575;
+}

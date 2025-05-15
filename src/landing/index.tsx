@@ -2,13 +2,12 @@ import styles from "./Landing.module.css";
 import { PersonalTokenComp } from "@/components/PersonalToken";
 import { dummyPersonalToken } from "@/util/models";
 import React from "react";
-import { LoadingPage } from "./LoadingPage";
 import Image from "next/image";
 import LandingMDX from "@/writing/landing.mdx";
 import { PostPage } from "@/post/PostPage";
-import { Grain } from "./Grain";
 import EmailCapture from "@/components/EmailCapture/EmailCapture";
 import Accordion from "@/white-paper/Accordion";
+import Chat from "@/chat";
 
 const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div style={wrapperStyle}>{children}</div>
@@ -17,29 +16,9 @@ const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => (
 const Landing = () => {
   return (
     <div className={styles.container}>
-      <LoadingPage />
-      <Grain />
-
       <div className={styles.content}>
         <div className={styles.main}>
-          <PostPage title="Invest in people" caption="(actually)">
-            <LandingMDX
-              components={{
-                PersonalTokenComp: () => (
-                  <Wrapper>
-                    <PersonalTokenComp token={dummyPersonalToken} />
-                  </Wrapper>
-                ),
-                Image: (props: any) => (
-                  <Wrapper>
-                    <Image {...props} />
-                  </Wrapper>
-                ),
-                EmailCapture: () => <EmailCapture />,
-                Accordion,
-              }}
-            />
-          </PostPage>
+          <Chat />
         </div>
       </div>
     </div>

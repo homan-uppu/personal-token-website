@@ -1,3 +1,6 @@
+// ================================
+// Personal tokens
+// ================================
 export enum TokenType {
   PersonalToken = "PersonalToken",
   Company = "Company",
@@ -119,84 +122,3 @@ export const dummyPersonalToken: PersonalToken = {
     },
   ],
 };
-
-// export const dummyPersonalToken: PersonalToken = {
-//   profilePicSrc: "/images/jane.png",
-//   name: "Jane Doe",
-//   username: "@janedoe",
-//   valuation: 9000000,
-//   bio: "Researching novel, quick acting, acne treatments.",
-//   lastRoundDate: new Date("2024-01-01"),
-//   linkInBio: "amyk.xyz",
-//   shareholders: [
-//     {
-//       holder: {
-//         profilePicSrc: "/images/amy.png",
-//         name: "Amy K",
-//         username: "@amyk",
-//         valuation: 300000,
-//         walletValue: 300000,
-//       },
-//       equity: 0.95,
-//     },
-//     {
-//       holder: {
-//         profilePicSrc: "/images/jane.png",
-//         name: "Jane S",
-//         username: "@janes",
-//         valuation: 100000,
-//         walletValue: 100000,
-//       },
-//       equity: 0.05,
-//     },
-//   ],
-//   portfolio: [
-//     {
-//       type: TokenType.PersonalToken,
-//       personalToken: {
-//         profilePicSrc: "/images/sam.png",
-//         name: "Sam C",
-//         username: "@samc",
-//         valuation: 3000000,
-//       },
-//       equity: 0.02,
-//     },
-//     {
-//       type: TokenType.PersonalToken,
-//       personalToken: {
-//         profilePicSrc: "/images/maya.png",
-//         username: "@mayap",
-//         name: "Maya P",
-//         valuation: 14000000,
-//       },
-//       equity: 0.03,
-//     },
-//     {
-//       type: TokenType.Company,
-//       company: {
-//         name: "OpenAI",
-//         profilePicSrc: "/images/openai.png",
-//         valuation: 30000000,
-//       },
-//       equity: 0.013,
-//     },
-//     {
-//       type: TokenType.Company,
-//       company: {
-//         name: "Reddit",
-//         profilePicSrc: "/images/reddit.png",
-//         valuation: 2000000,
-//       },
-//       equity: 0.0042,
-//     },
-//     {
-//       type: TokenType.Company,
-//       company: {
-//         name: "Apple",
-//         profilePicSrc: "/images/apple.png",
-//         valuation: 300000000,
-//       },
-//       equity: 0.0001,
-//     },
-//   ],
-// };

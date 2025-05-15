@@ -1,0 +1,237 @@
+[
+  {
+    "id": "root",
+    "category": "root",
+    "question": "root",
+    "answer": [
+      {
+        "type": "text",
+        "content": "pTN is a place where members invest in each other through their"
+      },
+      {
+        "type": "pill",
+        "content": "personal tokens",
+        "expanded": [
+          {
+            "type": "text",
+            "position": "node",
+            "nodeId": "personal-token-definition",
+            "content": "your personal token represents your potential. its value is grounded in reality: your equities in companies and other personal tokens."
+          },
+          {
+            "type": "component",
+            "position": "new-bubble",
+            "content": "PersonalToken"
+          },
+          {
+            "type": "text",
+            "position": "new-bubble",
+            "content": "you can raise capital by selling equity in your personal token. you can also invest in other's personal tokens by buying equity in them."
+          }
+        ],
+        "requiredBeforeQuestionsRendered": true
+      },
+      {
+        "type": "text",
+        "content": "."
+      }
+    ],
+    "followUps": [
+      "Why would I want to invest in personal tokens?",
+      "Why would I want to sell equity in my personal token?"
+    ]
+  },
+  {
+    "id": "Why would I want to invest in personal tokens?",
+    "category": "invest",
+    "question": "Why would I want to invest in personal tokens?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "Investing in someone\u2019s personal token is betting on their potential\u2014across the range of their "
+      },
+      {
+        "type": "pill",
+        "content": "expressions",
+        "expanded": [
+          {
+            "type": "text",
+            "position": "in-line",
+            "content": "Like their equities in companies they worked at, started and invested in, across time."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "content": ". By identifying talent early, investing in them, and helping them succeed, you can build a powerful track record."
+      }
+    ],
+    "followUps": [
+      "How can I profit from an investment?",
+      "Why wouldn\u2019t I just invest in their company instead?",
+      "How do I know how much a personal token is worth?",
+      "Why would I want to sell equity in my personal token?"
+    ]
+  },
+  {
+    "id": "How can I profit from an investment?",
+    "category": "invest",
+    "question": "How can I profit from an investment?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "1. When you\u2019re a shareholder in a personal token, you earn dividends: a portion of the capital gains that the token owner incurs when they sell their equity in a company or personal token goes to you - proportional to your equity in their personal token.\n"
+      },
+      {
+        "type": "text",
+        "content": "2. You can also sell stakes in personal tokens through "
+      },
+      {
+        "type": "pill",
+        "content": "secondary sales",
+        "expanded": [
+          {
+            "type": "text",
+            "position": "in-line",
+            "content": "Markets or exchanges where token stakes can be bought and sold after the initial issuance."
+          }
+        ],
+        "requiredBeforeQuestionsRendered": false
+      },
+      {
+        "type": "text",
+        "content": ".\n\nSo, when you invest in someone and the value of their personal token goes up, or if they generate wealth by selling equity, you will get a piece of that upside."
+      }
+    ],
+    "followUps": [
+      "Why wouldn\u2019t I just invest in their company instead?",
+      "How do I know how much a personal token is worth?",
+      "Why would I want to sell equity in my personal token?"
+    ]
+  },
+  {
+    "id": "How do I know how much a personal token is worth?",
+    "category": "invest",
+    "question": "How do I know how much a personal token is worth?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "Part art, part science, part convention."
+      }
+    ],
+    "followUps": []
+  },
+  {
+    "id": "Why wouldn\u2019t I just invest in their company instead?",
+    "category": "invest",
+    "question": "Why wouldn\u2019t I just invest in their company instead?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "By investing in someone\u2019s personal token, you\u2019re betting on them across the range of their expressions\u2026 (todo)."
+      }
+    ],
+    "followUps": [
+      "How do I know how much a personal token is worth?",
+      "Why would I want to sell equity in my personal token?"
+    ]
+  },
+  {
+    "id": "Why would I want to sell equity in my personal token?",
+    "category": "raise",
+    "question": "Why would I want to sell equity in my personal token?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "(todo)"
+      }
+    ],
+    "followUps": [
+      "Will my investors continue to be shareholders in my token till I die?"
+    ]
+  },
+  {
+    "id": "Will my investors continue to be shareholders in my token till I die?",
+    "category": "raise",
+    "question": "Will my investors continue to be shareholders in my token till I die?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "(todo)"
+      }
+    ],
+    "followUps": []
+  },
+  {
+    "id": "how can i invest in this project?",
+    "category": "project",
+    "question": "how can i invest in this project?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "We're currently exploring opportunities for early supporters and investors. If you're interested in investing, please reach out to us directly through our contact form or email. We'll be happy to discuss potential collaboration and keep you updated on future funding rounds."
+      }
+    ],
+    "followUps": []
+  },
+  {
+    "id": "where are you based out of?",
+    "category": "project",
+    "question": "where are you based out of?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "We're a remote-first team with roots in both the US and Europe. Our contributors are distributed globally, allowing us to bring together diverse perspectives and expertise."
+      }
+    ],
+    "followUps": []
+  },
+  {
+    "id": "how can i work with you on this?",
+    "category": "project",
+    "question": "how can i work with you on this?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "We're always looking for talented and passionate people to join us. If you're interested in collaborating, building, or contributing in any way, please send us a message with your background and interests. We'll get back to you about potential opportunities."
+      }
+    ],
+    "followUps": []
+  },
+  {
+    "id": "what gave you this idea?",
+    "category": "project",
+    "question": "what gave you this idea?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "The idea came from observing how much value individuals create throughout their careers, often across multiple companies and projects. We wanted to build a way for people to invest in talent itself, not just the companies they work for or start. Personal tokens are a natural evolution of this thinking."
+      }
+    ],
+    "followUps": []
+  },
+  {
+    "id": "are there any specific use-cases you have in mind for personal tokens?",
+    "category": "project",
+    "question": "are there any specific use-cases you have in mind for personal tokens?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "Absolutely! Some use-cases include: enabling early-career talent to raise capital for education or projects, allowing creators to share upside with their communities, and giving investors a way to back individuals whose impact spans multiple ventures. We're excited to see new applications emerge as the ecosystem grows."
+      }
+    ],
+    "followUps": []
+  },
+  {
+    "id": "who are you?",
+    "category": "project",
+    "question": "who are you?",
+    "answer": [
+      {
+        "type": "text",
+        "content": "We're a small team of builders, investors, and technologists passionate about unlocking human potential. Our backgrounds span startups, venture capital, and open-source communities. We're committed to building a fairer, more dynamic way for people to invest in each other."
+      }
+    ],
+    "followUps": []
+  }
+]
