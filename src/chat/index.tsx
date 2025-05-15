@@ -209,6 +209,10 @@ const Chat: React.FC = () => {
               sender={bubble.author}
               footer={{
                 label: bubble.author === Sender.Homan ? "homan" : "",
+                link:
+                  bubble.author === Sender.Homan
+                    ? "https://x.com/homanafterall"
+                    : "",
               }}
               {...(showFooter ? { showFooter: true } : {})}
             >
