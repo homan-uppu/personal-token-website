@@ -43,32 +43,32 @@ const Chat: React.FC = () => {
     const pillKey = `${bubbleIdx}-${contentIdx}`;
     if (expandedPills[pillKey] != null) return;
 
-    // For now, expand the first expansion (could be improved to support multiple)
-    const expansion = pill.expanded[0];
-    if (!expansion) return;
+    // Expand ALL expansions in the expanded array
+    pill.expanded.forEach((expansion, expansionIdx) => {
+      if (expansion.position === ExpansionPosition.Node && expansion.node) {
+        // Add the new node as a new bubble
+        setBubbles((prev) => [...prev, expansion.node!]);
+      } else if (
+        expansion.position === ExpansionPosition.InLine &&
+        expansion.content
+      ) {
+        // Inline expansion: insert the expanded content after the pill, but keep the pill itself
+        setBubbles((prev) => {
+          const newBubbles = [...prev];
+          const bubble = { ...newBubbles[bubbleIdx] };
+          const newContent = [...bubble.content];
+          // Insert the expanded content right after the pill, keeping the pill itself
+          newContent.splice(contentIdx + 1, 0, ...expansion.content!);
+          bubble.content = newContent;
+          newBubbles[bubbleIdx] = bubble;
+          return newBubbles;
+        });
+      }
+      // Annotation and other positions can be handled here if needed
+    });
 
-    if (expansion.position === ExpansionPosition.Node && expansion.node) {
-      // Add the new node as a new bubble
-      setBubbles((prev) => [...prev, expansion.node!]);
-      setExpandedPills((prev) => ({ ...prev, [pillKey]: 0 }));
-    } else if (
-      expansion.position === ExpansionPosition.InLine &&
-      expansion.content
-    ) {
-      // Inline expansion: insert the expanded content after the pill, but keep the pill
-      setBubbles((prev) => {
-        const newBubbles = [...prev];
-        const bubble = { ...newBubbles[bubbleIdx] };
-        const newContent = [...bubble.content];
-        // Insert the expanded content right after the pill, keeping the pill itself
-        newContent.splice(contentIdx + 1, 0, ...expansion.content!);
-        bubble.content = newContent;
-        newBubbles[bubbleIdx] = bubble;
-        return newBubbles;
-      });
-      setExpandedPills((prev) => ({ ...prev, [pillKey]: 0 }));
-    }
-    // Annotation and other positions can be handled here if needed
+    // Mark as expanded (using 0 for compatibility, but could be changed)
+    setExpandedPills((prev) => ({ ...prev, [pillKey]: 0 }));
   };
 
   // Render a single bubble's content
