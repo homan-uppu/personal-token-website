@@ -326,11 +326,20 @@ const Chat: React.FC = () => {
   };
 
   // Render followups for the last bubble
-  const renderFollowUps = (followUps?: string[]) => {
-    if (!followUps || followUps.length === 0) return null;
+  // Now takes the bubble as an argument to check if it's loading
+  const renderFollowUps = (bubble: Node) => {
+    if (
+      !bubble.followUps ||
+      bubble.followUps.length === 0 ||
+      bubble.content.length === 0 // Do not show followups if bubble is loading
+    )
+      return null;
     return (
       <div className={styles.followUpsContainer}>
-        <FollowUpPane followUps={followUps} onClick={handleFollowUpClick} />
+        <FollowUpPane
+          followUps={bubble.followUps}
+          onClick={handleFollowUpClick}
+        />
       </div>
     );
   };
@@ -382,8 +391,7 @@ const Chat: React.FC = () => {
                         ))}
                       </div>
                     )}
-                  {globalIdx === bubbles.length - 1 &&
-                    renderFollowUps(bubble.followUps)}
+                  {globalIdx === bubbles.length - 1 && renderFollowUps(bubble)}
                 </div>
               );
             })}
