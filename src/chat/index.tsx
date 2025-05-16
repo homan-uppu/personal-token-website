@@ -181,17 +181,37 @@ function useChatState(initialBubbles: Node[]) {
 
   // Handler for follow up click
   const handleFollowUpClick = React.useCallback((label: string) => {
-    setBubbles((prevBubbles) => [
-      ...prevBubbles,
-      {
-        id: label + "poop",
-        author: Sender.User,
-        content: [{ type: MediaType.Text, value: label }],
-      },
-      ...(chatData.find((node) => node.id === label)
-        ? [chatData.find((node) => node.id === label)!]
-        : []),
-    ]);
+    const foundNode = chatData.find((node) => node.id === label);
+
+    const bubbleWithUserMessage = {
+      id: label + "poop",
+      author: Sender.User,
+      content: [{ type: MediaType.Text, value: label }],
+    };
+
+    // first set the user message:
+    setBubbles((prevBubbles) => [...prevBubbles, bubbleWithUserMessage]);
+
+    if (foundNode) {
+      // first set the content to loading, and after 500ms set the content to the foundNode
+
+      const foundNodeWithEmptyContent = {
+        ...foundNode,
+        content: [],
+      };
+
+      setBubbles((prevBubbles) => [...prevBubbles, foundNodeWithEmptyContent]);
+
+      setTimeout(() => {
+        setBubbles((prevBubbles) => {
+          const newBubbles = [...prevBubbles];
+          newBubbles[newBubbles.length - 1] = foundNode;
+          return newBubbles;
+        });
+      }, 500);
+    } else {
+      // TODO - actually hit the LLM.
+    }
   }, []);
 
   return {
