@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import {
   data as chatData,
   Node,
@@ -69,7 +69,7 @@ function useBubbleGroups(bubbles: Node[]) {
 }
 
 // Custom hook to manage chat state and pill expansion logic
-function useChatState(initialBubbles: Node[]) {
+function useChatState(initialBubbles: Node[], scrollToBottom: () => void) {
   const [bubbles, setBubbles] = useState<Node[]>(initialBubbles);
   const [expandedPills, setExpandedPills] = useState<
     Record<string, number | null>
@@ -112,6 +112,7 @@ function useChatState(initialBubbles: Node[]) {
         });
         // Next node after previous is loaded
         sequentiallyAddNodes(pillKey, nodes, idx + 1);
+        scrollToBottom();
       }, 500);
     },
     [setBubbles, bubbles.length]
@@ -180,39 +181,48 @@ function useChatState(initialBubbles: Node[]) {
   );
 
   // Handler for follow up click
-  const handleFollowUpClick = React.useCallback((label: string) => {
-    const foundNode = chatData.find((node) => node.id === label);
+  const handleFollowUpClick = React.useCallback(
+    (label: string) => {
+      const foundNode = chatData.find((node) => node.id === label);
 
-    const bubbleWithUserMessage = {
-      id: label + "poop",
-      author: Sender.User,
-      content: [{ type: MediaType.Text, value: label }],
-    };
-
-    // first set the user message:
-    setBubbles((prevBubbles) => [...prevBubbles, bubbleWithUserMessage]);
-
-    if (foundNode) {
-      // first set the content to loading, and after 500ms set the content to the foundNode
-
-      const foundNodeWithEmptyContent = {
-        ...foundNode,
-        content: [],
+      const bubbleWithUserMessage = {
+        id: label + "poop",
+        author: Sender.User,
+        content: [{ type: MediaType.Text, value: label }],
       };
 
-      setBubbles((prevBubbles) => [...prevBubbles, foundNodeWithEmptyContent]);
+      // first set the user message:
+      setBubbles((prevBubbles) => [...prevBubbles, bubbleWithUserMessage]);
 
-      setTimeout(() => {
-        setBubbles((prevBubbles) => {
-          const newBubbles = [...prevBubbles];
-          newBubbles[newBubbles.length - 1] = foundNode;
-          return newBubbles;
-        });
-      }, 500);
-    } else {
-      // TODO - actually hit the LLM.
-    }
-  }, []);
+      if (foundNode) {
+        // first set the content to loading, and after 500ms set the content to the foundNode
+
+        const foundNodeWithEmptyContent = {
+          ...foundNode,
+          content: [],
+        };
+
+        setBubbles((prevBubbles) => [
+          ...prevBubbles,
+          foundNodeWithEmptyContent,
+        ]);
+
+        setTimeout(() => {
+          setBubbles((prevBubbles) => {
+            const newBubbles = [...prevBubbles];
+            newBubbles[newBubbles.length - 1] = foundNode;
+            return newBubbles;
+          });
+          setTimeout(() => {
+            scrollToBottom();
+          }, 100);
+        }, 500);
+      } else {
+        // TODO - actually hit the LLM.
+      }
+    },
+    [scrollToBottom]
+  );
 
   return {
     bubbles,
@@ -228,13 +238,23 @@ function useChatState(initialBubbles: Node[]) {
 
 // Main Chat component
 const Chat: React.FC = () => {
+  // Ref for scrolling to bottom
+  const chatEndRef = useRef<HTMLDivElement | null>(null);
+
+  // Helper to scroll to bottom smoothly
+  const scrollToBottom = useCallback(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   const {
     bubbles,
     expandedPills,
     hasEverClickedOnPill,
     handlePillClick,
     handleFollowUpClick,
-  } = useChatState([chatData[0]]);
+  } = useChatState([chatData[0]], scrollToBottom);
 
   const bubbleGroups = useBubbleGroups(bubbles);
 
@@ -398,6 +418,8 @@ const Chat: React.FC = () => {
           </div>
         );
       })}
+      {/* Scroll anchor for auto-scroll to bottom */}
+      <div ref={chatEndRef} />
     </div>
   );
 };
