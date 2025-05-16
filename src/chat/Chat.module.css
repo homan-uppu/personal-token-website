@@ -18,7 +18,7 @@
 .bubbleWrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
 }
 

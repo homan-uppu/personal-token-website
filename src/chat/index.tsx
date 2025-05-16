@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import {
   data as chatData,
   Node,
@@ -76,18 +76,67 @@ function useChatState(initialBubbles: Node[]) {
   >({});
   const [hasEverClickedOnPill, setHasEverClickedOnPill] = useState(false);
 
+  // Helper to sequentially add nodes with loading
+  const sequentiallyAddNodes = useCallback(
+    (pillKey: string, nodes: Node[], idx = 0) => {
+      if (idx >= nodes.length) return;
+      // Add node with empty content (isLoading)
+      setBubbles((prev) => [
+        ...prev,
+        {
+          ...nodes[idx],
+          content: [],
+        },
+      ]);
+      // After 1s, fill in the content
+      setTimeout(() => {
+        setBubbles((prev) => {
+          // Find the last node with empty content and fill it in
+          const newBubbles = [...prev];
+          // Find the index of the node we just added (should be at the end)
+          const lastIdx =
+            newBubbles.length - (prev.length - bubbles.length) - 1;
+          // Defensive: fallback to last
+          const nodeIdx = newBubbles.findIndex(
+            (b, i) =>
+              b.id === nodes[idx].id &&
+              b.author === nodes[idx].author &&
+              b.content.length === 0
+          );
+          const updateIdx = nodeIdx !== -1 ? nodeIdx : lastIdx;
+          newBubbles[updateIdx] = {
+            ...newBubbles[updateIdx],
+            content: nodes[idx].content,
+          };
+          return newBubbles;
+        });
+        // Next node after previous is loaded
+        sequentiallyAddNodes(pillKey, nodes, idx + 1);
+      }, 500);
+    },
+    [setBubbles, bubbles.length]
+  );
+
   // Handler for pill click
-  const handlePillClick = React.useCallback(
+  const handlePillClick = useCallback(
     (bubbleIdx: number, contentIdx: number, pill: Pill) => {
       const pillKey = `${bubbleIdx}-${contentIdx}`;
       if (expandedPills[pillKey] != null) return;
 
       if (!hasEverClickedOnPill) setHasEverClickedOnPill(true);
 
+      // Gather all node expansions
+      const nodeExpansions =
+        pill.expanded
+          .filter(
+            (expansion) =>
+              expansion.position === ExpansionPosition.Node && expansion.node
+          )
+          .map((expansion) => expansion.node!) || [];
+
+      // Handle in-line and annotation expansions immediately
       pill.expanded.forEach((expansion) => {
-        if (expansion.position === ExpansionPosition.Node && expansion.node) {
-          setBubbles((prev) => [...prev, expansion.node!]);
-        } else if (
+        if (
           expansion.position === ExpansionPosition.InLine &&
           expansion.content
         ) {
@@ -113,9 +162,21 @@ function useChatState(initialBubbles: Node[]) {
         }
       });
 
+      // Sequentially add node expansions with loading
+      if (nodeExpansions.length > 0) {
+        sequentiallyAddNodes(pillKey, nodeExpansions, 0);
+      }
+
       setExpandedPills((prev) => ({ ...prev, [pillKey]: 0 }));
     },
-    [expandedPills, hasEverClickedOnPill]
+    [
+      expandedPills,
+      hasEverClickedOnPill,
+      setBubbles,
+      setExpandedPills,
+      setHasEverClickedOnPill,
+      sequentiallyAddNodes,
+    ]
   );
 
   // Handler for follow up click
@@ -283,6 +344,7 @@ const Chat: React.FC = () => {
                           ? "https://x.com/homanafterall"
                           : "",
                     }}
+                    isLoading={bubble.content.length === 0}
                     {...(showFooter ? { showFooter: true } : {})}
                   >
                     <div className={styles.bubbleContent}>

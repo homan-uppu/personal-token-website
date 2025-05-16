@@ -7,6 +7,10 @@
   width: 480px;
 }
 
+.loadingWrapper {
+  width: 80px;
+}
+
 /** Bubble (default, for Sender.User) */
 .bubble {
   /* background: #fff; */
