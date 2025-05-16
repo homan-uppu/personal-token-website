@@ -136,6 +136,24 @@ const Chat: React.FC = () => {
             />
           );
         }
+        if (item.type === MediaType.Video) {
+          return (
+            <video
+              key={idx}
+              src={item.value}
+              loop={item.isLooped}
+              autoPlay
+              style={{
+                maxWidth: "320px",
+                maxHeight: "200px",
+                borderRadius: "8px",
+                margin: "8px 0",
+                display: "block",
+                background: "#000",
+              }}
+            />
+          );
+        }
         return null;
       } else if (isPill(item)) {
         const pillKey = `${bubbleIdx}-${idx}`;

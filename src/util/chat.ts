@@ -18,6 +18,7 @@ export enum MediaType {
 export type ContentItem = {
   type: MediaType;
   value: string;
+  isLooped?: boolean; // for video.
 };
 
 export type PillExpandedItem = {
@@ -77,8 +78,9 @@ export const data: Node[] = [
                       position: ExpansionPosition.Annotation,
                       content: [
                         {
-                          type: MediaType.Image,
-                          value: "/images/track-record.png",
+                          type: MediaType.Video,
+                          value: "/videos/blossom.mp4",
+                          isLooped: true,
                         },
                       ],
                     },

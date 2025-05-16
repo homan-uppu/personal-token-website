@@ -7,6 +7,7 @@ interface PillProps {
   text: string;
   onClick?: () => void;
   caption?: string;
+  children?: React.ReactNode;
 }
 
 const PillComp: React.FC<PillProps> = ({
@@ -14,6 +15,7 @@ const PillComp: React.FC<PillProps> = ({
   text,
   onClick,
   caption,
+  children,
 }) => {
   return (
     <div
@@ -24,6 +26,7 @@ const PillComp: React.FC<PillProps> = ({
       }
       onClick={onClick}
     >
+      {children && <span style={{ marginRight: 6 }}>{children}</span>}
       <span>{text}</span>
       {caption && (
         <div className={styles.pillCaption}>

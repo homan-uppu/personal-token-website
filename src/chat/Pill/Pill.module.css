@@ -6,7 +6,6 @@
   padding: 1px 8px;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.03);
-  font-family: Georgia, serif;
   transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
   font-size: 15px;
   user-select: none;
