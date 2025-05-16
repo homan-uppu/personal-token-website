@@ -28,67 +28,138 @@ function isContentItem(item: any): item is ContentItem {
   return typeof item === "object" && "type" in item && "value" in item;
 }
 
-// Main Chat component
-const Chat: React.FC = () => {
-  // State: array of nodes (bubbles)
-  const [bubbles, setBubbles] = useState<Node[]>([chatData[0]]);
-  // State: track which pills are expanded, by a unique key (bubbleIdx-contentIdx)
+// Group bubbles into sequences of the same author
+type BubbleGroup = {
+  author: Sender;
+  bubbles: Node[];
+  startIdx: number; // index in the original bubbles array
+};
+
+function useBubbleGroups(bubbles: Node[]) {
+  return React.useMemo(() => {
+    if (bubbles.length === 0) return [];
+    const groups: BubbleGroup[] = [];
+    let currentAuthor = bubbles[0].author;
+    let currentGroup: Node[] = [];
+    let groupStartIdx = 0;
+    bubbles.forEach((bubble, idx) => {
+      if (bubble.author === currentAuthor) {
+        currentGroup.push(bubble);
+      } else {
+        groups.push({
+          author: currentAuthor,
+          bubbles: currentGroup,
+          startIdx: groupStartIdx,
+        });
+        currentAuthor = bubble.author;
+        currentGroup = [bubble];
+        groupStartIdx = idx;
+      }
+    });
+    // Push the last group
+    if (currentGroup.length > 0) {
+      groups.push({
+        author: currentAuthor,
+        bubbles: currentGroup,
+        startIdx: groupStartIdx,
+      });
+    }
+    return groups;
+  }, [bubbles]);
+}
+
+// Custom hook to manage chat state and pill expansion logic
+function useChatState(initialBubbles: Node[]) {
+  const [bubbles, setBubbles] = useState<Node[]>(initialBubbles);
   const [expandedPills, setExpandedPills] = useState<
     Record<string, number | null>
   >({});
-  // State: track if user has ever clicked on a pill
   const [hasEverClickedOnPill, setHasEverClickedOnPill] = useState(false);
 
   // Handler for pill click
-  const handlePillClick = (
-    bubbleIdx: number,
-    contentIdx: number,
-    pill: Pill
-  ) => {
-    // Only expand if not already expanded
-    const pillKey = `${bubbleIdx}-${contentIdx}`;
-    if (expandedPills[pillKey] != null) return;
+  const handlePillClick = React.useCallback(
+    (bubbleIdx: number, contentIdx: number, pill: Pill) => {
+      const pillKey = `${bubbleIdx}-${contentIdx}`;
+      if (expandedPills[pillKey] != null) return;
 
-    // Mark that user has clicked a pill at least once
-    if (!hasEverClickedOnPill) setHasEverClickedOnPill(true);
+      if (!hasEverClickedOnPill) setHasEverClickedOnPill(true);
 
-    // Expand ALL expansions in the expanded array
-    pill.expanded.forEach((expansion, expansionIdx) => {
-      if (expansion.position === ExpansionPosition.Node && expansion.node) {
-        // Add the new node as a new bubble
-        setBubbles((prev) => [...prev, expansion.node!]);
-      } else if (
-        expansion.position === ExpansionPosition.InLine &&
-        expansion.content
-      ) {
-        // Inline expansion: insert the expanded content after the pill, but keep the pill itself
-        setBubbles((prev) => {
-          const newBubbles = [...prev];
-          const bubble = { ...newBubbles[bubbleIdx] };
-          const newContent = [...bubble.content];
-          // Insert the expanded content right after the pill, keeping the pill itself
-          newContent.splice(contentIdx + 1, 0, ...expansion.content!);
-          bubble.content = newContent;
-          newBubbles[bubbleIdx] = bubble;
-          return newBubbles;
-        });
-      }
-      // Annotation and other positions can be handled here if needed
-      if (expansion.position === ExpansionPosition.Annotation) {
-        // Add the annotation to the bubble
-        setBubbles((prev) => {
-          const newBubbles = [...prev];
-          newBubbles[bubbleIdx].annotations =
-            expansion.content as ContentItem[];
-          console.log("newbubbles: ", newBubbles);
-          return newBubbles;
-        });
-      }
-    });
+      pill.expanded.forEach((expansion) => {
+        if (expansion.position === ExpansionPosition.Node && expansion.node) {
+          setBubbles((prev) => [...prev, expansion.node!]);
+        } else if (
+          expansion.position === ExpansionPosition.InLine &&
+          expansion.content
+        ) {
+          setBubbles((prev) => {
+            const newBubbles = [...prev];
+            const bubble = { ...newBubbles[bubbleIdx] };
+            const newContent = [...bubble.content];
+            newContent.splice(contentIdx + 1, 0, ...expansion.content!);
+            bubble.content = newContent;
+            newBubbles[bubbleIdx] = bubble;
+            return newBubbles;
+          });
+        }
+        if (expansion.position === ExpansionPosition.Annotation) {
+          setBubbles((prev) => {
+            const newBubbles = [...prev];
+            newBubbles[bubbleIdx].annotations = {
+              content: expansion.content as ContentItem[],
+              pillId: pillKey,
+            };
+            return newBubbles;
+          });
+        }
+      });
 
-    // Mark as expanded (using 0 for compatibility, but could be changed)
-    setExpandedPills((prev) => ({ ...prev, [pillKey]: 0 }));
+      setExpandedPills((prev) => ({ ...prev, [pillKey]: 0 }));
+    },
+    [expandedPills, hasEverClickedOnPill]
+  );
+
+  // Handler for follow up click
+  const handleFollowUpClick = React.useCallback((label: string) => {
+    setBubbles((prevBubbles) => [
+      ...prevBubbles,
+      {
+        id: label + "poop",
+        author: Sender.User,
+        content: [{ type: MediaType.Text, value: label }],
+      },
+      ...(chatData.find((node) => node.id === label)
+        ? [chatData.find((node) => node.id === label)!]
+        : []),
+    ]);
+  }, []);
+
+  return {
+    bubbles,
+    setBubbles,
+    expandedPills,
+    setExpandedPills,
+    hasEverClickedOnPill,
+    setHasEverClickedOnPill,
+    handlePillClick,
+    handleFollowUpClick,
   };
+}
+
+// Main Chat component
+const Chat: React.FC = () => {
+  const {
+    bubbles,
+    expandedPills,
+    hasEverClickedOnPill,
+    handlePillClick,
+    handleFollowUpClick,
+  } = useChatState([chatData[0]]);
+
+  const bubbleGroups = useBubbleGroups(bubbles);
+
+  // Helper to get the global bubble index for a group and local index
+  const getGlobalBubbleIdx = (group: BubbleGroup, localIdx: number) =>
+    group.startIdx + localIdx;
 
   const clickMeLabel = <Caption label="(click me)" />;
 
@@ -178,71 +249,10 @@ const Chat: React.FC = () => {
     if (!followUps || followUps.length === 0) return null;
     return (
       <div className={styles.followUpsContainer}>
-        <FollowUpPane
-          followUps={followUps}
-          onClick={(label: string) => {
-            setBubbles((prevBubbles) => [
-              ...prevBubbles,
-              {
-                id: label + "poop",
-                author: Sender.User,
-                content: [{ type: MediaType.Text, value: label }],
-              },
-              // Find the node in data for which id === label, and add it as well
-              ...(chatData.find((node) => node.id === label)
-                ? [chatData.find((node) => node.id === label)!]
-                : []),
-            ]);
-          }}
-        />
+        <FollowUpPane followUps={followUps} onClick={handleFollowUpClick} />
       </div>
     );
   };
-
-  // Group bubbles into sequences of the same author
-  type BubbleGroup = {
-    author: Sender;
-    bubbles: Node[];
-    startIdx: number; // index in the original bubbles array
-  };
-
-  const groupBubblesByAuthor = (bubbles: Node[]): BubbleGroup[] => {
-    if (bubbles.length === 0) return [];
-    const groups: BubbleGroup[] = [];
-    let currentAuthor = bubbles[0].author;
-    let currentGroup: Node[] = [];
-    let groupStartIdx = 0;
-    bubbles.forEach((bubble, idx) => {
-      if (bubble.author === currentAuthor) {
-        currentGroup.push(bubble);
-      } else {
-        groups.push({
-          author: currentAuthor,
-          bubbles: currentGroup,
-          startIdx: groupStartIdx,
-        });
-        currentAuthor = bubble.author;
-        currentGroup = [bubble];
-        groupStartIdx = idx;
-      }
-    });
-    // Push the last group
-    if (currentGroup.length > 0) {
-      groups.push({
-        author: currentAuthor,
-        bubbles: currentGroup,
-        startIdx: groupStartIdx,
-      });
-    }
-    return groups;
-  };
-
-  // Group bubbles by author sequence
-  const bubbleGroups = groupBubblesByAuthor(bubbles);
-
-  // Helper to get the global bubble index for a group and local index
-  const getGlobalBubbleIdx = (group: BubbleGroup, localIdx: number) =>
-    group.startIdx + localIdx;
 
   return (
     <div className={styles.chatContainer}>
@@ -280,15 +290,16 @@ const Chat: React.FC = () => {
                     </div>
                   </Bubble>
                   {/* Only render followups for the last bubble */}
-                  {bubble.annotations && bubble.annotations.length > 0 && (
-                    <div className={styles.annotationsContainer}>
-                      {bubble.annotations.map((annotation, idx) => (
-                        <div key={idx} className={styles.annotation}>
-                          {renderContent([annotation], idx)}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  {bubble.annotations &&
+                    bubble.annotations.content.length > 0 && (
+                      <div className={styles.annotationsContainer}>
+                        {bubble.annotations.content.map((annotation, idx) => (
+                          <div key={idx} className={styles.annotation}>
+                            {renderContent([annotation], idx)}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   {globalIdx === bubbles.length - 1 &&
                     renderFollowUps(bubble.followUps)}
                 </div>

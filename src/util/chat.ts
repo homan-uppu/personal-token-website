@@ -41,12 +41,14 @@ export interface Node {
   id: string; // The question itself as the ID
   author: Sender;
   content: (ContentItem | Pill)[];
-  annotations?: ContentItem[];
+  annotations?: { content: ContentItem[]; pillId: string };
   followUps?: string[];
 }
 
 // Entire question tree
 export type QuestionTree = Node[];
+
+// UI STATE:
 
 export const data: Node[] = [
   {
