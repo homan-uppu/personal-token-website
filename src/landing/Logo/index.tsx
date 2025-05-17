@@ -53,6 +53,7 @@ const logoStyles = {
   }),
   text: {
     color: "var(--logo-green)",
+    fontSize: 15,
   },
 };
 

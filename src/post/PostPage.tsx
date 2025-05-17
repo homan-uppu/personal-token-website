@@ -3,7 +3,6 @@ import TOC from "./TOC";
 import styles from "./Content.module.css";
 import titleBgStyles from "./TitleBg.module.css";
 import { Geist_Mono, Lora } from "next/font/google";
-import Footer from "@/components/Footer/Footer";
 
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 const lora = Lora({ subsets: ["latin"] });
@@ -14,7 +13,6 @@ interface PostPageProps {
   caption?: string;
   pageID?: string;
   labels?: string[];
-  noFooter?: boolean;
 }
 
 export const PostPage = ({
@@ -23,11 +21,10 @@ export const PostPage = ({
   caption,
   pageID,
   labels,
-  noFooter,
 }: PostPageProps) => {
   return (
     <div className={styles.container}>
-      <Navbar pageID={pageID} width={688} />
+      <Navbar currentPage={pageID} />
       <div className={styles.content}>
         <div className={styles.titleContainer}>
           <h1 className={`${styles.title} ${lora.className}`}>{title}</h1>
@@ -41,8 +38,6 @@ export const PostPage = ({
         )}
         {children}
       </div>
-
-      {!noFooter && <Footer marginTop={"2rem"} marginBottom={"2rem"} />}
 
       <div style={verticalBarLeftStyle}></div>
       <div style={verticalBarRightStyle}></div>

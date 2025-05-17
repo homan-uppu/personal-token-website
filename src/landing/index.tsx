@@ -1,6 +1,7 @@
 import styles from "./Landing.module.css";
 import React from "react";
 import Chat from "@/chat";
+import Navbar from "@/components/Navbar";
 
 const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div style={wrapperStyle}>{children}</div>
@@ -9,6 +10,7 @@ const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => (
 const Landing = () => {
   return (
     <div className={styles.container}>
+      <Navbar currentPage="landing" />
       <div className={styles.content}>
         <div className={styles.main}>
           <Chat />

@@ -1,14 +1,8 @@
 import { PostPage } from "@/post/PostPage";
-import Annotation from "@/white-paper/Annotation";
 import How from "@/writing/how.mdx";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { mdxComponents } from "../../../mdx-components";
-import Accordion from "@/white-paper/Accordion";
-import { NetworkTokenScene } from "@/white-paper/Assets";
-import { PersonalTokenComp } from "@/components/PersonalToken";
-import { dummyPersonalToken } from "@/util/models";
-import { TokenInfo } from "@/components/TokenInfo";
 import { PersonalTokenStatic } from "@/components/PersonalToken/PersonalTokenStatic";
 import EmailCapture from "@/components/EmailCapture/EmailCapture";
 
@@ -51,11 +45,20 @@ export default function Docs() {
       <How
         components={{
           ...mdxComponents,
-          Annotation,
-          Accordion,
-          NetworkTokenScene,
           PersonalTokenVisualization,
           EmailCapture,
+          Accordion: ({
+            title,
+            children,
+          }: {
+            title: string;
+            children: React.ReactNode;
+          }) => (
+            <div>
+              <div>{title}</div>
+              <div>{children}</div>
+            </div>
+          ),
         }}
       />
     </PostPage>
