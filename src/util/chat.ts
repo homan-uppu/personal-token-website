@@ -50,6 +50,77 @@ export type QuestionTree = Node[];
 
 // UI STATE:
 
+export const startingNodes: Node[] = [
+  {
+    id: "",
+    author: Sender.Homan,
+    content: [
+      {
+        type: MediaType.Text,
+        value:
+          "hey! personalTokenNet is a place where people invest in each other through their personal tokens.",
+      },
+    ],
+  },
+  {
+    id: "about-personal-token",
+    author: Sender.Homan,
+    content: [
+      {
+        type: MediaType.Text,
+        value: "your personal token represents your potential.",
+      },
+      {
+        type: MediaType.Text,
+        value: "its value is grounded in reality:",
+      },
+      {
+        text: "companies",
+        expanded: [
+          {
+            position: ExpansionPosition.InLine,
+            content: [
+              {
+                type: MediaType.Text,
+                value: " (the ones you start, work for, or invest in)",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: MediaType.Text,
+        value: " and other personal tokens.",
+      },
+    ],
+  },
+  {
+    id: "personal-token-comp",
+    author: Sender.Homan,
+    content: [
+      {
+        type: MediaType.Component,
+        value: "PersonalTokenComponent",
+      },
+    ],
+  },
+  {
+    id: "personal-token-buy-sell",
+    author: Sender.Homan,
+    content: [
+      {
+        type: MediaType.Text,
+        value:
+          "you can raise capital by selling equity in your personal token. you can also invest in other's personal tokens by buying equity in them.",
+      },
+    ],
+    followUps: [
+      "Why would I want to invest in personal tokens?",
+      "Why would I want to sell equity in my personal token?",
+    ],
+  },
+];
+
 export const data: Node[] = [
   {
     id: "",

@@ -9,6 +9,7 @@ import {
   MediaType,
   ExpansionPosition,
   Sender,
+  startingNodes,
 } from "@/util/chat";
 import Bubble from "./Bubble";
 import PillComponent from "./Pill";
@@ -78,7 +79,12 @@ function useChatState(initialBubbles: Node[], scrollToBottom: () => void) {
 
   // Helper to sequentially add nodes with loading
   const sequentiallyAddNodes = useCallback(
-    (pillKey: string, nodes: Node[], idx = 0) => {
+    (
+      pillKey: string,
+      nodes: Node[],
+      idx = 0,
+      ms: number = 500 // Optional param for setTimeout delay
+    ) => {
       if (idx >= nodes.length) return;
       // Add node with empty content (isLoading)
       setBubbles((prev) => [
@@ -88,7 +94,7 @@ function useChatState(initialBubbles: Node[], scrollToBottom: () => void) {
           content: [],
         },
       ]);
-      // After 1s, fill in the content
+      // After ms, fill in the content
       setTimeout(() => {
         setBubbles((prev) => {
           // Find the last node with empty content and fill it in
@@ -111,9 +117,9 @@ function useChatState(initialBubbles: Node[], scrollToBottom: () => void) {
           return newBubbles;
         });
         // Next node after previous is loaded
-        sequentiallyAddNodes(pillKey, nodes, idx + 1);
+        sequentiallyAddNodes(pillKey, nodes, idx + 1, ms);
         scrollToBottom();
-      }, 500);
+      }, ms);
     },
     [setBubbles, bubbles.length]
   );
@@ -233,6 +239,7 @@ function useChatState(initialBubbles: Node[], scrollToBottom: () => void) {
     setHasEverClickedOnPill,
     handlePillClick,
     handleFollowUpClick,
+    sequentiallyAddNodes,
   };
 }
 
@@ -251,12 +258,16 @@ const Chat: React.FC = () => {
   const {
     bubbles,
     expandedPills,
-    hasEverClickedOnPill,
     handlePillClick,
     handleFollowUpClick,
-  } = useChatState([chatData[0]], scrollToBottom);
+    sequentiallyAddNodes,
+  } = useChatState([], scrollToBottom);
 
   const bubbleGroups = useBubbleGroups(bubbles);
+
+  useEffect(() => {
+    sequentiallyAddNodes("poop", startingNodes, 0, 300);
+  }, []);
 
   // Helper to get the global bubble index for a group and local index
   const getGlobalBubbleIdx = (group: BubbleGroup, localIdx: number) =>
@@ -335,7 +346,6 @@ const Chat: React.FC = () => {
             <PillComponent
               isExpanded={isExpanded}
               text={item.text}
-              caption={!hasEverClickedOnPill ? "(click me)" : undefined}
               onClick={() => handlePillClick(bubbleIdx, idx, item)}
             />
           </React.Fragment>

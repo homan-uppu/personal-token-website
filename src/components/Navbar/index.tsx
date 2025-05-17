@@ -162,8 +162,8 @@ const logoContainerHoverStyle: React.CSSProperties = {
 
 const logoImageStyle: React.CSSProperties = {
   display: "block",
-  width: 24,
-  height: 24,
+  width: 22,
+  height: 22,
 };
 
 export default Navbar;
